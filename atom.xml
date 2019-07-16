@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://eybisi.run/"/>
-  <updated>2019-07-09T13:12:46.390Z</updated>
+  <updated>2019-06-10T13:32:46.000Z</updated>
   <id>http://eybisi.run/</id>
   
   <author>
@@ -15,33 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Mobile Malware Analysis : Dissecting Hydra</title>
-    <link href="http://eybisi.run/Mobile-Malware-Analysis-Dissecting-Hydra/"/>
-    <id>http://eybisi.run/Mobile-Malware-Analysis-Dissecting-Hydra/</id>
-    <published>2019-06-14T12:44:53.000Z</published>
-    <updated>2019-07-09T13:12:46.390Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Hydra&quot;&gt;&lt;a href=&quot;#Hydra&quot; class=&quot;headerlink&quot; title=&quot;Hydra&quot;&gt;&lt;/a&gt;Hydra&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;hydra.jpg&quot; width=&quot;250&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Hydra is another
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Malware" scheme="http://eybisi.run/tags/Malware/"/>
-    
-      <category term="Mobile" scheme="http://eybisi.run/tags/Mobile/"/>
-    
-  </entry>
   
   <entry>
     <title>Mobile Malware Analysis : Overlay and How to Counter it (partly)</title>
