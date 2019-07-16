@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang=tr>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="basitmobiljadxte açtığımda flag zaten karşımda.   Flag : STMCTF{yazdan_kalan_s1caklarla_1s1nal1m} benibulApkyı jeb’de açıyorum görüyorumki .flag.txt diye bir dosya oluşturuyor. İçine de binary-&amp;gt;oct">
+<meta name="keywords" content="CTF,Android,Reverse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STMCTF18-Final Mobil Sorulari">
+<meta property="og:url" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/index.html">
+<meta property="og:site_name" content="Ahmet Bilal Can">
+<meta property="og:description" content="basitmobiljadxte açtığımda flag zaten karşımda.   Flag : STMCTF{yazdan_kalan_s1caklarla_1s1nal1m} benibulApkyı jeb’de açıyorum görüyorumki .flag.txt diye bir dosya oluşturuyor. İçine de binary-&amp;gt;oct">
+<meta property="og:locale" content="tr">
+<meta property="og:image" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/basit_mobil.png">
+<meta property="og:image" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/benibul.png">
+<meta property="og:image" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/sahte.png">
+<meta property="og:image" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/gercek.png">
+<meta property="og:image" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/ters.png">
+<meta property="og:image" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/util.png">
+<meta property="og:image" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/muslukcu.png">
+<meta property="og:image" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/frida.png">
+<meta property="og:image" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/uret.png">
+<meta property="og:image" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/urett.png">
+<meta property="og:updated_time" content="2018-11-03T14:28:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="STMCTF18-Final Mobil Sorulari">
+<meta name="twitter:description" content="basitmobiljadxte açtığımda flag zaten karşımda.   Flag : STMCTF{yazdan_kalan_s1caklarla_1s1nal1m} benibulApkyı jeb’de açıyorum görüyorumki .flag.txt diye bir dosya oluşturuyor. İçine de binary-&amp;gt;oct">
+<meta name="twitter:image" content="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/basit_mobil.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>STMCTF18-Final Mobil Sorulari</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Ahmet Bilal Can" type="application/atom+xml" />
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Ana Sayfa</a></li>
+         
+          <li><a href="/about/">Hakkımda</a></li>
+         
+          <li><a href="/archives/">Yazılar</a></li>
+         
+          <li><a href="/Search/">Ara</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/Mobile-Malware-Analysis-Tricks-used-in-Anubis/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/Flareon5-6-Challenge-Magic/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Önceki gönderi</span>
+      <span id="i-next" class="info" style="display:none;">Sonraki gönderi</span>
+      <span id="i-top" class="info" style="display:none;">Başa dön</span>
+      <span id="i-share" class="info" style="display:none;">Gönderiyi paylaş</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&text=STMCTF18-Final Mobil Sorulari"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&title=STMCTF18-Final Mobil Sorulari"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&is_video=false&description=STMCTF18-Final Mobil Sorulari"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=STMCTF18-Final Mobil Sorulari&body=Check out this article: http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&title=STMCTF18-Final Mobil Sorulari"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&title=STMCTF18-Final Mobil Sorulari"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&title=STMCTF18-Final Mobil Sorulari"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&title=STMCTF18-Final Mobil Sorulari"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&name=STMCTF18-Final Mobil Sorulari&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#basitmobil"><span class="toc-number">1.</span> <span class="toc-text">basitmobil</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#benibul"><span class="toc-number">2.</span> <span class="toc-text">benibul</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#terslebeni"><span class="toc-number">3.</span> <span class="toc-text">terslebeni</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#muslukcu"><span class="toc-number">4.</span> <span class="toc-text">muslukcu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cokzararli"><span class="toc-number">5.</span> <span class="toc-text">cokzararli</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        STMCTF18-Final Mobil Sorulari
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Ahmet Bilal Can</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-11-03T12:23:21.000Z" itemprop="datePublished">2018-11-03</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Android/">Android</a>, <a class="tag-link" href="/tags/CTF/">CTF</a>, <a class="tag-link" href="/tags/Reverse/">Reverse</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="basitmobil"><a href="#basitmobil" class="headerlink" title="basitmobil"></a>basitmobil</h2><p>jadxte açtığımda flag zaten karşımda. </p>
+<p><img src="basit_mobil.png" alt="basit"></p>
+<p>Flag : <code>STMCTF{yazdan_kalan_s1caklarla_1s1nal1m}</code></p>
+<h2 id="benibul"><a href="#benibul" class="headerlink" title="benibul"></a>benibul</h2><p>Apkyı jeb’de açıyorum görüyorumki <code>.flag.txt</code> diye bir dosya oluşturuyor. İçine de binary-&gt;octal-&gt;decimal dönüşümünü yapıp değeri yazıyor.</p>
+<p><img src="benibul.png" alt="jeb"></p>
+<p>Dosyaya bakmadan direk datayı alıp binary -&gt; asci değerini de bakabilirsiniz. Dosyaya adb shell ile emulatore bağlanıp bakalım. (v24 istiyor ona göre vm açmak lazım)</p>
+<p><img src="sahte.png" alt="sahte"></p>
+<p>Bu binary değerleri sahteymiş demekki apknın başka bir yerinde başka binary değerleri var.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp benibul.apk benibul.zip</span><br><span class="line">unzip benibul.zip</span><br><span class="line">cd lib/x86</span><br></pre></td></tr></table></figure></p>
+<p>Komutları ile apknın native librarysine gidiyorum. Tahminimce yine 0101 gibi değer olduğu için grepliyorum.<br>Bulduğum değerleri asciye çevirdiğimde flag çıkıyor</p>
+<p><img src="gercek.png" alt="gercek"></p>
+<p>Flag: <code>STMCTF{?_evet_taraf1nd4n_!}</code></p>
+<h2 id="terslebeni"><a href="#terslebeni" class="headerlink" title="terslebeni"></a>terslebeni</h2><p>jadxte apkyı açıyorum. Görüyorumki bir karşılaştırma var. Uygulama bu karşılaştırmaya göre apkdeki bir componente setText ile text basıyor.</p>
+<p><img src="ters.png" alt="ters"></p>
+<p>R.string değerlerinin ne olduğunu Resources/resoueces.arsc/values/strings.xml dosyasından görebiliriz.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R.string.a UmxUbYYSllDKA1n+ZMR/sZXJ5ZglWOSfYGzfuVauT+o=</span><br><span class="line">R.string.b R09IT01FIQ==</span><br><span class="line">R.string.d Tebrikler, doğru bayrağı buldun</span><br><span class="line">R.string.e Denemeye devam</span><br></pre></td></tr></table></figure></p>
+<p>Karşılatırmanın yapıldığı kod parçası şu şekilde </p>
+<p><code>Base64.encodeToString( Util.a( obj,Util.a( new String( Base64.decode( MainActivity.this.getString(R.string.b),0)))), 0).trim().equals( MainActivity.this.getString(R.string.a)) != null</code></p>
+<p>Kodu kısaltırsak</p>
+<p>Util.a(new String(Base64.decode(MainActivity.this.getString(R.string.b), 0)))<br>first = Util.a(base64decode(R.string.b))<br>second = Util.a(obj,first)</p>
+<p>Yani if’i içinde  şu karşılatırma yapılıyor.<br>base64encode(second) == R.string.a</p>
+<p>R.string.a değerini biliyoruz : UmxUbYYSllDKA1n+ZMR/sZXJ5ZglWOSfYGzfuVauT+o=</p>
+<p>first ve second için Util classına bakalım</p>
+<p><img src="util.png" alt="util"></p>
+<p>Birden fazla a fonksiyonu var. first ve second için hangi a fonksiyonun çalışacağını parametre sayısı belirleyecek. First için tek değerli yani md5li fonksiyon, second için alttaki aes encryption fonksiyonu çalışacak.<br>first’ün gittiği fonksiyon gelen değerin md5ini alıp dönen değerin 16 karaterini alıyor.</p>
+<p>second’ın gittiği a fonksiyonun ilk parametrisi str, ikinci parametresi key. Bu parametrelerle ECB modunda aes encryption yapıyor. </p>
+<p>yani first değerimiz md5(R.string.b)[:16] , bu değer de aes encryptiona key olarak gidiyor. </p>
+<p>second’ın gittiği fonksiyonun ilk parametresi apkdan gelen input değeri. Bu değeri alıp constant key ile encrypt edip base64ünü aldığımızda R.string.a değeriyle aynı değeri bulmamız gerek. Tersten gidersek</p>
+<p>base64decode(R.string.a) yı md5(R.string.b)[:16] ile decrypt edince flage ulaşabiliriz.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5</span><br><span class="line">a = <span class="string">"UmxUbYYSllDKA1n+ZMR/sZXJ5ZglWOSfYGzfuVauT+o="</span></span><br><span class="line">b = <span class="string">"R09IT01FIQ=="</span></span><br><span class="line">ciphertext = base64.b64decode(a)</span><br><span class="line">key = base64.b64decode(b)</span><br><span class="line">m = md5()</span><br><span class="line">m.update(key)</span><br><span class="line">key = m.hexdigest()[:<span class="number">16</span>]</span><br><span class="line">cipher = AES.new(key,AES.MODE_ECB)</span><br><span class="line">cipher.decrypt(ciphertext)</span><br></pre></td></tr></table></figure>
+<p>Flag : <code>STMCTF{!ben_evdey1m_zaten}</code></p>
+<h2 id="muslukcu"><a href="#muslukcu" class="headerlink" title="muslukcu"></a>muslukcu</h2><p>apkyı jadxte açınca görünüyorki sürekli bir log.d akışı var. <code>STMCTF{</code> stringini arayınca tek bir yerde geçtiğini görüyorum ve koda gidiyorum. </p>
+<p><img src="muslukcu.png" alt="muslukcu"></p>
+<p>skor değişkenine  baktığımda aslında constant oldugunu görüyorum. Oyundaki skor <code>score</code> değişkeninde tutuluyor. Geriye touchx değeri kalıyor. Bu değer ekrana tıklandığında değişiyor aslında. Ama flagi hesaplarken ilk değeri olan 1000’i almak gerekiyor.<br>Bu bilgilerden sonra 2 yol kullanabiliriz.</p>
+<ul>
+<li>Elle hesaplama</li>
+<li>Gerekli condition’ı sağlayıp flagi log.d ye bastırabiliriz.</li>
+</ul>
+<p>Elle hesaplarsanız .<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 48*13*5000*1000*999</span><br><span class="line">3116880000000</span><br></pre></td></tr></table></figure></p>
+<p>STMCTF{} içine koydugunuzda yarışmadaki flage ulaşıyorsunuz. </p>
+<p>ANCAK</p>
+<p>Bu değer bir integer değişkeninin tutabilceği değerden yani 0xffffffff ‘den fazla. Yani aslında i değeri 5000 olduğunda apk’nın log.d ye basacağı değer farklı bir değer.<br>Bunu frida ile deneyebiliriz.</p>
+<p>Kodum şu şekilde : </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//prevent timeout</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"[*] Starting script"</span>);</span><br><span class="line">    Java.performNow(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      Java.choose(<span class="string">"mario.Board"</span>, &#123;</span><br><span class="line">          onMatch: <span class="function"><span class="keyword">function</span> (<span class="params">instance</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"Changed score"</span>)</span><br><span class="line">            instance.i.value = <span class="number">5000</span></span><br><span class="line">             <span class="built_in">console</span>.log(instance.touchx.value)</span><br><span class="line">             <span class="built_in">console</span>.log(instance.skor.value)</span><br><span class="line">             <span class="built_in">console</span>.log(instance.i.value)</span><br><span class="line">          &#125;,</span><br><span class="line">          onComplete: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>i değerini 5000 yapıyorum. Kodun olduğu fonksiyon sürekli çağırıldığı için trigger etmeme gerek  yok. Çağırılmasaydı  <code>instance.checkLife()</code> ekleyerek bunu sağlayabilirdik.<br>Değer değiştikten sonra condition sağlandığı için bana log.d den flagi vermesi lazım.</p>
+<p><img src="frida.png" alt="frida"><br>Evet istenen değerler olmasına rağmen farklı bir değer çıktı.<br>Bu değere şu şekilde ulaşıp emin olabiliriz.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 48*13*5000*1000*999 &amp; 0xffffffff</span><br><span class="line">3028710400</span><br><span class="line">&gt;&gt;&gt; 3028710400-4294967295 -1</span><br><span class="line">-1266256896</span><br></pre></td></tr></table></figure>
+<h2 id="cokzararli"><a href="#cokzararli" class="headerlink" title="cokzararli"></a>cokzararli</h2><p>Bu soruda frida için bi check beklerdim açıkcası. Çünkü kontrol yapılmazsa gerçekten çok kolay bir şekilde geliyor soru. (Intented yolda çok zor değil tabi)</p>
+<p>Apkda keylogger classındaki kod şu şekilde :</p>
+<p><img src="uret.png" alt="uret"></p>
+<p>Eğer istenen conditionlar sağlanırsa native kütüphaneden x , y  ve z fonksiyonları çağırılarak flag üretiliyor. E o zaman çağıralım bu fonksiyonları :D</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//prevent timeout</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"[*] Starting script"</span>);</span><br><span class="line">    Java.performNow(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      Java.choose(<span class="string">"tr.com.stm.cokzararli.Keylogger"</span>, &#123;</span><br><span class="line">          onMatch: <span class="function"><span class="keyword">function</span> (<span class="params">instance</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"Found instance"</span>)</span><br><span class="line">            <span class="built_in">console</span>.log(instance.x())</span><br><span class="line">            <span class="built_in">console</span>.log(instance.y())</span><br><span class="line">            <span class="built_in">console</span>.log(instance.z())</span><br><span class="line"></span><br><span class="line">          &#125;,</span><br><span class="line">          onComplete: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="urett.png" alt="urett"></p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Yorumları görebilmek için lütfen JavaScripte izin verin.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Ana Sayfa</a></li>
+         
+          <li><a href="/about/">Hakkımda</a></li>
+         
+          <li><a href="/archives/">Yazılar</a></li>
+         
+          <li><a href="/Search/">Ara</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#basitmobil"><span class="toc-number">1.</span> <span class="toc-text">basitmobil</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#benibul"><span class="toc-number">2.</span> <span class="toc-text">benibul</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#terslebeni"><span class="toc-number">3.</span> <span class="toc-text">terslebeni</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#muslukcu"><span class="toc-number">4.</span> <span class="toc-text">muslukcu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cokzararli"><span class="toc-number">5.</span> <span class="toc-text">cokzararli</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&text=STMCTF18-Final Mobil Sorulari"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&title=STMCTF18-Final Mobil Sorulari"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&is_video=false&description=STMCTF18-Final Mobil Sorulari"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=STMCTF18-Final Mobil Sorulari&body=Check out this article: http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&title=STMCTF18-Final Mobil Sorulari"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&title=STMCTF18-Final Mobil Sorulari"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&title=STMCTF18-Final Mobil Sorulari"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&title=STMCTF18-Final Mobil Sorulari"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/&name=STMCTF18-Final Mobil Sorulari&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> İçindekiler</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Paylaş</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Başa dön</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    in locexum we trust &copy; 2019 Ahmet Bilal Can
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Ana Sayfa</a></li>
+         
+          <li><a href="/about/">Hakkımda</a></li>
+         
+          <li><a href="/archives/">Yazılar</a></li>
+         
+          <li><a href="/Search/">Ara</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-129796595-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'eybisi-run';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

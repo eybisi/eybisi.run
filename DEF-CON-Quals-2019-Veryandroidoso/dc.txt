@@ -1,0 +1,84 @@
+Java.perform(function() {
+
+    b = Java.use("ooo.defcon2019.quals.veryandroidoso.Solver")
+
+    b.sleep.implementation = function(a){
+        return 501
+    }
+
+    b.getSecretNumber.implementation = function(a){
+        r = this.getSecretNumber(a)
+        console.log("Secret  " + r + " " + a)
+        return r
+    }
+    b.scramble.implementation = function(a){
+        r = this.scramble(a)
+        console.log("Scramble  " + r + " " + a)
+        return r
+    }
+    for(i=0;i < 255;i++){
+        jj = b.m0(i,113)
+        if(jj == 172){
+            console.log("m0 = " + i)
+        }
+    }
+    for(i=0;i < 255;i++){
+        jj = b.m1(i,201)
+        if(jj == 6){
+            console.log("m1 = " + i)
+        }
+    }
+    for(i=0;i < 255;i++){
+        jj = parseInt(b.m2(i,132))&251
+        if(jj == 146){
+            console.log("m2 = " + i)
+        }
+
+    }
+    for(i=0;i < 255;i++){
+        jj = parseInt(b.m3(i,238))&247
+        if(jj == 97){
+            console.log("m3 = " + i)
+        }
+    }
+    for(i=0;i < 255;i++){
+        jj = parseInt(b.m4(i,120))&202
+        if(jj == 130){
+            console.log("m4 = " + i)
+        }
+    }
+    for(i=0;i < 255;i++){
+        jj = i & 65
+        if(jj == 65){
+            console.log("m5 = " + i)
+        }
+    } 
+    for(i=0;i < 255;i++){
+        jj = b.m6(i,129)
+        if(jj == 236){
+            console.log("m6 = " + i)
+        }
+    }
+
+    for(i=0;i < 255;i++){
+        jj = b.m7(i,157)
+        if(jj == 142){
+            console.log("m7 = " + i)
+        }
+    }
+
+    /*
+    b.m9()
+    for(i=0;i <= 1000;i++){
+        jj = b.m8(i,23)
+        if(jj == 103){
+            console.log("m8 = " + i)
+        }
+    }
+    */
+
+
+})
+
+
+

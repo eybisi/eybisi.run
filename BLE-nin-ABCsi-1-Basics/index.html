@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang=tr>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Bu seride Bluetooth Low Energy hakkında öğrendiğim ne varsa anlatmaya çalışacağım. İlk olarak protokoldeki temel kavramları anlatıp ardından bu kavramları uygulamalı olarak pekiştirebileceğimiz https:">
+<meta name="keywords" content="Bluetooth,Hardware">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BLE&#39;nin ABCsi : 1 - Basics">
+<meta property="og:url" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/index.html">
+<meta property="og:site_name" content="Ahmet Bilal Can">
+<meta property="og:description" content="Bu seride Bluetooth Low Energy hakkında öğrendiğim ne varsa anlatmaya çalışacağım. İlk olarak protokoldeki temel kavramları anlatıp ardından bu kavramları uygulamalı olarak pekiştirebileceğimiz https:">
+<meta property="og:locale" content="tr">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/blectf.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/hciconfig1.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/hciconfig.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/hcitool.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/ble.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/read.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/2.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/3.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/4.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/hidden.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/6.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/7.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/8.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/9.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/9_2.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/10.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/10_2.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/11.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/12.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/13.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/14.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/15.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/16.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/50.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/17.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/18.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/19_props.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/19.png">
+<meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/20.png">
+<meta property="og:updated_time" content="2018-08-04T03:26:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BLE&#39;nin ABCsi : 1 - Basics">
+<meta name="twitter:description" content="Bu seride Bluetooth Low Energy hakkında öğrendiğim ne varsa anlatmaya çalışacağım. İlk olarak protokoldeki temel kavramları anlatıp ardından bu kavramları uygulamalı olarak pekiştirebileceğimiz https:">
+<meta name="twitter:image" content="http://eybisi.run/BLE-nin-ABCsi-1-Basics/blectf.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>BLE&#39;nin ABCsi : 1 - Basics</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Ahmet Bilal Can" type="application/atom+xml" />
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Ana Sayfa</a></li>
+         
+          <li><a href="/about/">Hakkımda</a></li>
+         
+          <li><a href="/archives/">Yazılar</a></li>
+         
+          <li><a href="/Search/">Ara</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/BLE-nin-ABCsi-2-MITM/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Önceki gönderi</span>
+      <span id="i-next" class="info" style="display:none;">Sonraki gönderi</span>
+      <span id="i-top" class="info" style="display:none;">Başa dön</span>
+      <span id="i-share" class="info" style="display:none;">Gönderiyi paylaş</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/BLE-nin-ABCsi-1-Basics/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&text=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&title=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&is_video=false&description=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=BLE&#39;nin ABCsi : 1 - Basics&body=Check out this article: http://eybisi.run/BLE-nin-ABCsi-1-Basics/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&title=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&title=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&title=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&title=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&name=BLE&#39;nin ABCsi : 1 - Basics&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Temel-Bilgiler"><span class="toc-number">1.</span> <span class="toc-text">Temel Bilgiler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BLECTF"><span class="toc-number">2.</span> <span class="toc-text">BLECTF</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        BLE&#39;nin ABCsi : 1 - Basics
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Ahmet Bilal Can</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-03T23:41:15.000Z" itemprop="datePublished">2018-08-04</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Bluetooth/">Bluetooth</a>, <a class="tag-link" href="/tags/Hardware/">Hardware</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Bu seride Bluetooth Low Energy hakkında öğrendiğim ne varsa anlatmaya çalışacağım. İlk olarak protokoldeki temel kavramları anlatıp ardından bu kavramları uygulamalı olarak pekiştirebileceğimiz <a href="https://github.com/hackgnar/ble_ctf" target="_blank" rel="noopener">https://github.com/hackgnar/ble_ctf</a> BLECTF ‘in çözümlerinden bahsedeceğim. Sonraki yazımda da BLE cihazların güvenliğine ve saldırı tekniklerine değineceğim.</p>
+<h2 id="Temel-Bilgiler"><a href="#Temel-Bilgiler" class="headerlink" title="Temel Bilgiler"></a>Temel Bilgiler</h2><p>Bluetooth Low Energy yani BLE. İlk olarak Bluetooth 4.0 ile 2011’de karşımıza çıktı. Klasik Bluetooth ile BLE’nin farklarını bir tabloya dökecek olursak;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Özellik</th>
+<th style="text-align:center">Bluetooth</th>
+<th style="text-align:center">BLE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Network/Topology</td>
+<td style="text-align:center">Scatternet</td>
+<td style="text-align:center">Star Bus</td>
+</tr>
+<tr>
+<td style="text-align:left">Enerji Tüketimi</td>
+<td style="text-align:center">Az (&lt; 30mA)</td>
+<td style="text-align:center">Çok az ( &lt;15mA)</td>
+</tr>
+<tr>
+<td style="text-align:left">Hız</td>
+<td style="text-align:center">700 Kbps</td>
+<td style="text-align:center">1 Mbps</td>
+</tr>
+<tr>
+<td style="text-align:left">Menzil</td>
+<td style="text-align:center">&lt; 30m</td>
+<td style="text-align:center">50 metre.Açık alanda 150</td>
+</tr>
+<tr>
+<td style="text-align:left">RF Frekansı</td>
+<td style="text-align:center">2400 MHz</td>
+<td style="text-align:center">2400 MHz</td>
+</tr>
+<tr>
+<td style="text-align:left">Frekans kanalları</td>
+<td style="text-align:center">79 kanal</td>
+<td style="text-align:center">40 kanal    (3 advertising)</td>
+</tr>
+<tr>
+<td style="text-align:left">Gecikme</td>
+<td style="text-align:center">100ms</td>
+<td style="text-align:center">3ms</td>
+</tr>
+</tbody>
+</table>
+<p>Klasik Bluetooth devamlı veri akışı için tasarlanmıştı. BLE ise uzun aralıklarla ani (burst) veri akışı için tasarlanmış. Mesela arabadaki müzik çalara Bluetooth ile bağlanıp müzik aktarırken sürekli bir veri akışı var ancak bluetoothla çalışan bir lamba butonu siz aç/kapa komutu gönderdiğiniz süre boyunca çalışmakta.</p>
+<p>BLE sayesinde IOT cihazlardaki enerji tüketimi hatrı sayılır bir şekilde azaldı. Bu yüzden IOT cihazlarda klasik Bluetooth yerine BLE kullanılmakta. </p>
+<p>Tüm BLE cihazlar GATT (Generic Attribute Profile) kullanmakta. GATT’ta karşımıza çıkan terimlerden bahsedecek olursak:</p>
+<ul>
+<li><strong>Client</strong> : GATT komutlarını ve isteklerini başlatan, isteklere gelen cevapları kabul eden cihaz. Telefon, Bilgisayar gibi</li>
+<li><strong>Server</strong> : GATT komutlarını ve isteklerini alan, cevapları yollayan cihazlar. Isı sensörü gibi</li>
+<li><strong>Characteristic</strong> : Client ve Server arasında aktarılan data değeri. Pildeki voltaj miktarı </li>
+<li><strong>Properties</strong> : Her karakteriğin özellikleri vardır. READ, WRITE, NOTIFY gibi gibi  </li>
+<li><strong>Service</strong> : Benzer karakteristiklerin toplu hali. Mesela termometre service’i, ısı değerini ve ölçümler arasındaki zamana ait karakteristiği tutabilir.</li>
+<li><strong>Descriptor</strong> : Karakteristik hakkında bilgi. Isı değeri olarak <code>Celcius</code> kullanılacaksa o karakteristikteki descriptora Celcius yazılabilir.</li>
+<li><strong>Identifier</strong> : Services, descriptors, ve karakteristiklerin hepsinin bir UUID’si vardır.  Bu UUID’lere identifier denir.</li>
+</ul>
+<h2 id="BLECTF"><a href="#BLECTF" class="headerlink" title="BLECTF"></a>BLECTF</h2><p>Bu kadar teori yeter biraz elimizi kirletme vakti geldi. <a href="https://github.com/hackgnar/ble_ctf" target="_blank" rel="noopener">https://github.com/hackgnar/ble_ctf</a> adresinde hoşmu hoş bir CTF tarzı olayımız var. BLE’ye başlamak için birebir.</p>
+<p>Bir adet ESP32 ile ile CTF’e başlayabiliyoruz. Türkiyede <a href="https://www.google.com/search?q=esp32" target="_blank" rel="noopener">biraz</a> pahalıya denk geliyor. Ben <a href="https://www.direnc.net/esp-32s-modul" target="_blank" rel="noopener">şu</a> adresteki cihazı satın aldım. Birde 20-30 lira arasında bir Bluetooth dongle almanızı öneririm. </p>
+<p><img src="blectf.png" alt="device"></p>
+<p>CTFte sadece 1 flagi almak için mac adresini değiştirmemiz gerekiyor. Bilgisayarınızda gelen Bluetooth chiplerinin mac adresini genelde değiştiremiyorsunuz. Denemek isterseniz :<br>Önce <code>hciconfig</code> yazıp sisteminizdeki bluetoothları listeleyin. Benim dongle da takılı olduğu için 2 cihaz gözüküyor.<br><img src="hciconfig1.png" alt="hcilist"></p>
+<p>Ardından denemek istediğiniz cihazı <code>hciconfig hciX up</code> ile çalışır hale getirin ve<br><code>bdaddr -i hciX 11:22:33:44:55:66</code> ile mac adresini değiştirmeye çalışın. Eğer benim gibi hata alıyorsanız mac adresi değişmiyor demektir :(</p>
+<p><img src="hciconfig.png" alt="hci"></p>
+<p>BLE hackingle uğraşıcaksanız mac adresini değiştirmeniz çok işinize yarıyacak, özellikle Man in the Middle Attack yaparken :)</p>
+<p><strong>ROM Flashing</strong></p>
+<p>esp32yi flashlamadan önce bilgisayarınıza esp toolcahini kurmanız gerekiyor.<br><a href="http://esp-idf.readthedocs.io/en/latest/get-started/#setup-toolchain" target="_blank" rel="noopener">http://esp-idf.readthedocs.io/en/latest/get-started/#setup-toolchain</a> adresinde ortamınıza göre instructionlara takip ederek toolchaini kurun</p>
+<p>Ardından ctfi hazırlayan abimizin github’ını clonelayın. <code>git clone https://github.com/hackgnar/ble_ctf/</code> . Klonladıktan sonra sırayla:</p>
+<ul>
+<li><code>cd ble_ctf</code></li>
+<li><code>make menuconfig</code></li>
+<li><code>make</code></li>
+<li>Bir sonraki adımdan önce esp32yi usb ile bilgisayarınıza bağlayın</li>
+<li><code>make flash</code></li>
+</ul>
+<p><strong>Gelsin Flagler</strong></p>
+<p>CLI toolları olarak hcitool, bleah, bluetoothctl ve gatttool kullanıcaz. Kendi linux dağıtımınıza göre bu toolları kurmaya çalışın.<br>ESP32mizle iletişim kurabilmemiz için öncelikle MAC adresini bulmamız gerekiyor. Bunun için hcitool scan değil <code>hcitool lescan</code> komutunu kullanıyoruz. Çünkü esp32miz BLE kullanıyor.</p>
+<p><img src="hcitool.png" alt="ble"></p>
+<p>Gördüğünüz üzere esp32miz  <code>BLECTF</code> diyerek advertising yapmakta. Mac adresini kopyaladıktan sonra <code>sudo bleah -b &quot;30:AE:A4:05:4F:E6&quot;-e</code> ile şu ekran görüntüsünü alabiliyoruz.<br><img src="ble.png" alt="ble"></p>
+<p>Bu ekranda yazının ilk kısmında bahsettiğimiz service, karakteristik ve descriptorları görebilirsiniz. Skorumuz 0x2a handlelı karakteristiğimizde tutuluyor. Eğer o karakteristiği gatttool ile okumak istiyorsak :<br><code>gatttool -b 30:AE:A4:05:4F:E6 --char-read -a 0x002a|awk -F&#39;:&#39; &#39;{print $2}&#39;|tr -d &#39; &#39;|xxd -r -p;printf &#39;\n&#39;</code> ile okuyabiliyoruz.</p>
+<p><code>gatttool help</code> ile toolumuzun parametreleri hakkında bilgi edinebilirsiniz. <code>--char-read</code>‘i okuma , <code>--char-write</code>‘ı da yazma işleri için kullanıcaz.<br>Flagleri 0x2c numaralı handle’a 20 karakter uzunlugunda yolluyoruz.</p>
+<p>Github sayfasında ilk flagimiz için <a href="https://github.com/hackgnar/ble_ctf/blob/master/docs/hints/flag1.md" target="_blank" rel="noopener">https://github.com/hackgnar/ble_ctf/blob/master/docs/hints/flag1.md</a> hint bırakmış abimiz.</p>
+<p>İlk flagimizi girmek için <code>gatttool -b 30:AE:A4:05:4F:E6 --char-write-req -a 0x002c -n $(echo -n &quot;12345678901234567890&quot;|xxd -ps)</code>  komutunu giriyoruz.</p>
+<p>Tekrar flag sayacımızı okudugumuzda : <code>Score:1 /20</code> olduğunu görüyoruz YEY</p>
+<p>Girdiğimiz komutların çoğunu tekrar tekrar kullanıcağımız için bash scripti yazmamız çok hoş olur.<br>Default handle olarak score’un handle’ını kullanan, parametre verdiğimizde ise verdiğimiz handle’ı kullanan bir bash scripti yazalım.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gatttool -b 30:AE:A4:05:4F:E6 --char-read -a <span class="variable">$&#123;1:-0x2a&#125;</span>|awk -F<span class="string">':'</span> <span class="string">'&#123;print $2&#125;'</span>|tr -d <span class="string">' '</span>|xxd -r -p;<span class="built_in">printf</span> <span class="string">'\n'</span></span><br></pre></td></tr></table></figure>
+<p>read.sh olarak kaydettim.</p>
+<p><img src="read.png" alt="read"></p>
+<p>Süper. Birde bunu write için yapalım. İlk parametremiz yazılacak değeri, ikinci parametre de hangi handle’a yazılacağını belirlesin. Eğer 2. parametreye değer girmezsek flag girdiğimiz handle’a yazsın.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gatttool -b 30:AE:A4:05:4F:E6 --char-write-req -a <span class="variable">$&#123;2:-0x2c&#125;</span> -n $(<span class="built_in">echo</span> -n <span class="variable">$1</span> |xxd -ps)</span><br></pre></td></tr></table></figure>
+<p>bunu da write.sh olarak kaydettim.</p>
+<p>0x2e de zaten 20 karakterlik md5 gözükmekte. Hemen onu flag olarak yazıyoruz.</p>
+<p><img src="2.png" alt="first"></p>
+<p>3.flagimiz device adının md5i.</p>
+<p><img src="3.png" alt="3"></p>
+<p>4.flagimiz, 0x32  handle’ına bir değer yazdığımızda handle’a geliyor.</p>
+<p><img src="4.png" alt="4"></p>
+<p>5.flag 0x16 handle’ında saklı. Baştan 20 karakteri flag handle’imiza yolluyoruz.<br><img src="hidden.png" alt="5"></p>
+<p>6.flag için 0x34 handle’ına “yo” yazıyoruz.<br><img src="6.png" alt="6"></p>
+<p>7 biraz tricky. 0x36 handle’ına 0x7 değerini yazmamızı istiyor.</p>
+<p><img src="7.png" alt="7"></p>
+<p>8 de 7’ye benzer şekilde</p>
+<p><img src="8.png" alt="8"></p>
+<p>9da 0x3c handle’ini 0x0 dan 0xff e kadar bruteforcelamamız isteniyor. </p>
+<p><img src="9.png" alt="9"></p>
+<p>256 deneme bitince flagi giriyoruz</p>
+<p><img src="9_2.png" alt="9_2"></p>
+<p>0x3e handle’imiz bize 1000 kere beni oku diyor.</p>
+<p><img src="10.png" alt="10"></p>
+<p>1-2 Dakika sonra flagimizi veriyor</p>
+<p><img src="10_2.png" alt="10_2"></p>
+<p>Bu sefer farklı bir istek çıkıyor karşımıza <code>listen for single notification</code>. 0x40 handle’ında NOTIFY şeklinde bir property var. Bu property cihaza subscribe olan clientlara notification yollaması demek. GATTtool aracında <code>--listen</code> parametresini write komutumuza eklersek bu işi yapmış oluyoruz.</p>
+<p><img src="11.png" alt="11"></p>
+<p>12de farklı bir handle’in indication’ını dinliyoruz. Indication ve notification nerdeyse aynı şey demek, çok farkları yok.</p>
+<p><img src="12.png" alt="12"></p>
+<p>13 ve 14’te multi-indication ve notification için dinleme yapıyoruz. Flagimizi ilk notificationda değilde ikincide veriyor.</p>
+<p><img src="13.png" alt="13"><br><img src="14.png" alt="14"></p>
+<p>15 Bluetooth mac adresimizi değiştirmemizi istiyor.<br><img src="15.png" alt="15"></p>
+<p>16 Bağlantımızdaki MTU değerimizi değiştirmemizi istiyor. Bunu da gatttool’un interface’i içinde yapıyoruz.</p>
+<p><img src="16.png" alt="16"></p>
+<p>17.flagimiz için handle bize <code>write+resp hello</code> diyor. Bunu cli gatttool ile yapamadım. Kısa bir python scripti ile halloluyor.<br><img src="50.png" alt="50"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pygatt</span><br><span class="line">adapter = pygatt.GATTToolBackend()</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> :</span><br><span class="line">    adapter.start()</span><br><span class="line">    device = adapter.connect(<span class="string">"30:AE:A4:05:4F:E6"</span>)</span><br><span class="line">    value = device.char_read_handle(<span class="string">"0x0050"</span>)</span><br><span class="line">    print(str(value))</span><br><span class="line">    x = device.char_write(<span class="string">"0000ff14-0000-1000-8000-00805f9b34fb"</span>,bytearray([ord(<span class="string">'h'</span>),ord(<span class="string">'e'</span>),ord(<span class="string">'l'</span>),ord(<span class="string">'l'</span>),ord(<span class="string">'o'</span>)]),<span class="keyword">True</span>)</span><br><span class="line">    print(x)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    adapter.stop()</span><br></pre></td></tr></table></figure>
+<p><img src="17.png" alt="17"></p>
+<ol start="18">
+<li>Flag ilginç birşey öğretiyor bize. Karakteristik bize propertilerini verirken NOTIFY yok bende dese de, aslında NOTIFY yapabiliyormuş.</li>
+</ol>
+<p><img src="18.png" alt="18"></p>
+<p>0x54 numaralı handle’ımızda tüm propertieslerimiz var</p>
+<p><img src="19_props.png" alt="19_prop"></p>
+<p>Hepsini deneyerek flagimizin parçalarını toplayıp birleştiriyoruz. 0x54 numaralı handle’ımıza herhangi birşey yazdığımızda handle’a atanan yeni değeri ilk parçamız. Notification olarak bize yolladığı da ikinci parçamız oluyor.</p>
+<p><img src="19.png" alt="19"></p>
+<p>Veee son flagimizi de giriyoruz.</p>
+<p><img src="20.png" alt="20"></p>
+<p>Buraya kadar okuyarak geldiyseniz BLE’nin az çok ne yaptığını anlamışsınızdır diye umuyorum. Serinin sonraki yazısında BLE cihazlara yapılabilcek saldırılardan bahsedeceğim, görüşmek üzere.  </p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Yorumları görebilmek için lütfen JavaScripte izin verin.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Ana Sayfa</a></li>
+         
+          <li><a href="/about/">Hakkımda</a></li>
+         
+          <li><a href="/archives/">Yazılar</a></li>
+         
+          <li><a href="/Search/">Ara</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Temel-Bilgiler"><span class="toc-number">1.</span> <span class="toc-text">Temel Bilgiler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BLECTF"><span class="toc-number">2.</span> <span class="toc-text">BLECTF</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/BLE-nin-ABCsi-1-Basics/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&text=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&title=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&is_video=false&description=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=BLE&#39;nin ABCsi : 1 - Basics&body=Check out this article: http://eybisi.run/BLE-nin-ABCsi-1-Basics/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&title=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&title=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&title=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&title=BLE&#39;nin ABCsi : 1 - Basics"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/BLE-nin-ABCsi-1-Basics/&name=BLE&#39;nin ABCsi : 1 - Basics&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> İçindekiler</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Paylaş</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Başa dön</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    in locexum we trust &copy; 2019 Ahmet Bilal Can
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Ana Sayfa</a></li>
+         
+          <li><a href="/about/">Hakkımda</a></li>
+         
+          <li><a href="/archives/">Yazılar</a></li>
+         
+          <li><a href="/Search/">Ara</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-129796595-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'eybisi-run';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
