@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Ahmet Bilal Can</title>
+  <title>eybisi</title>
   
-  
+  <subtitle>the droidhedhehog</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://eybisi.run/"/>
@@ -10,7 +10,7 @@
   <id>http://eybisi.run/</id>
   
   <author>
-    <name>Ahmet Bilal Can</name>
+    <name>eybisi</name>
     
   </author>
   
@@ -61,9 +61,9 @@
     
       <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
-    
       <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    
+      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
     
   </entry>
   
@@ -89,9 +89,9 @@
     
       <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
-    
       <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    
+      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
     
       <category term="Frida" scheme="http://eybisi.run/tags/Frida/"/>
     
@@ -146,9 +146,9 @@
     
       <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
-    
       <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    
+      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
     
   </entry>
   
@@ -282,9 +282,9 @@
     
       <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
-    
       <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    
+      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
     
   </entry>
   
