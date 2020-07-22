@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang=tr>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="IntroductionThis post will be about Istanbul transportion card named as Istanbulkart and my learning experience about MIFARE Desfire EV1 with proxmark and frida. And at the end I will try to list all">
+<meta name="keywords" content="proxmark,frida,android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida">
+<meta property="og:url" content="http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/index.html">
+<meta property="og:site_name" content="eybisi">
+<meta property="og:description" content="IntroductionThis post will be about Istanbul transportion card named as Istanbulkart and my learning experience about MIFARE Desfire EV1 with proxmark and frida. And at the end I will try to list all">
+<meta property="og:locale" content="tr">
+<meta property="og:image" content="http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/talimat.jpg">
+<meta property="og:image" content="http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/proxmark.png">
+<meta property="og:image" content="http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/keys.png">
+<meta property="og:image" content="http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/desf.png">
+<meta property="og:updated_time" content="2020-07-14T08:25:21.791Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida">
+<meta name="twitter:description" content="IntroductionThis post will be about Istanbul transportion card named as Istanbulkart and my learning experience about MIFARE Desfire EV1 with proxmark and frida. And at the end I will try to list all">
+<meta name="twitter:image" content="http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/talimat.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="eybisi" type="application/atom+xml" />
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Ana Sayfa</a></li>
+         
+          <li><a href="/archives/">Yazılar</a></li>
+         
+          <li><a href="/Search/">Ara</a></li>
+         
+          <li><a href="/links/">Yararlı Linkler</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/Mobile-Malware-Analysis-Overlay-and-How-to-Counter-it/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Önceki gönderi</span>
+      <span id="i-next" class="info" style="display:none;">Sonraki gönderi</span>
+      <span id="i-top" class="info" style="display:none;">Başa dön</span>
+      <span id="i-share" class="info" style="display:none;">Gönderiyi paylaş</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&text=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&title=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&is_video=false&description=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida&body=Check out this article: http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&title=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&title=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&title=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&title=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&name=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mobile-App"><span class="toc-number">2.</span> <span class="toc-text">Mobile App</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Frida"><span class="toc-number">3.</span> <span class="toc-text">Frida</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MIFARE-Desfire-EV1"><span class="toc-number">4.</span> <span class="toc-text">MIFARE Desfire EV1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Authentication"><span class="toc-number">4.1.</span> <span class="toc-text">Authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-communication-mode"><span class="toc-number">4.2.</span> <span class="toc-text">What is communication mode ?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#l0gging"><span class="toc-number">5.</span> <span class="toc-text">l0gging</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">eybisi</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-03-26T14:00:48.000Z" itemprop="datePublished">2020-03-26</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/frida/">frida</a>, <a class="tag-link" href="/tags/proxmark/">proxmark</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This post will be about Istanbul transportion card named as <code>Istanbulkart</code> and my learning experience about MIFARE Desfire EV1 with proxmark and frida. And at the end I will try to list all information about card.</p>
+<p>Table of Contents:</p>
+<ul>
+<li>Mobile App</li>
+<li>MIFARE Desfire EV1</li>
+<li>Proxmark</li>
+<li>Frida</li>
+</ul>
+<h2 id="Mobile-App"><a href="#Mobile-App" class="headerlink" title="Mobile App"></a>Mobile App</h2><p>Our mission starts at the app called <code>istanbulkart</code>. After you register to the app, cards can be added to application. To register card you can follow two ways. Add manually or let the app (with nfc) read card id. Then you will be faced to following view. (sorry no english version)</p>
+<p><img src="talimat.jpg" width="250" height="200"></p>
+<p>You can see card’s balance and transactions. If your phone have NFC feature, you can do more things with the app. App contains 2 NFC related features:</p>
+<ul>
+<li>Balance check ( with top right button )</li>
+<li>Add balance to card after payment ( Notification Bell  )</li>
+</ul>
+<p>To do NFC related things, application follows these steps :</p>
+<ul>
+<li>get NFC Related commands from server</li>
+<li>send commands to the card </li>
+<li>send response of the command to the server</li>
+<li>goto step 1</li>
+</ul>
+<p>App works as a Proxy between server and card. So app doesn’t have any master key or such to create authenticated sessions.</p>
+<p>Application has some anti-reverse techniques such as SSLPinning and obfuscation of strings (AllatoriDemo). You can bypass SSLPinning easily with following related class then either removing the code and repacking or bypassing with frida. I did first one with apktool. For obfuscation you can write simple python script to deobfuscate strings since allatori is not that complicated. </p>
+<p>Application basically has two traffic:</p>
+<ul>
+<li>Web</li>
+<li>NFC</li>
+</ul>
+<p>For both I will use frida. (Instead of burp because I’m such a mazosist)</p>
+<h2 id="Frida"><a href="#Frida" class="headerlink" title="Frida"></a>Frida</h2><p>I didn’t have rooted phone with NFC. But you don’t need rooted phone to use frida :D Simply follow this <a href="https://koz.io/using-frida-on-android-without-root/" target="_blank" rel="noopener">post</a> to inject frida-gadget to app.</p>
+<p>To hook NFC commands, you need to hook <code>android.nfc.tech.IsoDep.transceive</code> function. To get clear outputs cast byte array to java array and use some util function to convert it to hex arrays :</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> iso =Java.use(<span class="string">"android.nfc.tech.IsoDep"</span>)</span><br><span class="line">    iso.transceive.implementation = <span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"trans"</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(bytesToHex(Java.array(<span class="string">"byte"</span>,a))    </span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"receive"</span>)          </span><br><span class="line">        <span class="keyword">var</span> rettrans = <span class="keyword">this</span>.transceive(a)</span><br><span class="line">        <span class="built_in">console</span>.log(bytesToHex(Java.array(<span class="string">"byte"</span>,rettrans)) </span><br><span class="line">        <span class="keyword">return</span> rettrans</span><br><span class="line">                </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Application use retrofit class to http requests. To hook retrofit request and responses :</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> restapi = Java.use(<span class="string">"com.belbim.istanbulkart.restapi.a.a"</span>)</span><br><span class="line"><span class="keyword">var</span> utils = Java.use(<span class="string">"retrofit.Utils"</span>)</span><br><span class="line">restapi.execute.implementation = <span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> r = Java.cast(a,retrofit_req)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"retrofit request:"</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"url : "</span> + r.getUrl())</span><br><span class="line">        <span class="keyword">var</span> outinst = bo.$<span class="keyword">new</span>()</span><br><span class="line">        r.getBody().writeTo(outinst)</span><br><span class="line">        <span class="built_in">console</span>.log(outinst.toString())</span><br><span class="line">        <span class="keyword">var</span> response = <span class="keyword">this</span>.execute(a)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"retrofit response:"</span>)                                                                            </span><br><span class="line">        <span class="keyword">var</span> out2inst = bo.$<span class="keyword">new</span>()</span><br><span class="line">        <span class="keyword">var</span> i = response.getBody().in()</span><br><span class="line">        <span class="keyword">var</span> stream = utils.streamToBytes(i)</span><br><span class="line">        <span class="built_in">console</span>.log(bytesToString(Java.array(<span class="string">"byte"</span>,stream))</span><br><span class="line">        <span class="keyword">var</span> response = <span class="keyword">this</span>.execute(a) <span class="comment">// sending second req because body stream is empty now</span></span><br><span class="line">        <span class="keyword">return</span> response</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>To follow https requests you can also read logcat since app logs all requests :facepalm:</p>
+<h2 id="MIFARE-Desfire-EV1"><a href="#MIFARE-Desfire-EV1" class="headerlink" title="MIFARE Desfire EV1"></a>MIFARE Desfire EV1</h2><p>To understand NFC traffic between card and application we need to understand the protocol. In <code>istanbulkart</code>.  MIFARE Desfire EV1 is used. You can find type of the card phone(nfc applications) or proxmark. There are numerous applications to read card information with NFC in play store.</p>
+<p>I use proxmark to interact with card. Here is the output of proxmark command: <code>hf search</code> which gives type of the card.</p>
+<p><img src="proxmark.png" width="450" height="400"></p>
+<p>Since Desfire EV1 is ISO-14443 A compliant here is the full command list:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>change key setting</td>
+<td>0x54</td>
+</tr>
+<tr>
+<td>get key settings</td>
+<td>0x45</td>
+</tr>
+<tr>
+<td>change key</td>
+<td>0xc4</td>
+</tr>
+<tr>
+<td>get key version</td>
+<td>0x64</td>
+</tr>
+<tr>
+<td>create application</td>
+<td>0xca</td>
+</tr>
+<tr>
+<td>delete app</td>
+<td>0xda</td>
+</tr>
+<tr>
+<td>get app ids</td>
+<td>0x6a</td>
+</tr>
+<tr>
+<td>get df names</td>
+<td>0x6d</td>
+</tr>
+<tr>
+<td>select app</td>
+<td>0x5a</td>
+</tr>
+<tr>
+<td>format picc</td>
+<td>0xfc</td>
+</tr>
+<tr>
+<td>get Version</td>
+<td>0x60</td>
+</tr>
+<tr>
+<td>free mem</td>
+<td>0x6e ??</td>
+</tr>
+<tr>
+<td>Set config</td>
+<td>0x5c 00</td>
+</tr>
+<tr>
+<td>set key</td>
+<td>0x5c 01</td>
+</tr>
+<tr>
+<td>set ats</td>
+<td>0x5c 02</td>
+</tr>
+<tr>
+<td>get card uid raw</td>
+<td>0x51</td>
+</tr>
+<tr>
+<td>get file uids</td>
+<td>0x6f</td>
+</tr>
+<tr>
+<td>get iso file ids</td>
+<td>0x61</td>
+</tr>
+<tr>
+<td>get file settings</td>
+<td>0xf5</td>
+</tr>
+<tr>
+<td>change file settings</td>
+<td>0x5f</td>
+</tr>
+<tr>
+<td>create value file</td>
+<td>0xcc</td>
+</tr>
+<tr>
+<td>create linear record file</td>
+<td>0xc1</td>
+</tr>
+<tr>
+<td>create cyclic record file</td>
+<td>0xc0</td>
+</tr>
+<tr>
+<td>delete file</td>
+<td>0xdf</td>
+</tr>
+<tr>
+<td>read data</td>
+<td>0xbd</td>
+</tr>
+<tr>
+<td>write data</td>
+<td>0x3d</td>
+</tr>
+<tr>
+<td>get value</td>
+<td>0x6c</td>
+</tr>
+<tr>
+<td>credit</td>
+<td>0x0c</td>
+</tr>
+<tr>
+<td>debit</td>
+<td>0xdc</td>
+</tr>
+<tr>
+<td>limited credit</td>
+<td>0x1c</td>
+</tr>
+<tr>
+<td>write record</td>
+<td>0x3b</td>
+</tr>
+<tr>
+<td>read record</td>
+<td>0xbb</td>
+</tr>
+<tr>
+<td>clear record file</td>
+<td>0xeb</td>
+</tr>
+<tr>
+<td>commit transaction</td>
+<td>0xc7</td>
+</tr>
+<tr>
+<td>abort transaction</td>
+<td>0xa7</td>
+</tr>
+</tbody>
+</table>
+<p>There are basically 3 response header you can get after sending a command to card:</p>
+<ul>
+<li>00 = OK </li>
+<li>AE = Authentication Error. Means you cant interact with file current auth. ( different key or no auth session )</li>
+<li>AF = Additional frame. Means you need to send/receive more data.</li>
+</ul>
+<p>Desfire EV1 contains a cryptographically authenticated filesystem. There can be different applications inside of app. (There are 4 different applications in Istanbulkart). Each app contains files that you can access with certain keys. </p>
+<p><img src="keys.png" width="450" height="400"></p>
+<p>You can get applications,files that defined in application and access conditions for files without authenticating. wrapped or raw mode can be used with proxmark :</p>
+<ul>
+<li>hf 14a apdu -stk 6A ( get app ids )</li>
+<li>hf 14a apdu -st  5A APPID ( select app 422201 )</li>
+<li>hf 14a apdu -st  6F ( get file ids )</li>
+<li>hf 14a apdu -st  F5 FILEID ( get file settings )</li>
+</ul>
+<p>To do this process automatically use <code>hf mfdes enum</code> with proxmark. Or if you have a phone with nfc use <code>Desfire Tool</code> app.</p>
+<p><img src="desf.png" width="250" height="400"></p>
+<p>Example communication.<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt; 5A 42 22 01               // SELECT APP 42 22 01       </span><br><span class="line">&lt;&lt; 00                        // OK, IM COOL WITH THAT</span><br><span class="line">&gt;&gt; F5 01                     // GET FILE SETTINGS  01</span><br><span class="line">&lt;&lt; 00 01 01 21E2 200000      // Resp 1 byte,Type 1 byte,Comm 1 byte, Acc 2 byte,Fsize 3 byte</span><br></pre></td></tr></table></figure></p>
+<p>Response of get file settings command, contains type of file, communication mode, access bytes and file size.</p>
+<p>There are different type of files and communication modes. </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+-------------+</span><br><span class="line">|FileType|Code|</span><br><span class="line">+-------------+             +----------------+</span><br><span class="line">|Standart|0x00|             |Comm Mode |Value|</span><br><span class="line">+-------------+             +----------------+</span><br><span class="line">|Backup  |0x01|             | Plain    | 0x0 |</span><br><span class="line">+-------------+             +----------------+</span><br><span class="line">|Value   |0x02|             | Plain.MAC| 0x1 |</span><br><span class="line">+-------------+             +----------------+</span><br><span class="line">|Linear  |0x03|             | 3DES enc | 0x3 |</span><br><span class="line">+-------------+             +----------+-----+</span><br><span class="line">|Cyclic  |0x04|</span><br><span class="line">+-------------+</span><br></pre></td></tr></table></figure>
+<p>Backup files are general files that holds a data. Value files are used for holding a integer values. Like balance :)</p>
+<p>Access bytes are defined as follows :</p>
+<table>
+<thead>
+<tr>
+<th>15   12</th>
+<th>11   8</th>
+<th>7   4</th>
+<th>3   0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Read Access</td>
+<td>Write Access</td>
+<td>Read&amp;Write</td>
+<td>Change Access Rights</td>
+</tr>
+</tbody>
+</table>
+<p>16 different value:</p>
+<ul>
+<li>maximum 14 key: Value of each byte corresponds to assigned key</li>
+<li>14 (0xE) means free access</li>
+<li>15 (0xF) means no access</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt; F5 01                     // GET FILE SETTINGS  01</span><br><span class="line">&lt;&lt; 00 01 01 21E2 200000      // 21E2 = Access bytes (2byte)</span><br></pre></td></tr></table></figure>
+<p>21E2 -&gt; littleendian -&gt; E221</p>
+<p>E221 means -&gt; R*,W2,RW2,C1 (* means everyone can read)</p>
+<h3 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h3><p>Here is the how authentication works in Desfire EV1:<br>Card and reader make 3 way handshake (without sending the key obviously so we can’t sniff it). </p>
+<p><code>Card &gt;&gt; Nonce(1) | Reader &gt;&gt; Nonce(2) | Card &gt;&gt; Auth1</code></p>
+<p>To make succesfull auth session, reader needs to know keys. After authentication steps are completed, communication continue on mode of <code>command</code> that you use or <code>File</code> that command is interacting with. </p>
+<h3 id="What-is-communication-mode"><a href="#What-is-communication-mode" class="headerlink" title="What is communication mode ?"></a>What is communication mode ?</h3><p>There are 3 different communication mode;</p>
+<ul>
+<li>Plaintext                                     Debug</li>
+<li>DES/3DES (MAC’d/enciphered)                   Legacy</li>
+<li>2k/3k-3DES or AES (MAC’d/enciphered)          Modern</li>
+</ul>
+<p>Plaintext is without any protection, so you can MITM and send forged commands.<br>MAC’d mode is done with some cool cryptography including session key and current command. It has following structure:<br>Command|MAC so you can see command, but you cant forge a response/request since MAC will be invalid.<br>In enciphered mode you can’t see the command. I will touch the details of difference between legacy and modern mode afterwards.</p>
+<p>In istanbulkart DES/3DES with MAC is used in legacy mode. </p>
+<h2 id="l0gging"><a href="#l0gging" class="headerlink" title="l0gging"></a>l0gging</h2><p>To get nfc traffic between card and app, we can use our frida script defined above.</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Yorumları görebilmek için lütfen JavaScripte izin verin.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Ana Sayfa</a></li>
+         
+          <li><a href="/archives/">Yazılar</a></li>
+         
+          <li><a href="/Search/">Ara</a></li>
+         
+          <li><a href="/links/">Yararlı Linkler</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mobile-App"><span class="toc-number">2.</span> <span class="toc-text">Mobile App</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Frida"><span class="toc-number">3.</span> <span class="toc-text">Frida</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MIFARE-Desfire-EV1"><span class="toc-number">4.</span> <span class="toc-text">MIFARE Desfire EV1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Authentication"><span class="toc-number">4.1.</span> <span class="toc-text">Authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-communication-mode"><span class="toc-number">4.2.</span> <span class="toc-text">What is communication mode ?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#l0gging"><span class="toc-number">5.</span> <span class="toc-text">l0gging</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&text=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&title=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&is_video=false&description=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida&body=Check out this article: http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&title=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&title=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&title=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&title=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/&name=NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> İçindekiler</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Paylaş</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Başa dön</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    in locexum we trust &copy; 2020 eybisi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Ana Sayfa</a></li>
+         
+          <li><a href="/archives/">Yazılar</a></li>
+         
+          <li><a href="/Search/">Ara</a></li>
+         
+          <li><a href="/links/">Yararlı Linkler</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-129796595-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'eybisi-run';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

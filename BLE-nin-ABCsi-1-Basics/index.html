@@ -261,11 +261,11 @@
 <p>İlk flagimizi girmek için <code>gatttool -b 30:AE:A4:05:4F:E6 --char-write-req -a 0x002c -n $(echo -n &quot;12345678901234567890&quot;|xxd -ps)</code>  komutunu giriyoruz.</p>
 <p>Tekrar flag sayacımızı okudugumuzda : <code>Score:1 /20</code> olduğunu görüyoruz YEY</p>
 <p>Girdiğimiz komutların çoğunu tekrar tekrar kullanıcağımız için bash scripti yazmamız çok hoş olur.<br>Default handle olarak score’un handle’ını kullanan, parametre verdiğimizde ise verdiğimiz handle’ı kullanan bir bash scripti yazalım.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gatttool -b 30:AE:A4:05:4F:E6 --char-read -a <span class="variable">$&#123;1:-0x2a&#125;</span>|awk -F<span class="string">':'</span> <span class="string">'&#123;print $2&#125;'</span>|tr -d <span class="string">' '</span>|xxd -r -p;<span class="built_in">printf</span> <span class="string">'\n'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gatttool -b 30:AE:A4:05:4F:E6 --char-read -a <span class="variable">$&#123;1:-0x2a&#125;</span>|awk -F<span class="string">':'</span> <span class="string">'&#123;print $2&#125;'</span>|tr -d <span class="string">' '</span>|xxd -r -p;<span class="built_in">printf</span> <span class="string">'\n'</span></span><br></pre></td></tr></table></figure>
 <p>read.sh olarak kaydettim.</p>
 <p><img src="read.png" alt="read"></p>
 <p>Süper. Birde bunu write için yapalım. İlk parametremiz yazılacak değeri, ikinci parametre de hangi handle’a yazılacağını belirlesin. Eğer 2. parametreye değer girmezsek flag girdiğimiz handle’a yazsın.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gatttool -b 30:AE:A4:05:4F:E6 --char-write-req -a <span class="variable">$&#123;2:-0x2c&#125;</span> -n $(<span class="built_in">echo</span> -n <span class="variable">$1</span> |xxd -ps)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">gatttool -b 30:AE:A4:05:4F:E6 --char-write-req -a <span class="variable">$&#123;2:-0x2c&#125;</span> -n $(<span class="built_in">echo</span> -n <span class="variable">$1</span> |xxd -ps)</span><br></pre></td></tr></table></figure>
 <p>bunu da write.sh olarak kaydettim.</p>
 <p>0x2e de zaten 20 karakterlik md5 gözükmekte. Hemen onu flag olarak yazıyoruz.</p>
 <p><img src="2.png" alt="first"></p>
@@ -297,7 +297,7 @@
 <p>16 Bağlantımızdaki MTU değerimizi değiştirmemizi istiyor. Bunu da gatttool’un interface’i içinde yapıyoruz.</p>
 <p><img src="16.png" alt="16"></p>
 <p>17.flagimiz için handle bize <code>write+resp hello</code> diyor. Bunu cli gatttool ile yapamadım. Kısa bir python scripti ile halloluyor.<br><img src="50.png" alt="50"></p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pygatt</span><br><span class="line">adapter = pygatt.GATTToolBackend()</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> :</span><br><span class="line">    adapter.start()</span><br><span class="line">    device = adapter.connect(<span class="string">"30:AE:A4:05:4F:E6"</span>)</span><br><span class="line">    value = device.char_read_handle(<span class="string">"0x0050"</span>)</span><br><span class="line">    print(str(value))</span><br><span class="line">    x = device.char_write(<span class="string">"0000ff14-0000-1000-8000-00805f9b34fb"</span>,bytearray([ord(<span class="string">'h'</span>),ord(<span class="string">'e'</span>),ord(<span class="string">'l'</span>),ord(<span class="string">'l'</span>),ord(<span class="string">'o'</span>)]),<span class="keyword">True</span>)</span><br><span class="line">    print(x)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    adapter.stop()</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pygatt</span><br><span class="line">adapter = pygatt.GATTToolBackend()</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> :</span><br><span class="line">    adapter.start()</span><br><span class="line">    device = adapter.connect(<span class="string">"30:AE:A4:05:4F:E6"</span>)</span><br><span class="line">    value = device.char_read_handle(<span class="string">"0x0050"</span>)</span><br><span class="line">    print(str(value))</span><br><span class="line">    x = device.char_write(<span class="string">"0000ff14-0000-1000-8000-00805f9b34fb"</span>,bytearray([ord(<span class="string">'h'</span>),ord(<span class="string">'e'</span>),ord(<span class="string">'l'</span>),ord(<span class="string">'l'</span>),ord(<span class="string">'o'</span>)]),<span class="keyword">True</span>)</span><br><span class="line">    print(x)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    adapter.stop()</span><br></pre></td></tr></table></figure>
 <p><img src="17.png" alt="17"></p>
 <ol start="18">
 <li>Flag ilginç birşey öğretiyor bize. Karakteristik bize propertilerini verirken NOTIFY yok bende dese de, aslında NOTIFY yapabiliyormuş.</li>
@@ -374,7 +374,7 @@
     
     <footer id="footer">
   <div class="footer-left">
-    in locexum we trust &copy; 2019 eybisi
+    in locexum we trust &copy; 2020 eybisi
   </div>
   <div class="footer-right">
     <nav>
