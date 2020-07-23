@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://eybisi.run/"/>
-  <updated>2020-07-14T08:25:21.791Z</updated>
+  <updated>2020-07-22T08:15:10.112Z</updated>
   <id>http://eybisi.run/</id>
   
   <author>
@@ -15,34 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>NFC Series : 1 - Exploring Istanbulkart with Proxmark and Frida</title>
-    <link href="http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/"/>
-    <id>http://eybisi.run/Exploring-Istanbulkart-with-Proxmark-and-Frida/</id>
-    <published>2020-03-26T14:00:48.000Z</published>
-    <updated>2020-07-14T08:25:21.791Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;This post will be about
-        
-      
-    
-    </summary>
-    
-    
-      <category term="proxmark" scheme="http://eybisi.run/tags/proxmark/"/>
-    
-      <category term="frida" scheme="http://eybisi.run/tags/frida/"/>
-    
-      <category term="android" scheme="http://eybisi.run/tags/android/"/>
-    
-  </entry>
   
   <entry>
     <title>Mobile Malware Analysis : Overlay and How to Counter it (partly)</title>
