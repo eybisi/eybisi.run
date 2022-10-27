@@ -1,113 +1,116 @@
 <!DOCTYPE html>
-<html lang=tr>
+<html lang=en>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="Bu seride mobil zararlı analizine yeni başlayanlar için bir rehber oluşturmaya çalışacağım. Serinin diğer yazılarında örnek zararlı analizi yapmayı düşünmekteyim. Bu yazımda analiz için ortamı kurmayı">
-<meta name="keywords" content="Android,Malware,Analiz">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım">
 <meta property="og:url" content="http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/index.html">
-<meta property="og:site_name" content="eybisi">
+<meta property="og:site_name" content="hedgehog&#39;s cave">
 <meta property="og:description" content="Bu seride mobil zararlı analizine yeni başlayanlar için bir rehber oluşturmaya çalışacağım. Serinin diğer yazılarında örnek zararlı analizi yapmayı düşünmekteyim. Bu yazımda analiz için ortamı kurmayı">
-<meta property="og:locale" content="tr">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/geny.png">
 <meta property="og:image" content="http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/jadx.png">
 <meta property="og:image" content="http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/wifi.png">
 <meta property="og:image" content="http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/burp.png">
 <meta property="og:image" content="http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/cert.png">
 <meta property="og:image" content="http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/burp2.png">
-<meta property="og:updated_time" content="2018-08-01T14:41:50.000Z">
+<meta property="article:published_time" content="2018-07-31T15:05:11.000Z">
+<meta property="article:modified_time" content="2022-10-25T07:16:04.850Z">
+<meta property="article:author" content="abc">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Malware">
+<meta property="article:tag" content="Analiz">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım">
-<meta name="twitter:description" content="Bu seride mobil zararlı analizine yeni başlayanlar için bir rehber oluşturmaya çalışacağım. Serinin diğer yazılarında örnek zararlı analizi yapmayı düşünmekteyim. Bu yazımda analiz için ortamı kurmayı">
 <meta name="twitter:image" content="http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/geny.png">
     
     
+      
         
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
+      
+      
         
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
         
+      
+      
         
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
         
+      
     
     <!-- title -->
     <title>Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
     
     <!-- rss -->
     
     
-      <link rel="alternate" href="/atom.xml" title="eybisi" type="application/atom+xml" />
+      <link rel="alternate" href="/atom.xml" title="hedgehog&#39;s cave" type="application/atom+xml" />
     
-</head>
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Ana Sayfa</a></li>
-         
-          <li><a href="/archives/">Yazılar</a></li>
-         
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
-        
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/BLE-nin-ABCsi-1-Basics/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/BLE-nin-ABCsi-1-Basics/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/CTFZone-2018-android-ololo-country-checker/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/CTFZone-2018-android-ololo-country-checker/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Önceki gönderi</span>
-      <span id="i-next" class="info" style="display:none;">Sonraki gönderi</span>
-      <span id="i-top" class="info" style="display:none;">Başa dön</span>
-      <span id="i-share" class="info" style="display:none;">Gönderiyi paylaş</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&text=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&is_video=false&description=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&text=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&is_video=false&description=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım&body=Check out this article: http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&name=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&name=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&t=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -118,7 +121,7 @@
 </div>
 
     
-    <div class="content index my4">
+    <div class="content index py4">
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -131,18 +134,23 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">eybisi</span>
+        <span itemprop="name">abc</span>
       </span>
       
     <div class="postdate">
+      
         <time datetime="2018-07-31T15:05:11.000Z" itemprop="datePublished">2018-07-31</time>
+        
+      
     </div>
 
 
       
+
+      
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Analiz/">Analiz</a>, <a class="tag-link" href="/tags/Android/">Android</a>, <a class="tag-link" href="/tags/Malware/">Malware</a>
+        <a class="tag-link-link" href="/tags/Analiz/" rel="tag">Analiz</a>, <a class="tag-link-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-link-link" href="/tags/Malware/" rel="tag">Malware</a>
     </div>
 
 
@@ -156,65 +164,62 @@
 <li>Ortam</li>
 <li>Toollar</li>
 <li>VM Hardening</li>
-<li>Zararlı bulma </li>
+<li>Zararlı bulma</li>
 </ul>
-<h1 id="Ortam"><a href="#Ortam" class="headerlink" title="Ortam"></a>Ortam</h1><p>Analiz ortamı için bir android emulator kullanmamız gerek. Birçok alternatif olmakla birlikte ben genymotion kullanıyorum. Performans olarak Android Studio’nun emulatorunden bir tık daha iyi ve biricik Fridamı çok rahat bir şekilde çalıştırabilmekte.<br>Genymotion kurulumu için <a href="https://www.genymotion.com/fun-zone/" target="_blank" rel="noopener">https://www.genymotion.com/fun-zone/</a> adresine giderek trial’ınızı başlatabilirsiniz. Trial bittikten sonra telefona sms yollama, arama yapma gibi birkaç özellikler gidiyor. Çokta mühim bir değişiklik değil. </p>
+<h1 id="Ortam"><a href="#Ortam" class="headerlink" title="Ortam"></a>Ortam</h1><p>Analiz ortamı için bir android emulator kullanmamız gerek. Birçok alternatif olmakla birlikte ben genymotion kullanıyorum. Performans olarak Android Studio’nun emulatorunden bir tık daha iyi ve biricik Fridamı çok rahat bir şekilde çalıştırabilmekte.<br>Genymotion kurulumu için <a target="_blank" rel="noopener" href="https://www.genymotion.com/fun-zone/">https://www.genymotion.com/fun-zone/</a> adresine giderek trial’ınızı başlatabilirsiniz. Trial bittikten sonra telefona sms yollama, arama yapma gibi birkaç özellikler gidiyor. Çokta mühim bir değişiklik değil. </p>
 <p>Yükleyip giriş yaptıktan sonra şu görüntü ile karşılacaksınız.<br><img src="geny.png" width="350" height="350"></p>
 <p>Add butonuna basarak sanal makine ekleyebilirsiniz. Ben <code>Custom Phone-6.0-API 23-768x1280</code>‘ı kurdum. Şimdi sırayla aşağıdaki dosyaları emulatorümüze tutup atıyoruz :</p>
 <ul>
-<li><a href="https://androidfilehost.com/?fid=23252070760974384" target="_blank" rel="noopener">1_Genymotion-ARM-Translation_v1.1</a></li>
-<li><a href="https://github.com/opengapps/x86/releases/download/20180731/open_gapps-x86-6.0-pico-20180731.zip" target="_blank" rel="noopener">2_open_gapps-x86-6.0-pico-20180731</a></li>
-<li><a href="https://download.chainfire.eu/696/supersu/" target="_blank" rel="noopener">3_SuperSU-v2.46</a></li>
-<li><a href="http://dl-xda.xposed.info/framework/sdk23/x86/xposed-v89-sdk23-x86.zip" target="_blank" rel="noopener">4_xposed-v89-sdk23-x86</a></li>
-<li><a href="https://forum.xda-developers.com/attachment.php?attachmentid=4393082&amp;d=1516301692" target="_blank" rel="noopener">5_XposedInstaller_3.1.5</a></li>
-<li><a href="https://dl-xda.xposed.info/modules/mobi.acpm.inspeckage_v9_4c7fe1.apk" target="_blank" rel="noopener">6_mobi.acpm.inspeckage_v9_4c7fe1</a></li>
+<li><a target="_blank" rel="noopener" href="https://androidfilehost.com/?fid=23252070760974384">1_Genymotion-ARM-Translation_v1.1</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/opengapps/x86/releases/download/20180731/open_gapps-x86-6.0-pico-20180731.zip">2_open_gapps-x86-6.0-pico-20180731</a></li>
+<li><a target="_blank" rel="noopener" href="https://download.chainfire.eu/696/supersu/">3_SuperSU-v2.46</a></li>
+<li><a target="_blank" rel="noopener" href="http://dl-xda.xposed.info/framework/sdk23/x86/xposed-v89-sdk23-x86.zip">4_xposed-v89-sdk23-x86</a></li>
+<li><a target="_blank" rel="noopener" href="https://forum.xda-developers.com/attachment.php?attachmentid=4393082&d=1516301692">5_XposedInstaller_3.1.5</a></li>
+<li><a target="_blank" rel="noopener" href="https://dl-xda.xposed.info/modules/mobi.acpm.inspeckage_v9_4c7fe1.apk">6_mobi.acpm.inspeckage_v9_4c7fe1</a></li>
 </ul>
-<p><a href="https://vimeo.com/156745941" target="_blank" rel="noopener">https://vimeo.com/156745941</a> Şu videoda nasıl yüklendiğini görebilirsiniz. Videoda dosyalar android 5.0 için seçilmiş, ancak biz 6.0 yükleyeceğimiz için benim size verdiğim dosya linkleri farklı. Frida genymotionda 6.0dan önce çalışmadığından ötürü  6.0 versiyonunu kullanıyoruz.</p>
+<p><a target="_blank" rel="noopener" href="https://vimeo.com/156745941">https://vimeo.com/156745941</a> Şu videoda nasıl yüklendiğini görebilirsiniz. Videoda dosyalar android 5.0 için seçilmiş, ancak biz 6.0 yükleyeceğimiz için benim size verdiğim dosya linkleri farklı. Frida genymotionda 6.0dan önce çalışmadığından ötürü  6.0 versiyonunu kullanıyoruz.</p>
 <p>Bu işlemlerden sonra emulatörümüz hazır oldu sayılır.</p>
-<h1 id="Toollar"><a href="#Toollar" class="headerlink" title="Toollar"></a>Toollar</h1><h2 id="Inspeckage"><a href="#Inspeckage" class="headerlink" title="Inspeckage"></a>Inspeckage</h2><p>Yukarıda yüklediğimiz <a href="https://github.com/ac-pm/Inspeckage" target="_blank" rel="noopener">inspeckage</a> dinamik analiz için kullanışlı bir tool. Belirli fonksiyonları hooklayarak analiz edilen uygulamanın hangi fonksiyonları çağırdığını otomatik olarak size bildirmekte. Örneğin bir AES encryption yapıyorsa size hangi key ile neyi encrypt ettiğini web arayüzündeki <code>Crypto</code> sekmesinde size göstermekte.</p>
-<h2 id="jadx"><a href="#jadx" class="headerlink" title="jadx"></a>jadx</h2><p><a href="https://github.com/skylot/jadx/releases" target="_blank" rel="noopener">Jadx</a> yükleyeceğimiz apkları decompile etmede kullanılan bir tool. Android uygulamalar java ile yazıldığı için decompile işlemi genelde sıkıntısız bir şekilde yapılabilmekte. <code>jadx-gui sample.apk</code> komutu ile apkyı inceleyebilirsiniz. Bazen jadx decompile işleminde başarısız oluyor. Örnek</p>
-<p><img src="jadx.png" alt="jadx"></p>
-<p>Bu gibi durumlarda apkımızın içindeki dex dosyasını jar’a çevirerek koda ulaşabiliriz. Apklar aslında bildiğimiz zip dosyasıdır. Uzantısını zip’e çevirerek içindeki dosyaları görebilirsiniz. Zip içindeki classes.dex bizim decompile etmeye çalıştırdığımız kodu barındırır. <a href="https://github.com/pxb1988/dex2jar" target="_blank" rel="noopener">https://github.com/pxb1988/dex2jar</a> tool’u ile bu dex dosyasını jar’a çevirebiliriz.</p>
+<h1 id="Toollar"><a href="#Toollar" class="headerlink" title="Toollar"></a>Toollar</h1><h2 id="Inspeckage"><a href="#Inspeckage" class="headerlink" title="Inspeckage"></a>Inspeckage</h2><p>Yukarıda yüklediğimiz <a target="_blank" rel="noopener" href="https://github.com/ac-pm/Inspeckage">inspeckage</a> dinamik analiz için kullanışlı bir tool. Belirli fonksiyonları hooklayarak analiz edilen uygulamanın hangi fonksiyonları çağırdığını otomatik olarak size bildirmekte. Örneğin bir AES encryption yapıyorsa size hangi key ile neyi encrypt ettiğini web arayüzündeki <code>Crypto</code> sekmesinde size göstermekte.</p>
+<h2 id="jadx"><a href="#jadx" class="headerlink" title="jadx"></a>jadx</h2><p><a target="_blank" rel="noopener" href="https://github.com/skylot/jadx/releases">Jadx</a> yükleyeceğimiz apkları decompile etmede kullanılan bir tool. Android uygulamalar java ile yazıldığı için decompile işlemi genelde sıkıntısız bir şekilde yapılabilmekte. <code>jadx-gui sample.apk</code> komutu ile apkyı inceleyebilirsiniz. Bazen jadx decompile işleminde başarısız oluyor. Örnek</p>
+<p><img src="/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/jadx.png" alt="jadx"></p>
+<p>Bu gibi durumlarda apkımızın içindeki dex dosyasını jar’a çevirerek koda ulaşabiliriz. Apklar aslında bildiğimiz zip dosyasıdır. Uzantısını zip’e çevirerek içindeki dosyaları görebilirsiniz. Zip içindeki classes.dex bizim decompile etmeye çalıştırdığımız kodu barındırır. <a target="_blank" rel="noopener" href="https://github.com/pxb1988/dex2jar">https://github.com/pxb1988/dex2jar</a> tool’u ile bu dex dosyasını jar’a çevirebiliriz.</p>
 <p><code>d2j-dex2jar.sh /path/to/classes.dex</code> komutu ile classes.dex2jar.jar dosyamızı elde ederiz. Bu dosyayı herhangi bir jar dosyası okuyan program ile açabilirisiniz. Hatta bu dosyayı tekrar jadx ile de açabilirsiniz. Ama bu şekilde açtığınızda apk’nın içinde bulunan diğer dosyaları göremezsiniz. AndroidManifest.xml , resource gibi dosyaları.</p>
-<h2 id="Frida"><a href="#Frida" class="headerlink" title="Frida"></a>Frida</h2><p>Benim kalbimde ayrı bir yeri olan <code>Dynamic instrumentation toolkit</code> <a href="https://frida.re" target="_blank" rel="noopener">https://frida.re</a></p>
-<p>Fridayı çalıştırabilmemiz için telefonda bir adet frida serverımızın hali hazırda çalışıyor olması gerekiyor. Genymotiondaki sanal makineler x86 tabanlı oldugu için <a href="https://github.com/frida/frida/releases" target="_blank" rel="noopener">https://github.com/frida/frida/releases</a> adresinden en güncel fridaserver-android-x86’yı indiriyoruz. <code>adb push fridaserver /data/local/tmp</code> ile emulatore yolluyoruz. <code>adb shell</code> ile emulatorumuzun içine giriyoruz. <code>cd /data/local/tmp</code> diyerek dosyayı attığımız klasore gidiyoruz. chmod verdikten sonra serverımızı çalıştırıyoruz</p>
-<p>Ardından kendi bilgisayarımızda <code>pip install frida-tools frida</code> ile fridayı yüklüyoruz. Yüklendikten sonra <code>frida-ps -U</code> diyerek telefonda çalışan uygulamaların listesini görebilirsiniz.<br>Ne yapar frida ? Mesela DKHOS’ta çözdüğüm bir mobil sorusundan örnek <a href="https://github.com/eybisi/DKHOS/blob/master/MOBILE400.md" target="_blank" rel="noopener">https://github.com/eybisi/DKHOS/blob/master/MOBILE400.md</a> . Frida android’e özel bir tool da değil. IOS, windows, linux her yerde çalışan bir tool. Örneğin IOSta çalışan bir uygulama için, sistemdeki bluetooth fonksiyonlarını hooklayarak, uygulamanın bluetooth protokölü ile hangi datayı yollayıp aldığını görebilirsiniz. </p>
+<h2 id="Frida"><a href="#Frida" class="headerlink" title="Frida"></a>Frida</h2><p>Benim kalbimde ayrı bir yeri olan <code>Dynamic instrumentation toolkit</code> <a target="_blank" rel="noopener" href="https://frida.re/">https://frida.re</a></p>
+<p>Fridayı çalıştırabilmemiz için telefonda bir adet frida serverımızın hali hazırda çalışıyor olması gerekiyor. Genymotiondaki sanal makineler x86 tabanlı oldugu için <a target="_blank" rel="noopener" href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a> adresinden en güncel fridaserver-android-x86’yı indiriyoruz. <code>adb push fridaserver /data/local/tmp</code> ile emulatore yolluyoruz. <code>adb shell</code> ile emulatorumuzun içine giriyoruz. <code>cd /data/local/tmp</code> diyerek dosyayı attığımız klasore gidiyoruz. chmod verdikten sonra serverımızı çalıştırıyoruz</p>
+<p>Ardından kendi bilgisayarımızda <code>pip install frida-tools frida</code> ile fridayı yüklüyoruz. Yüklendikten sonra <code>frida-ps -U</code> diyerek telefonda çalışan uygulamaların listesini görebilirsiniz.<br>Ne yapar frida ? Mesela DKHOS’ta çözdüğüm bir mobil sorusundan örnek <a target="_blank" rel="noopener" href="https://github.com/eybisi/DKHOS/blob/master/MOBILE400.md">https://github.com/eybisi/DKHOS/blob/master/MOBILE400.md</a> . Frida android’e özel bir tool da değil. IOS, windows, linux her yerde çalışan bir tool. Örneğin IOSta çalışan bir uygulama için, sistemdeki bluetooth fonksiyonlarını hooklayarak, uygulamanın bluetooth protokölü ile hangi datayı yollayıp aldığını görebilirsiniz. </p>
 <p>Serinin ilerleyen yazılarında zararlı analizi kısımlarında bol bol yer vericem frida’ya. </p>
 <h2 id="Burp"><a href="#Burp" class="headerlink" title="Burp"></a>Burp</h2><p>Zararlılarımızın çoğu komuta kontrol sunucuları ile iletişim kuracağı için bir network proxy çok işimize yarayacak. Emulatorümüze burp kurmak için, önce wifi ayarlarına gidiyoruz.<br><img src="wifi.png" width="200" height="400"></p>
 <p>Ardından <code>Modify network</code> e basarak aşağıdaki ekrana bilgileri giriyoruz. Genymotiondaki sanal makineler default olarak 192.168.56.1 ip adresini kullanmakta.<br><img src="burp.png" width="200" height="400"></p>
-<p>Şimdi burp sertifikamızı telefona yüklememiz gerekiyor. <a href="http://burp" target="_blank" rel="noopener">http://burp</a> adresine gidip sertifikayı indirirken telefonun browserı çöktüğü için bu işi manuel yapacağız. Kendi web browserınıza proxy ayarı çekip, burp sertifikanızı indirin. Sertifikanın uzantısını .cer’e çevirin. <code>adb push /path/to/cert.cer /storage/emulated/0/Downloads</code> komutu ile emulatore sertifikayı yollayın. Ardından telefonun <code>Settings</code> kısmından sırayla Security-&gt;Install From SD Card diyip sertifikayı yüklediğiniz klasore gidin.<br><img src="cert.png" width="200" height="400"><br>Kurmak için pin ayarlamınızı isteyecek.</p>
+<p>Şimdi burp sertifikamızı telefona yüklememiz gerekiyor. <a target="_blank" rel="noopener" href="http://burp/">http://burp</a> adresine gidip sertifikayı indirirken telefonun browserı çöktüğü için bu işi manuel yapacağız. Kendi web browserınıza proxy ayarı çekip, burp sertifikanızı indirin. Sertifikanın uzantısını .cer’e çevirin. <code>adb push /path/to/cert.cer /storage/emulated/0/Downloads</code> komutu ile emulatore sertifikayı yollayın. Ardından telefonun <code>Settings</code> kısmından sırayla Security-&gt;Install From SD Card diyip sertifikayı yüklediğiniz klasore gidin.<br><img src="cert.png" width="200" height="400"><br>Kurmak için pin ayarlamınızı isteyecek.</p>
 <p>İşlemi yaptıktan sonra burpte proxy ayarlarına gidip 192.168.56.1 : 8080 i ekleyin</p>
-<p><img src="burp2.png" alt="burp2"></p>
+<p><img src="/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/burp2.png" alt="burp2"></p>
 <p>Artık emulatordeki HTTP ve WebSocket isteklerini burpten görebilirsiniz. </p>
-<h1 id="VM-Hardening"><a href="#VM-Hardening" class="headerlink" title="VM Hardening"></a>VM Hardening</h1><p>Bu kısımı emulator ve root detection yapan zararlılar için anlatacağım. Çoğu zararlı emulatorde çalışıp çalışmadığını anlamak için  build.props dosyasındaki keylere bakar. Bizde bu dosyadaki değerleri değiştirerek bu detectiondan kurtulabiliriz. Bunun için öncelikle /system klasorunu writeable yapmamız lazım. <code>adb shell</code> ile bağlandıktan sonra <code>sudo su</code> diyoruz. Ardından <code>mount -o remount,rw /system</code> diyerek /system klasorunu rw yapıyoruz. <code>adb pull /system/build.prop</code> diyerek dosyamızı çekiyoruz. Değişiklikleri yaptıktan sonra <code>adb push build.prop /system/build.prop</code> ile tekrar dosyamızı yerine koyuyoruz. Örneğin benim emulatorumdeki prop dosyam <a href="build.prop">build.prop</a> Bunun dışında sistemdeki binary dosyaları kontrol eden zararlılar da olabiliyor. Bunlar için en güzel yöntem frida. Kontrol ettikleri fonksiyonları bulmanız ile scripti yazmanız 2 dknızı almaz.</p>
-<h1 id="Zararli-bulma"><a href="#Zararli-bulma" class="headerlink" title="Zararlı bulma"></a>Zararlı bulma</h1><p>Twitterdaki yabancı abilerimiz örnek buldukça paylaşmakta. <a href="https://twitter.com/virqdroid" target="_blank" rel="noopener">@virqdroid</a>  <a href="https://koodous.com" target="_blank" rel="noopener">https://koodous.com</a> adında muhteşem bir site var. Kendiniz rule yazarak siteye yüklenen apklar içinde zararlı bulabilirsiniz. Yakın zamanda apklab.io sitesi açılacak orası da efsane olucak gibi.</p>
+<h1 id="VM-Hardening"><a href="#VM-Hardening" class="headerlink" title="VM Hardening"></a>VM Hardening</h1><p>Bu kısımı emulator ve root detection yapan zararlılar için anlatacağım. Çoğu zararlı emulatorde çalışıp çalışmadığını anlamak için  build.props dosyasındaki keylere bakar. Bizde bu dosyadaki değerleri değiştirerek bu detectiondan kurtulabiliriz. Bunun için öncelikle &#x2F;system klasorunu writeable yapmamız lazım. <code>adb shell</code> ile bağlandıktan sonra <code>sudo su</code> diyoruz. Ardından <code>mount -o remount,rw /system</code> diyerek &#x2F;system klasorunu rw yapıyoruz. <code>adb pull /system/build.prop</code> diyerek dosyamızı çekiyoruz. Değişiklikleri yaptıktan sonra <code>adb push build.prop /system/build.prop</code> ile tekrar dosyamızı yerine koyuyoruz. Örneğin benim emulatorumdeki prop dosyam <a href="build.prop">build.prop</a> Bunun dışında sistemdeki binary dosyaları kontrol eden zararlılar da olabiliyor. Bunlar için en güzel yöntem frida. Kontrol ettikleri fonksiyonları bulmanız ile scripti yazmanız 2 dknızı almaz.</p>
+<h1 id="Zararli-bulma"><a href="#Zararli-bulma" class="headerlink" title="Zararlı bulma"></a>Zararlı bulma</h1><p>Twitterdaki yabancı abilerimiz örnek buldukça paylaşmakta. <a target="_blank" rel="noopener" href="https://twitter.com/virqdroid">@virqdroid</a>  <a target="_blank" rel="noopener" href="https://koodous.com/">https://koodous.com</a> adında muhteşem bir site var. Kendiniz rule yazarak siteye yüklenen apklar içinde zararlı bulabilirsiniz. Yakın zamanda apklab.io sitesi açılacak orası da efsane olucak gibi.</p>
 
   </div>
 </article>
 
     <div class="blog-post-comments">
         <div id="disqus_thread">
-            <noscript>Yorumları görebilmek için lütfen JavaScripte izin verin.</noscript>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
         </div>
     </div>
 
 
 
-    </div>
-    
-      <div id="footer-post-container">
+        
+          <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Ana Sayfa</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/archives/">Yazılar</a></li>
+          <li><a href="/about/">About</a></li>
          
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -225,76 +230,115 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&text=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&is_video=false&description=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&text=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&is_video=false&description=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım&body=Check out this article: http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&name=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&title=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&name=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/&t=Mobil Zararlı Analizi - Bölüm 1: Ortamı Kuralım"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> İçindekiler</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Paylaş</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Başa dön</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
     </div>
 
   </div>
 </div>
 
-    
-    <footer id="footer">
+        
+        <footer id="footer">
   <div class="footer-left">
-    in locexum we trust &copy; 2020 eybisi
+    Copyright &copy;
+    
+    
+    2022
+    abc
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Ana Sayfa</a></li>
-         
-          <li><a href="/archives/">Yazılar</a></li>
-         
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
-        
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
       </ul>
     </nav>
   </div>
 </footer>
 
-</body>
-</html>
-<!-- styles -->
-<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+    </div>
+    <!-- styles -->
 
-<!-- jquery -->
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->
 
-    <script type="text/javascript">
-        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-129796595-1', 'auto');
-        ga('send', 'pageview');
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129796595-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-129796595-1');
     </script>
 
 <!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
 
 <!-- Disqus Comments -->
 
@@ -310,4 +354,7 @@
         }());
     </script>
 
+<!-- utterances Comments -->
 
+</body>
+</html>

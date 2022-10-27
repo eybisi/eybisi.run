@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>eybisi</title>
+  <title>hedgehog&#39;s cave</title>
   
-  <subtitle>the droidhedhehog</subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://eybisi.run/"/>
-  <updated>2020-07-22T08:15:10.112Z</updated>
+  <updated>2022-10-27T15:41:29.834Z</updated>
   <id>http://eybisi.run/</id>
   
   <author>
-    <name>eybisi</name>
+    <name>abc</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Mobile Malware Analysis : Overlay and How to Counter it (partly)</title>
+    <title>Control Flow Unflattening</title>
+    <link href="http://eybisi.run/Control-Flow-Unflattening/"/>
+    <id>http://eybisi.run/Control-Flow-Unflattening/</id>
+    <published>2022-10-26T13:05:47.000Z</published>
+    <updated>2022-10-27T15:41:29.834Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;/Control-Flow-Unflattening/compare.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Target&quot;&gt;&lt;a href=&quot;#Target&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Obfuscation" scheme="http://eybisi.run/tags/Obfuscation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mobile Malware Analysis : Overlay and How to Counter It (Partly)</title>
     <link href="http://eybisi.run/Mobile-Malware-Analysis-Overlay-and-How-to-Counter-it/"/>
     <id>http://eybisi.run/Mobile-Malware-Analysis-Overlay-and-How-to-Counter-it/</id>
     <published>2019-06-10T13:17:36.000Z</published>
-    <updated>2020-07-22T08:15:10.112Z</updated>
+    <updated>2022-10-25T07:16:04.853Z</updated>
     
     <summary type="html">
     
@@ -43,7 +68,7 @@
     <link href="http://eybisi.run/DEF-CON-Quals-2019-Vitor/"/>
     <id>http://eybisi.run/DEF-CON-Quals-2019-Vitor/</id>
     <published>2019-05-25T23:22:29.000Z</published>
-    <updated>2019-07-16T10:09:44.250Z</updated>
+    <updated>2022-10-25T07:16:04.847Z</updated>
     
     <summary type="html">
     
@@ -51,8 +76,7 @@
       
         
         
-          &lt;h2 id=&quot;Vitor&quot;&gt;&lt;a href=&quot;#Vitor&quot; class=&quot;headerlink&quot; title=&quot;Vitor&quot;&gt;&lt;/a&gt;Vitor&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;mm.jpg&quot; alt=&quot;mm&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Defcon 2019
+          &lt;h2 id=&quot;Vitor&quot;&gt;&lt;a href=&quot;#Vitor&quot; class=&quot;headerlink&quot; title=&quot;Vitor&quot;&gt;&lt;/a&gt;Vitor&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/DEF-CON-Quals-2019-Vitor/mm.jpg&quot;
         
       
     
@@ -72,7 +96,7 @@
     <link href="http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/"/>
     <id>http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/</id>
     <published>2019-05-13T00:00:00.000Z</published>
-    <updated>2019-05-13T00:12:54.000Z</updated>
+    <updated>2022-10-25T07:16:04.840Z</updated>
     
     <summary type="html">
     
@@ -98,11 +122,11 @@
   </entry>
   
   <entry>
-    <title>Mobile Malware Analysis : Tricks used in Anubis</title>
+    <title>Mobile Malware Analysis : Tricks Used in Anubis</title>
     <link href="http://eybisi.run/Mobile-Malware-Analysis-Tricks-used-in-Anubis/"/>
     <id>http://eybisi.run/Mobile-Malware-Analysis-Tricks-used-in-Anubis/</id>
     <published>2019-04-07T13:41:35.000Z</published>
-    <updated>2019-04-09T22:47:56.000Z</updated>
+    <updated>2022-10-25T07:16:04.857Z</updated>
     
     <summary type="html">
     
@@ -110,8 +134,10 @@
       
         
         
-          &lt;h2 id=&quot;Anubis&quot;&gt;&lt;a href=&quot;#Anubis&quot; class=&quot;headerlink&quot; title=&quot;Anubis&quot;&gt;&lt;/a&gt;Anubis&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;anubis.jpg&quot; width=&quot;250&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Anubis is
+          &lt;h2 id=&quot;Anubis&quot;&gt;&lt;a href=&quot;#Anubis&quot; class=&quot;headerlink&quot; title=&quot;Anubis&quot;&gt;&lt;/a&gt;Anubis&lt;/h2&gt;&lt;img src=&quot;anubis.jpg&quot; width=&quot;250&quot;&gt;
+
+
+&lt;p&gt;Anubis is my
         
       
     
@@ -129,7 +155,7 @@
     <link href="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/"/>
     <id>http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/</id>
     <published>2018-11-03T12:23:21.000Z</published>
-    <updated>2018-11-03T14:28:22.000Z</updated>
+    <updated>2022-10-25T07:16:04.873Z</updated>
     
     <summary type="html">
     
@@ -157,7 +183,7 @@
     <link href="http://eybisi.run/Flareon5-6-Challenge-Magic/"/>
     <id>http://eybisi.run/Flareon5-6-Challenge-Magic/</id>
     <published>2018-10-06T15:13:54.000Z</published>
-    <updated>2018-10-06T21:51:34.000Z</updated>
+    <updated>2022-10-25T07:16:04.847Z</updated>
     
     <summary type="html">
     
@@ -184,7 +210,7 @@
     <link href="http://eybisi.run/BLE-nin-ABCsi-2-MITM/"/>
     <id>http://eybisi.run/BLE-nin-ABCsi-2-MITM/</id>
     <published>2018-08-09T17:41:35.000Z</published>
-    <updated>2018-08-10T12:17:35.000Z</updated>
+    <updated>2022-10-26T12:23:25.330Z</updated>
     
     <summary type="html">
     
@@ -210,7 +236,7 @@
     <link href="http://eybisi.run/BLE-nin-ABCsi-1-Basics/"/>
     <id>http://eybisi.run/BLE-nin-ABCsi-1-Basics/</id>
     <published>2018-08-03T23:41:15.000Z</published>
-    <updated>2018-08-04T03:26:25.000Z</updated>
+    <updated>2022-10-25T07:16:04.810Z</updated>
     
     <summary type="html">
     
@@ -236,7 +262,7 @@
     <link href="http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/"/>
     <id>http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/</id>
     <published>2018-07-31T15:05:11.000Z</published>
-    <updated>2018-08-01T14:41:50.000Z</updated>
+    <updated>2022-10-25T07:16:04.850Z</updated>
     
     <summary type="html">
     
@@ -260,11 +286,11 @@
   </entry>
   
   <entry>
-    <title>CTFZone 2018 android_ololo_country_checker</title>
+    <title>CTFZone 2018 Android_ololo_country_checker</title>
     <link href="http://eybisi.run/CTFZone-2018-android-ololo-country-checker/"/>
     <id>http://eybisi.run/CTFZone-2018-android-ololo-country-checker/</id>
     <published>2018-07-24T20:24:15.000Z</published>
-    <updated>2018-07-25T01:25:15.000Z</updated>
+    <updated>2022-10-25T07:16:04.833Z</updated>
     
     <summary type="html">
     
@@ -273,7 +299,8 @@
         
         
           &lt;p&gt;Points : 314 , 8 takım çözdü&lt;/p&gt;
-&lt;p&gt;Sorunun açıklaması :&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span
+&lt;p&gt;Sorunun açıklaması :&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span
         
       
     
@@ -289,11 +316,11 @@
   </entry>
   
   <entry>
-    <title>CTFZone 2018 Never ever be fooled to pay the ransomware!</title>
+    <title>CTFZone 2018 Never Ever Be Fooled to Pay the Ransomware!</title>
     <link href="http://eybisi.run/CTFZone-2018-Never-ever-be-fooled-to-pay-the-ransomware/"/>
     <id>http://eybisi.run/CTFZone-2018-Never-ever-be-fooled-to-pay-the-ransomware/</id>
     <published>2018-07-23T17:09:35.000Z</published>
-    <updated>2018-07-23T23:34:25.000Z</updated>
+    <updated>2022-10-25T07:16:04.827Z</updated>
     
     <summary type="html">
     
@@ -302,7 +329,8 @@
         
         
           &lt;p&gt;Points: 269 , Yaklaşık 9 takım çözmüştü sanırım.&lt;/p&gt;
-&lt;p&gt;Sorunun açıklaması :&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+&lt;p&gt;Sorunun açıklaması :&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
         
       
     

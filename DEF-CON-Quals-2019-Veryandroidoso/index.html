@@ -1,109 +1,113 @@
 <!DOCTYPE html>
-<html lang=tr>
+<html lang=en>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="Here is my writeup for VERYANDROIDOSO task. Ofcourse with frida :D App takes input from us and checks if it is correct flag. Length of flag should be 23 enclosed with OOO{..}. Also inside of brackets">
-<meta name="keywords" content="CTF,Android,Reverse,Frida">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DEF CON Quals 2019 : VERYANDROIDOSO">
 <meta property="og:url" content="http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/index.html">
-<meta property="og:site_name" content="eybisi">
+<meta property="og:site_name" content="hedgehog&#39;s cave">
 <meta property="og:description" content="Here is my writeup for VERYANDROIDOSO task. Ofcourse with frida :D App takes input from us and checks if it is correct flag. Length of flag should be 23 enclosed with OOO{..}. Also inside of brackets">
-<meta property="og:locale" content="tr">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/33.png">
 <meta property="og:image" content="http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/sol.gif">
-<meta property="og:updated_time" content="2019-05-13T00:12:54.000Z">
+<meta property="article:published_time" content="2019-05-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-25T07:16:04.840Z">
+<meta property="article:author" content="abc">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Reverse">
+<meta property="article:tag" content="Frida">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DEF CON Quals 2019 : VERYANDROIDOSO">
-<meta name="twitter:description" content="Here is my writeup for VERYANDROIDOSO task. Ofcourse with frida :D App takes input from us and checks if it is correct flag. Length of flag should be 23 enclosed with OOO{..}. Also inside of brackets">
 <meta name="twitter:image" content="http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/33.png">
     
     
+      
         
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
+      
+      
         
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
         
+      
+      
         
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
         
+      
     
     <!-- title -->
     <title>DEF CON Quals 2019 : VERYANDROIDOSO</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
     
     <!-- rss -->
     
     
-      <link rel="alternate" href="/atom.xml" title="eybisi" type="application/atom+xml" />
+      <link rel="alternate" href="/atom.xml" title="hedgehog&#39;s cave" type="application/atom+xml" />
     
-</head>
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Ana Sayfa</a></li>
-         
-          <li><a href="/archives/">Yazılar</a></li>
-         
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
-        
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/DEF-CON-Quals-2019-Vitor/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/DEF-CON-Quals-2019-Vitor/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/Mobile-Malware-Analysis-Tricks-used-in-Anubis/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/Mobile-Malware-Analysis-Tricks-used-in-Anubis/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Önceki gönderi</span>
-      <span id="i-next" class="info" style="display:none;">Sonraki gönderi</span>
-      <span id="i-top" class="info" style="display:none;">Başa dön</span>
-      <span id="i-share" class="info" style="display:none;">Gönderiyi paylaş</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&text=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&is_video=false&description=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&text=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&is_video=false&description=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=DEF CON Quals 2019 : VERYANDROIDOSO&body=Check out this article: http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&name=DEF CON Quals 2019 : VERYANDROIDOSO&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&name=DEF CON Quals 2019 : VERYANDROIDOSO&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&t=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -114,7 +118,7 @@
 </div>
 
     
-    <div class="content index my4">
+    <div class="content index py4">
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -127,18 +131,23 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">eybisi</span>
+        <span itemprop="name">abc</span>
       </span>
       
     <div class="postdate">
+      
         <time datetime="2019-05-13T00:00:00.000Z" itemprop="datePublished">2019-05-13</time>
+        
+      
     </div>
 
 
       
+
+      
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Android/">Android</a>, <a class="tag-link" href="/tags/CTF/">CTF</a>, <a class="tag-link" href="/tags/Frida/">Frida</a>, <a class="tag-link" href="/tags/Reverse/">Reverse</a>
+        <a class="tag-link-link" href="/tags/Android/" rel="tag">Android</a>, <a class="tag-link-link" href="/tags/CTF/" rel="tag">CTF</a>, <a class="tag-link-link" href="/tags/Frida/" rel="tag">Frida</a>, <a class="tag-link-link" href="/tags/Reverse/" rel="tag">Reverse</a>
     </div>
 
 
@@ -147,9 +156,11 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>Here is my writeup for <code>VERYANDROIDOSO</code> <a href="ooo.defcon2019.quals.veryandroidoso.apk">task</a>. Ofcourse with frida :D<br><img src="33.png" alt=""></p>
+    <p>Here is my writeup for <code>VERYANDROIDOSO</code> <a href="ooo.defcon2019.quals.veryandroidoso.apk">task</a>. Ofcourse with frida :D<br><img src="/DEF-CON-Quals-2019-Veryandroidoso/33.png"></p>
 <p>App takes input from us and checks if it is correct flag. Length of flag should be 23 enclosed with OOO{..}. Also inside of brackets only hex [0-9a-f].<br>18(23-5) divided into 9 part with each part length of 2. </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Button button = (Button) findViewById(R.id.button);</span><br><span class="line"><span class="keyword">final</span> EditText editText = (EditText) findViewById(R.id.editText);</span><br><span class="line">button.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        view = MainActivity.<span class="keyword">this</span>.parse(editText.getText().toString());</span><br><span class="line">        <span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (Solver.solve(view[<span class="number">0</span>], view[<span class="number">1</span>], view[<span class="number">2</span>], view[<span class="number">3</span>], view[<span class="number">4</span>], view[<span class="number">5</span>], view[<span class="number">6</span>], view[<span class="number">7</span>], view[<span class="number">8</span>]) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                MainActivity.<span class="keyword">this</span>.win();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                MainActivity.<span class="keyword">this</span>.fail();</span><br><span class="line">            &#125;</span><br><span class="line">            MainActivity.<span class="keyword">this</span>.finish();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        MainActivity.<span class="keyword">this</span>.fail();</span><br><span class="line">        MainActivity.<span class="keyword">this</span>.finish();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Button</span> <span class="variable">button</span> <span class="operator">=</span> (Button) findViewById(R.id.button);</span><br><span class="line"><span class="keyword">final</span> <span class="type">EditText</span> <span class="variable">editText</span> <span class="operator">=</span> (EditText) findViewById(R.id.editText);</span><br><span class="line">button.setOnClickListener(<span class="keyword">new</span> <span class="title class_">OnClickListener</span>() &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View view)</span> &#123;</span><br><span class="line">        view = MainActivity.<span class="built_in">this</span>.parse(editText.getText().toString());</span><br><span class="line">        <span class="keyword">if</span> (view != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (Solver.solve(view[<span class="number">0</span>], view[<span class="number">1</span>], view[<span class="number">2</span>], view[<span class="number">3</span>], view[<span class="number">4</span>], view[<span class="number">5</span>], view[<span class="number">6</span>], view[<span class="number">7</span>], view[<span class="number">8</span>]) != <span class="literal">null</span>) &#123;</span><br><span class="line">                MainActivity.<span class="built_in">this</span>.win();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                MainActivity.<span class="built_in">this</span>.fail();</span><br><span class="line">            &#125;</span><br><span class="line">            MainActivity.<span class="built_in">this</span>.finish();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        MainActivity.<span class="built_in">this</span>.fail();</span><br><span class="line">        MainActivity.<span class="built_in">this</span>.finish();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
 <h2 id="Solverrr"><a href="#Solverrr" class="headerlink" title="Solverrr"></a>Solverrr</h2><p>In solver class there are <code>solver</code>, <code>getSecretNumber</code>, <code>scramble</code>(not really), <code>sleep (!)</code>:<br>and exported functions from native-lib:</p>
 <p><code>m0, m1, m2, m3, m4, m6, m7, m8, m9</code></p>
 <ul>
@@ -160,50 +171,58 @@
 <li><p><code>scramble</code> does following :</p>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">scramble</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sleep = ((<span class="keyword">int</span>) sleep(<span class="number">500</span>)) - <span class="number">499</span>;</span><br><span class="line">    <span class="keyword">return</span> ((i + ((<span class="keyword">int</span>) Math.round(Math.sqrt((<span class="keyword">double</span>) ((sleep * <span class="number">4</span>) * sleep)) / ((<span class="keyword">double</span>) sleep)))) + <span class="number">321</span>) % <span class="number">256</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">scramble</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">sleep</span> <span class="operator">=</span> ((<span class="type">int</span>) sleep(<span class="number">500</span>)) - <span class="number">499</span>;</span><br><span class="line">    <span class="keyword">return</span> ((i + ((<span class="type">int</span>) Math.round(Math.sqrt((<span class="type">double</span>) ((sleep * <span class="number">4</span>) * sleep)) / ((<span class="type">double</span>) sleep)))) + <span class="number">321</span>) % <span class="number">256</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>Looks like it depends on output of sleep function ? </p>
-<p>Nope :D because sqrt(4sleep^2)/sleep always returns 2. So overall scramble is same as <code>return (i+2+321)%256</code><br>Same as <code>getSecretNumber</code> this function is always returns same value to same input.</p>
+<p>Nope :D because sqrt(4sleep^2)&#x2F;sleep always returns 2. So overall scramble is same as <code>return (i+2+321)%256</code><br>Same as <code>getSecretNumber</code> this function is always returns same value to same input.</p>
 <ul>
-<li>If you open up ghidra and <a href="dec.c">decompile</a> you can see that m0-m1-m2-m3-m4-m6 doesn’t depend on any value other than its inputs. But<br>m7 depends on s1 and s2. m8 depends on s3 and s4. If you look at offset of s4, you can see it is not defined. m9 takes one input and <code>CREATES</code> s4 data.<br>So m9 is very important to m8’s operations and output. s1, s2 and s3 is already defined in binary and never changed with any other function.</li>
+<li>If you open up ghidra and <a href="dec.c">decompile</a> you can see that m0-m1-m2-m3-m4-m6 doesn’t depend on any value other than its inputs. But<br> m7 depends on s1 and s2. m8 depends on s3 and s4. If you look at offset of s4, you can see it is not defined. m9 takes one input and <code>CREATES</code> s4 data.<br> So m9 is very important to m8’s operations and output. s1, s2 and s3 is already defined in binary and never changed with any other function.</li>
 </ul>
 <p>Now comes fun part.</p>
 <h2 id="Fridaa"><a href="#Fridaa" class="headerlink" title="Fridaa"></a>Fridaa</h2><p>in solve function there are huge if blocks for each input part.</p>
 <p>For i1 code is as follows :</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> scramble = scramble(<span class="number">13</span>);</span><br><span class="line">        <span class="keyword">if</span> (i1 == <span class="number">0</span>) &#123;</span><br><span class="line">            m0 = m0(<span class="number">100</span>, getSecretNumber(scramble));</span><br><span class="line">            i10 = <span class="number">255</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i1 == <span class="number">1</span>) &#123;</span><br><span class="line">            m0 = m0(<span class="number">190</span>, getSecretNumber(scramble));</span><br><span class="line">            i10 = <span class="number">255</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i1 == <span class="number">2</span>) &#123;</span><br><span class="line">            m0 = m0(<span class="number">88</span>, getSecretNumber(scramble));</span><br><span class="line">            i10 = <span class="number">255</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i1 == <span class="number">3</span>) &#123;</span><br><span class="line">        .</span><br><span class="line">        .</span><br><span class="line">        .</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ((m0 &amp; i10) != <span class="number">172</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>To not return false, we need to find correct m0 value . which is <code>m0 &amp; 255 == 172</code> . iff m0 = 172 . As you can see m0 set with output of m0 function.<br>So we need to find correct first parameter to m0. How ? frida :D</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Java.perform(function()&#123;</span><br><span class="line"></span><br><span class="line">    b = Java.use(<span class="string">"ooo.defcon2019.quals.veryandroidoso.Solver"</span>)</span><br><span class="line"></span><br><span class="line">    b.sleep.implementation = function(a)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">501</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    b.getSecretNumber.implementation = function(a)&#123;</span><br><span class="line">        r = <span class="keyword">this</span>.getSecretNumber(a)</span><br><span class="line">        console.log(<span class="string">"Secret  "</span> + r + <span class="string">" "</span> + a)</span><br><span class="line">        <span class="keyword">return</span> r</span><br><span class="line">    &#125;</span><br><span class="line">    b.scramble.implementation = function(a)&#123;</span><br><span class="line">        r = <span class="keyword">this</span>.scramble(a)</span><br><span class="line">        console.log(<span class="string">"Scramble  "</span> + r + <span class="string">" "</span> + a)</span><br><span class="line">        <span class="keyword">return</span> r</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i &lt; <span class="number">255</span>;i++)&#123;</span><br><span class="line">        jj = parseInt(b.m0(i,<span class="number">113</span>))&amp;<span class="number">255</span></span><br><span class="line">        <span class="keyword">if</span>(jj == <span class="number">172</span>)&#123;</span><br><span class="line">            console.log(<span class="string">"m0 = "</span> + i)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>How did I know second parameter of m0 ?. Lets just give random input : <code>OOO{123456789012345678}</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">scramble</span> <span class="operator">=</span> scramble(<span class="number">13</span>);</span><br><span class="line">        <span class="keyword">if</span> (i1 == <span class="number">0</span>) &#123;</span><br><span class="line">            m0 = m0(<span class="number">100</span>, getSecretNumber(scramble));</span><br><span class="line">            i10 = <span class="number">255</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i1 == <span class="number">1</span>) &#123;</span><br><span class="line">            m0 = m0(<span class="number">190</span>, getSecretNumber(scramble));</span><br><span class="line">            i10 = <span class="number">255</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i1 == <span class="number">2</span>) &#123;</span><br><span class="line">            m0 = m0(<span class="number">88</span>, getSecretNumber(scramble));</span><br><span class="line">            i10 = <span class="number">255</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i1 == <span class="number">3</span>) &#123;</span><br><span class="line">        .</span><br><span class="line">        .</span><br><span class="line">        .</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ((m0 &amp; i10) != <span class="number">172</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>To not return false, we need to find correct m0 value . which is <code>m0 &amp; 255 == 172</code> . iff m0 &#x3D; 172 . As you can see m0 set with output of m0 function.<br>So we need to find correct first parameter to m0. How ? frida :D</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Java.perform(function()&#123;</span><br><span class="line"></span><br><span class="line">    b = Java.use(<span class="string">&quot;ooo.defcon2019.quals.veryandroidoso.Solver&quot;</span>)</span><br><span class="line"></span><br><span class="line">    b.sleep.implementation = function(a)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">501</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    b.getSecretNumber.implementation = function(a)&#123;</span><br><span class="line">        r = <span class="built_in">this</span>.getSecretNumber(a)</span><br><span class="line">        console.log(<span class="string">&quot;Secret  &quot;</span> + r + <span class="string">&quot; &quot;</span> + a)</span><br><span class="line">        <span class="keyword">return</span> r</span><br><span class="line">    &#125;</span><br><span class="line">    b.scramble.implementation = function(a)&#123;</span><br><span class="line">        r = <span class="built_in">this</span>.scramble(a)</span><br><span class="line">        console.log(<span class="string">&quot;Scramble  &quot;</span> + r + <span class="string">&quot; &quot;</span> + a)</span><br><span class="line">        <span class="keyword">return</span> r</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i &lt; <span class="number">255</span>;i++)&#123;</span><br><span class="line">        jj = parseInt(b.m0(i,<span class="number">113</span>))&amp;<span class="number">255</span></span><br><span class="line">        <span class="keyword">if</span>(jj == <span class="number">172</span>)&#123;</span><br><span class="line">            console.log(<span class="string">&quot;m0 = &quot;</span> + i)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>How did I know second parameter of m0 ?. Lets just give random input : <code>OOO&#123;123456789012345678&#125;</code></p>
 <p>Attach with <code>frida -U --no-pause  -f ooo.defcon2019.quals.veryandroidoso -l 1.txt</code></p>
 <p>Then frida outputs : </p>
-<p><code>Scramble  80 13
-Secret  113 80</code></p>
+<p><code>Scramble  80 13 Secret  113 80</code></p>
 <p>secret function output is 113.</p>
-<p>Then I bruteforced all values for m0 in for loop. Frida says m0 should be 53. 53 is input to m0. And we have just 1 option since we ANDed with 255.<br>If you search <code>m0(53,</code> in jadx you can find i1 == 250. Our first byte is 0xfa . If it is correct then We must see second scramble output in frida.</p>
-<p>Try <code>OOO{fa3456789012345678}</code></p>
+<p>Then I bruteforced all values for m0 in for loop. Frida says m0 should be 53. 53 is input to m0. And we have just 1 option since we ANDed with 255.<br>If you search <code>m0(53,</code> in jadx you can find i1 &#x3D;&#x3D; 250. Our first byte is 0xfa . If it is correct then We must see second scramble output in frida.</p>
+<p>Try <code>OOO&#123;fa3456789012345678&#125;</code></p>
 <p>Same script gives:</p>
-<p><code>Scramble  80 13
-Secret  113 80
-Scramble  147 80
-Secret  201 147</code></p>
+<p><code>Scramble  80 13 Secret  113 80 Scramble  147 80 Secret  201 147 </code></p>
 <p>So it is correct !</p>
-<p>For i2 AND<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (i2 == <span class="number">254</span>) &#123;</span><br><span class="line">          m0 = m1(<span class="number">198</span>, getSecretNumber(scramble));</span><br><span class="line">          i10 = <span class="number">255</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          i10 = <span class="number">255</span>;</span><br><span class="line">          m0 = i2 == <span class="number">255</span> ? m1(<span class="number">220</span>, getSecretNumber(scramble)) : <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ((m0 &amp; i10) != <span class="number">6</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
-<p>Our condition is m0 &amp; 255 == 6, m0 should be 6. You can find correct secret value same as in step 1. So our for new for loop is :</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i &lt; <span class="number">255</span>;i++)&#123;</span><br><span class="line">    jj = <span class="built_in">parseInt</span>(b.m1(i,<span class="number">201</span>))&amp;<span class="number">255</span></span><br><span class="line">    <span class="keyword">if</span>(jj == <span class="number">6</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"m1 = "</span> + i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Add it to frida script. Then output is :<br><code>m0 = 53,m1 = 35</code>  =&gt; i2 = 180</p>
+<p>For i2 AND </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (i2 == <span class="number">254</span>) &#123;</span><br><span class="line">          m0 = m1(<span class="number">198</span>, getSecretNumber(scramble));</span><br><span class="line">          i10 = <span class="number">255</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          i10 = <span class="number">255</span>;</span><br><span class="line">          m0 = i2 == <span class="number">255</span> ? m1(<span class="number">220</span>, getSecretNumber(scramble)) : <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ((m0 &amp; i10) != <span class="number">6</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Our condition is m0 &amp; 255 &#x3D;&#x3D; 6, m0 should be 6. You can find correct secret value same as in step 1. So our for new for loop is :</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i &lt; <span class="number">255</span>;i++)&#123;</span><br><span class="line">    jj = <span class="built_in">parseInt</span>(b.<span class="title function_">m1</span>(i,<span class="number">201</span>))&amp;<span class="number">255</span></span><br><span class="line">    <span class="keyword">if</span>(jj == <span class="number">6</span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;m1 = &quot;</span> + i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Add it to frida script. Then output is :<br><code>m0 = 53,m1 = 35</code>  &#x3D;&gt; i2 &#x3D; 180</p>
 <p>[250,180] </p>
 <p>So far so good.</p>
 <p>For i3 :</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">else</span> <span class="keyword">if</span> (i3 == <span class="number">254</span>) &#123;</span><br><span class="line">    i10 = m2(<span class="number">7</span>, getSecretNumber(scramble));</span><br><span class="line">    m0 = <span class="number">251</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    i10 = i3 == <span class="number">255</span> ? m2(<span class="number">161</span>, getSecretNumber(scramble)) : <span class="number">0</span>;</span><br><span class="line">    m0 = <span class="number">251</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> ((i10 &amp; m0) != <span class="number">146</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>This time output is ANDed with 251. i10 &amp; 251 == 146 gives two option.</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i &lt; <span class="number">255</span>;i++)&#123;</span><br><span class="line">    jj = <span class="built_in">parseInt</span>(b.m2(i,<span class="number">132</span>))&amp;<span class="number">251</span></span><br><span class="line">    <span class="keyword">if</span>(jj == <span class="number">146</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"m2 = "</span> + i)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>m2 = 7 and m2 = 11 ==&gt; 254 and 52</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">else</span> <span class="keyword">if</span> (i3 == <span class="number">254</span>) &#123;</span><br><span class="line">    i10 = m2(<span class="number">7</span>, getSecretNumber(scramble));</span><br><span class="line">    m0 = <span class="number">251</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    i10 = i3 == <span class="number">255</span> ? m2(<span class="number">161</span>, getSecretNumber(scramble)) : <span class="number">0</span>;</span><br><span class="line">    m0 = <span class="number">251</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> ((i10 &amp; m0) != <span class="number">146</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This time output is ANDed with 251. i10 &amp; 251 &#x3D;&#x3D; 146 gives two option.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i &lt; <span class="number">255</span>;i++)&#123;</span><br><span class="line">    jj = <span class="built_in">parseInt</span>(b.<span class="title function_">m2</span>(i,<span class="number">132</span>))&amp;<span class="number">251</span></span><br><span class="line">    <span class="keyword">if</span>(jj == <span class="number">146</span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;m2 = &quot;</span> + i)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>m2 &#x3D; 7 and m2 &#x3D; 11 &#x3D;&#x3D;&gt; 254 and 52</p>
 <p>.<br>.<br>.</p>
-<p>Overall <a href="dc.txt">dc.txt</a> gives :<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">m0 = 53</span><br><span class="line">m1 = 35</span><br><span class="line">m2 = 7,m2 = 11</span><br><span class="line">m3 = 132,m3 = 140</span><br><span class="line">m4 = 13,m4 = 14,m4 = 17,m4 = 18,m4 = 29,m4 = 30,m4 = 33,m4 = 34,m4 = 45,m4 = 46,m4 = 49,m4 = 50,m4 = 61,m4 = 62,m4 = 65,m4 = 66</span><br><span class="line">m5 = 65,m5 = 67,m5 = 69,m5 = 71,m5 = 73,m5 = 75,m5 = 77,m5 = 79,m5 = 81,m5 = 83,m5 = 85,m5 = 87,m5 = 89,m5 = 91,m5 = 93,m5 = 95,m5 = 97,m5 = 99,m5 = 101,m5 = 103,m5 = 105,m5 = 107,m5 = 109,m5 = 111,m5 = 113,m5 = 115,m5 = 117,m5 = 119,m5 = 121,m5 = 123,m5 = 125,m5 = 127,m5 = 193,m5 = 195,m5 = 197,m5 = 199,m5 = 201,m5 = 203,m5 = 205,m5 = 207,m5 = 209,m5 = 211,m5 = 213,m5 = 215,m5 = 217,m5 = 219,m5 = 221,m5 = 223,m5 = 225,m5 = 227,m5 = 229,m5 = 231,m5 = 233,m5 = 235,m5 = 237,m5 = 239,m5 = 241,m5 = 243,m5 = 245,m5 = 247,m5 = 249,m5 = 251,m5 = 253</span><br><span class="line">m6 = 205</span><br><span class="line">m7 = 129</span><br></pre></td></tr></table></figure></p>
+<p>Overall <a href="dc.txt">dc.txt</a> gives :</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">m0 = 53</span><br><span class="line">m1 = 35</span><br><span class="line">m2 = 7,m2 = 11</span><br><span class="line">m3 = 132,m3 = 140</span><br><span class="line">m4 = 13,m4 = 14,m4 = 17,m4 = 18,m4 = 29,m4 = 30,m4 = 33,m4 = 34,m4 = 45,m4 = 46,m4 = 49,m4 = 50,m4 = 61,m4 = 62,m4 = 65,m4 = 66</span><br><span class="line">m5 = 65,m5 = 67,m5 = 69,m5 = 71,m5 = 73,m5 = 75,m5 = 77,m5 = 79,m5 = 81,m5 = 83,m5 = 85,m5 = 87,m5 = 89,m5 = 91,m5 = 93,m5 = 95,m5 = 97,m5 = 99,m5 = 101,m5 = 103,m5 = 105,m5 = 107,m5 = 109,m5 = 111,m5 = 113,m5 = 115,m5 = 117,m5 = 119,m5 = 121,m5 = 123,m5 = 125,m5 = 127,m5 = 193,m5 = 195,m5 = 197,m5 = 199,m5 = 201,m5 = 203,m5 = 205,m5 = 207,m5 = 209,m5 = 211,m5 = 213,m5 = 215,m5 = 217,m5 = 219,m5 = 221,m5 = 223,m5 = 225,m5 = 227,m5 = 229,m5 = 231,m5 = 233,m5 = 235,m5 = 237,m5 = 239,m5 = 241,m5 = 243,m5 = 245,m5 = 247,m5 = 249,m5 = 251,m5 = 253</span><br><span class="line">m6 = 205</span><br><span class="line">m7 = 129</span><br></pre></td></tr></table></figure>
+
 <p>(Careful here, you should find correct i1 for m0) But since there is no m5 and it just checks over itself you can assign it as correct input.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i1 = 250</span><br><span class="line">i2 = 180</span><br><span class="line">i3 = [254,52]</span><br><span class="line">i4 = [176,22]</span><br><span class="line">i5 = [254, 145, 136, 72, 203, 118, 74, 120 ,244 ,221, 102, 147, 63, 238, 49, 247]</span><br><span class="line">i6 = [65, 67, 69, 71, 73,75, 77, 79, 81, 83,85, 87, 89, 91, 93, 95, 97, 99, 101, 103, 105, 107, 109, 111, 113, 115, 117, 119, 121, 123, 125, 127, 193, 195, 197, 199, 201, 203, 205, 207, 209, 211, 213, 215, 217, 219, 221, 223, 225, 227, 229, 231, 233, 235, 237, 239, 241, 243, 245, 247, 249, 251, 253]</span><br><span class="line">i7 = 68</span><br><span class="line">i8 = 190</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">i1 = 250</span><br><span class="line">i2 = 180</span><br><span class="line">i3 = [254,52]</span><br><span class="line">i4 = [176,22]</span><br><span class="line">i5 = [254, 145, 136, 72, 203, 118, 74, 120 ,244 ,221, 102, 147, 63, 238, 49, 247]</span><br><span class="line">i6 = [65, 67, 69, 71, 73,75, 77, 79, 81, 83,85, 87, 89, 91, 93, 95, 97, 99, 101, 103, 105, 107, 109, 111, 113, 115, 117, 119, 121, 123, 125, 127, 193, 195, 197, 199, 201, 203, 205, 207, 209, 211, 213, 215, 217, 219, 221, 223, 225, 227, 229, 231, 233, 235, 237, 239, 241, 243, 245, 247, 249, 251, 253]</span><br><span class="line">i7 = 68</span><br><span class="line">i8 = 190</span><br></pre></td></tr></table></figure>
 <p>We have 2*2*16*64 different combination for now. </p>
 <h2 id="Bigger-plan"><a href="#Bigger-plan" class="headerlink" title="Bigger plan"></a>Bigger plan</h2><p>After m7 if block, m9(i1+..+i7*i8) is called. This will change s4. Then ONE more if block comes for last hex. Since m8 is dependent on s4 we CANNOT bruteforce like before.</p>
-<p>If block :<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> ((i10 &amp; <span class="number">255</span>) != <span class="number">103</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>If block :</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> ((i10 &amp; <span class="number">255</span>) != <span class="number">103</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>i10 must be 103.</p>
 <p>To find last hex : frida script: </p>
 <pre><code>Iterate over possible inputs
@@ -212,44 +231,42 @@ Calculate input for m9
 Call m9
 Find correct value for m8
 Store solution
-</code></pre><p>Frida can easily handle memory. Calculate all possible values : <a href="calc.py">calc.py</a></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">nulls = []</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">0x100</span>;i++)&#123;</span><br><span class="line">	nulls.push(<span class="number">0x0</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; t.length;i++)&#123;</span><br><span class="line"></span><br><span class="line">	i9 = t[i][<span class="number">0</span>] + t[i][<span class="number">1</span>] + t[i][<span class="number">2</span>] + t[i][<span class="number">3</span>] + t[i][<span class="number">4</span>] + t[i][<span class="number">5</span>] + t[i][<span class="number">6</span>] * t[i][<span class="number">7</span>]</span><br><span class="line">	<span class="comment">//call m9</span></span><br><span class="line">	b.m9(i9)</span><br><span class="line">	<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">255</span>;j++)&#123;</span><br><span class="line"></span><br><span class="line">		aa = b.m8(j,<span class="number">23</span>)</span><br><span class="line">		res = <span class="built_in">parseInt</span>(aa)&amp;<span class="number">255</span></span><br><span class="line">		<span class="keyword">if</span>( res== <span class="number">103</span>)&#123;</span><br><span class="line">			<span class="comment">//console.log("Found last digit for : " + i9+ " "+ j)</span></span><br><span class="line">			<span class="built_in">console</span>.log([t[i][<span class="number">0</span>],t[i][<span class="number">1</span>],t[i][<span class="number">2</span>],t[i][<span class="number">3</span>],t[i][<span class="number">4</span>],t[i][<span class="number">5</span>],t[i][<span class="number">6</span>],t[i][<span class="number">7</span>],j])</span><br><span class="line">			<span class="comment">//clear s4 maybe one more digit will be found</span></span><br><span class="line">			Memory.writeByteArray(ptr(s4),nulls)</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	Memory.writeByteArray(ptr(s4),nulls)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<p>Frida can easily handle memory. Calculate all possible values : <a href="calc.py">calc.py</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">nulls = []</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">0x100</span>;i++)&#123;</span><br><span class="line">	nulls.<span class="title function_">push</span>(<span class="number">0x0</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; t.<span class="property">length</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	i9 = t[i][<span class="number">0</span>] + t[i][<span class="number">1</span>] + t[i][<span class="number">2</span>] + t[i][<span class="number">3</span>] + t[i][<span class="number">4</span>] + t[i][<span class="number">5</span>] + t[i][<span class="number">6</span>] * t[i][<span class="number">7</span>]</span><br><span class="line">	<span class="comment">//call m9</span></span><br><span class="line">	b.<span class="title function_">m9</span>(i9)</span><br><span class="line">	<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">255</span>;j++)&#123;</span><br><span class="line"></span><br><span class="line">		aa = b.<span class="title function_">m8</span>(j,<span class="number">23</span>)</span><br><span class="line">		res = <span class="built_in">parseInt</span>(aa)&amp;<span class="number">255</span></span><br><span class="line">		<span class="keyword">if</span>( res== <span class="number">103</span>)&#123;</span><br><span class="line">			<span class="comment">//console.log(&quot;Found last digit for : &quot; + i9+ &quot; &quot;+ j)</span></span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>([t[i][<span class="number">0</span>],t[i][<span class="number">1</span>],t[i][<span class="number">2</span>],t[i][<span class="number">3</span>],t[i][<span class="number">4</span>],t[i][<span class="number">5</span>],t[i][<span class="number">6</span>],t[i][<span class="number">7</span>],j])</span><br><span class="line">			<span class="comment">//clear s4 maybe one more digit will be found</span></span><br><span class="line">			<span class="title class_">Memory</span>.<span class="title function_">writeByteArray</span>(<span class="title function_">ptr</span>(s4),nulls)</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="title class_">Memory</span>.<span class="title function_">writeByteArray</span>(<span class="title function_">ptr</span>(s4),nulls)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Here t is possible values. <a href="sol1.txt">Script</a> will find correct input to m8 function. Then you will need to find correct i8. I found older inputs with manual search, but for this case I used <a href="calc3.py">python</a></p>
 <p>Now there is just last check !</p>
 <p>This time we have all inputs lets just give it to solve function.</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">b.solve.implementation = <span class="function"><span class="keyword">function</span>(<span class="params">a,o,c,d,e,f,g,h,i</span>)</span>&#123;</span><br><span class="line">	solutions = []</span><br><span class="line">	nulls = []</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">0x1000</span>;i++)&#123;</span><br><span class="line">		nulls.push(<span class="number">0x0</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; t.length;i++)&#123;</span><br><span class="line">		t2 = <span class="keyword">this</span>.solve(t[i][<span class="number">0</span>],t[i][<span class="number">1</span>],t[i][<span class="number">2</span>],t[i][<span class="number">3</span>],t[i][<span class="number">4</span>],t[i][<span class="number">5</span>],t[i][<span class="number">6</span>],t[i][<span class="number">7</span>],inputs[i])</span><br><span class="line">		<span class="built_in">console</span>.log(i + <span class="string">" "</span> + t2)</span><br><span class="line">		<span class="keyword">if</span>(t2)&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(t[i][<span class="number">0</span>],t[i][<span class="number">1</span>],t[i][<span class="number">2</span>],t[i][<span class="number">3</span>],t[i][<span class="number">4</span>],t[i][<span class="number">5</span>],t[i][<span class="number">6</span>],t[i][<span class="number">7</span>],inputs[i])</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			Memory.writeByteArray(ptr(s4),nulls)</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">b.sleep.implementation = <span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">502</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">b.<span class="property">solve</span>.<span class="property">implementation</span> = <span class="keyword">function</span>(<span class="params">a,o,c,d,e,f,g,h,i</span>)&#123;</span><br><span class="line">	solutions = []</span><br><span class="line">	nulls = []</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">0x1000</span>;i++)&#123;</span><br><span class="line">		nulls.<span class="title function_">push</span>(<span class="number">0x0</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; t.<span class="property">length</span>;i++)&#123;</span><br><span class="line">		t2 = <span class="variable language_">this</span>.<span class="title function_">solve</span>(t[i][<span class="number">0</span>],t[i][<span class="number">1</span>],t[i][<span class="number">2</span>],t[i][<span class="number">3</span>],t[i][<span class="number">4</span>],t[i][<span class="number">5</span>],t[i][<span class="number">6</span>],t[i][<span class="number">7</span>],inputs[i])</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(i + <span class="string">&quot; &quot;</span> + t2)</span><br><span class="line">		<span class="keyword">if</span>(t2)&#123;</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(t[i][<span class="number">0</span>],t[i][<span class="number">1</span>],t[i][<span class="number">2</span>],t[i][<span class="number">3</span>],t[i][<span class="number">4</span>],t[i][<span class="number">5</span>],t[i][<span class="number">6</span>],t[i][<span class="number">7</span>],inputs[i])</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="title class_">Memory</span>.<span class="title function_">writeByteArray</span>(<span class="title function_">ptr</span>(s4),nulls)</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">b.<span class="property">sleep</span>.<span class="property">implementation</span> = <span class="keyword">function</span>(<span class="params">a</span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">502</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Last <a href="so2.txt">script</a></p>
 <p>Bypass sleep function so we wont wait.</p>
-<h2 id="Fl4g"><a href="#Fl4g" class="headerlink" title="Fl4g"></a>Fl4g</h2><p>Now enter something like <code>OOO{123456789012345678}</code> and wait until frida finds correct value ! :D</p>
-<p><img src="sol.gif" alt=""></p>
-<p>Flag is hex values of those integers:<br><code>OOO{fab43416484944beba}</code></p>
+<h2 id="Fl4g"><a href="#Fl4g" class="headerlink" title="Fl4g"></a>Fl4g</h2><p>Now enter something like <code>OOO&#123;123456789012345678&#125;</code> and wait until frida finds correct value ! :D</p>
+<p><img src="/DEF-CON-Quals-2019-Veryandroidoso/sol.gif"></p>
+<p>Flag is hex values of those integers:<br><code>OOO&#123;fab43416484944beba&#125;</code></p>
 
   </div>
 </article>
 
     <div class="blog-post-comments">
         <div id="disqus_thread">
-            <noscript>Yorumları görebilmek için lütfen JavaScripte izin verin.</noscript>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
         </div>
     </div>
 
 
 
-    </div>
-    
-      <div id="footer-post-container">
+        
+          <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Ana Sayfa</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/archives/">Yazılar</a></li>
+          <li><a href="/about/">About</a></li>
          
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -260,76 +277,115 @@ Store solution
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&text=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&is_video=false&description=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&text=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&is_video=false&description=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=DEF CON Quals 2019 : VERYANDROIDOSO&body=Check out this article: http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&name=DEF CON Quals 2019 : VERYANDROIDOSO&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&title=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&name=DEF CON Quals 2019 : VERYANDROIDOSO&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/&t=DEF CON Quals 2019 : VERYANDROIDOSO"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> İçindekiler</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Paylaş</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Başa dön</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
     </div>
 
   </div>
 </div>
 
-    
-    <footer id="footer">
+        
+        <footer id="footer">
   <div class="footer-left">
-    in locexum we trust &copy; 2020 eybisi
+    Copyright &copy;
+    
+    
+    2022
+    abc
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Ana Sayfa</a></li>
-         
-          <li><a href="/archives/">Yazılar</a></li>
-         
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
-        
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
       </ul>
     </nav>
   </div>
 </footer>
 
-</body>
-</html>
-<!-- styles -->
-<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+    </div>
+    <!-- styles -->
 
-<!-- jquery -->
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->
 
-    <script type="text/javascript">
-        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-129796595-1', 'auto');
-        ga('send', 'pageview');
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129796595-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-129796595-1');
     </script>
 
 <!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
 
 <!-- Disqus Comments -->
 
@@ -345,4 +401,7 @@ Store solution
         }());
     </script>
 
+<!-- utterances Comments -->
 
+</body>
+</html>

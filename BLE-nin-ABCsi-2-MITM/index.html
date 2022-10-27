@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang=tr>
+<html lang=en>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="Serimizin ilk yazısında BLE’nin temellerini öğrendiğimize göre artık BLE kullanan cihazlara yapılabilecek saldırı tekniklerinden bahsebiliriz. Bir BLE cihazımız olsun. Bu cihazımızla genellikle mobil">
-<meta name="keywords" content="Bluetooth,Hardware">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BLE&#39;nin ABCsi : 2 - MITM">
 <meta property="og:url" content="http://eybisi.run/BLE-nin-ABCsi-2-MITM/index.html">
-<meta property="og:site_name" content="eybisi">
+<meta property="og:site_name" content="hedgehog&#39;s cave">
 <meta property="og:description" content="Serimizin ilk yazısında BLE’nin temellerini öğrendiğimize göre artık BLE kullanan cihazlara yapılabilecek saldırı tekniklerinden bahsebiliriz. Bir BLE cihazımız olsun. Bu cihazımızla genellikle mobil">
-<meta property="og:locale" content="tr">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-2-MITM/man.jpeg">
 <meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-2-MITM/topoloji.png">
 <meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-2-MITM/pi.png">
@@ -24,94 +23,97 @@
 <meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-2-MITM/nrf.png">
 <meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-2-MITM/mitm.png">
 <meta property="og:image" content="http://eybisi.run/BLE-nin-ABCsi-2-MITM/intercept.png">
-<meta property="og:updated_time" content="2018-08-10T12:17:35.000Z">
+<meta property="article:published_time" content="2018-08-09T17:41:35.000Z">
+<meta property="article:modified_time" content="2022-10-26T12:23:25.330Z">
+<meta property="article:author" content="abc">
+<meta property="article:tag" content="Bluetooth">
+<meta property="article:tag" content="Hardware">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BLE&#39;nin ABCsi : 2 - MITM">
-<meta name="twitter:description" content="Serimizin ilk yazısında BLE’nin temellerini öğrendiğimize göre artık BLE kullanan cihazlara yapılabilecek saldırı tekniklerinden bahsebiliriz. Bir BLE cihazımız olsun. Bu cihazımızla genellikle mobil">
 <meta name="twitter:image" content="http://eybisi.run/BLE-nin-ABCsi-2-MITM/man.jpeg">
     
     
+      
         
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
+      
+      
         
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
         
+      
+      
         
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
         
+      
     
     <!-- title -->
     <title>BLE&#39;nin ABCsi : 2 - MITM</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
     
     <!-- rss -->
     
     
-      <link rel="alternate" href="/atom.xml" title="eybisi" type="application/atom+xml" />
+      <link rel="alternate" href="/atom.xml" title="hedgehog&#39;s cave" type="application/atom+xml" />
     
-</head>
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Ana Sayfa</a></li>
-         
-          <li><a href="/archives/">Yazılar</a></li>
-         
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
-        
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/Flareon5-6-Challenge-Magic/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/Flareon5-6-Challenge-Magic/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/BLE-nin-ABCsi-1-Basics/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/BLE-nin-ABCsi-1-Basics/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Önceki gönderi</span>
-      <span id="i-next" class="info" style="display:none;">Sonraki gönderi</span>
-      <span id="i-top" class="info" style="display:none;">Başa dön</span>
-      <span id="i-share" class="info" style="display:none;">Gönderiyi paylaş</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/BLE-nin-ABCsi-2-MITM/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&text=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&is_video=false&description=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/BLE-nin-ABCsi-2-MITM/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&text=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&is_video=false&description=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=BLE&#39;nin ABCsi : 2 - MITM&body=Check out this article: http://eybisi.run/BLE-nin-ABCsi-2-MITM/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&name=BLE&#39;nin ABCsi : 2 - MITM&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&name=BLE&#39;nin ABCsi : 2 - MITM&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&t=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -122,7 +124,7 @@
 </div>
 
     
-    <div class="content index my4">
+    <div class="content index py4">
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -135,18 +137,23 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">eybisi</span>
+        <span itemprop="name">abc</span>
       </span>
       
     <div class="postdate">
+      
         <time datetime="2018-08-09T17:41:35.000Z" itemprop="datePublished">2018-08-09</time>
+        
+      
     </div>
 
 
       
+
+      
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Bluetooth/">Bluetooth</a>, <a class="tag-link" href="/tags/Hardware/">Hardware</a>
+        <a class="tag-link-link" href="/tags/Bluetooth/" rel="tag">Bluetooth</a>, <a class="tag-link-link" href="/tags/Hardware/" rel="tag">Hardware</a>
     </div>
 
 
@@ -158,9 +165,9 @@
     <p>Serimizin ilk yazısında BLE’nin temellerini öğrendiğimize göre artık BLE kullanan cihazlara yapılabilecek saldırı tekniklerinden bahsebiliriz. Bir BLE cihazımız olsun. Bu cihazımızla genellikle mobil telefonlardaki veya bilgisayara yüklediğimiz uygulamalar ile konuşuruz.</p>
 <ul>
 <li>Android için telefonun kurduğu bağlantılardaki bluetooth trafiğini loglayabilmek için <code>Bluetooth HCI gözetleme günlüğü</code> özelliğini açabilirsiniz.</li>
-<li>IOS için bu işlem biraz zor. Araştırmama rağmen cihazdaki bluetooth trafiğini dumplayabilceğim bi araç bulamadım. Eğer bilen varsa yorum kısmını yeşillendirebilir. <a href="https://developer.apple.com/documentation/corebluetooth" target="_blank" rel="noopener">https://developer.apple.com/documentation/corebluetooth</a> adresinden class isimlerini bulup, bu fonksiyonları Frida ile hooklayarak yarım bir başarı elde ettim ancak tatmin edici olmadı : <a href="blefrida">frida</a></li>
+<li>IOS için bu işlem biraz zor. Araştırmama rağmen cihazdaki bluetooth trafiğini dumplayabilceğim bi araç bulamadım. Eğer bilen varsa yorum kısmını yeşillendirebilir. <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/corebluetooth">https://developer.apple.com/documentation/corebluetooth</a> adresinden class isimlerini bulup, bu fonksiyonları Frida ile hooklayarak yarım bir başarı elde ettim ancak tatmin edici olmadı : <a href="blefrida">frida</a></li>
 </ul>
-<p>Android için bluetooth ve ble cihazlarla iletişim kurabileceğimiz, <a href="https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp" target="_blank" rel="noopener">nRF Connect</a> adında uygulama bulunmakta. Kurmanızı öneririm.  </p>
+<p>Android için bluetooth ve ble cihazlarla iletişim kurabileceğimiz, <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp">nRF Connect</a> adında uygulama bulunmakta. Kurmanızı öneririm.  </p>
 <p>Bunların dışında yapabileceğimiz saldırı tekniklerini kabaca 3’e ayırabiliriz:</p>
 <ul>
 <li>Man in the middle (MITM)</li>
@@ -182,28 +189,30 @@
 </ul>
 <p>Bu teknik için 2 adet Bluetooth kullanan cihaza ihtiyacımız var. Kendi bilgisyarımız ve bir adet Raspberry Pi. Bluetooth MAC adresinizi değiştirebiliyorsanız dongle almanıza gerek yok. RPI lazım çünkü bir bilgisayarda iki adet bluetooth client’ı çalıştırmak neredeyse imkansız.<br><img src="man.jpeg" width="350" height="200"></p>
 <p>Temel olarak saldırı topolojimiz şu şekilde:</p>
-<p><img src="topoloji.png" alt="topo"></p>
+<p><img src="/BLE-nin-ABCsi-2-MITM/topoloji.png" alt="topo"></p>
 <p>Hedef cihazımız raspberry pi’ye bağlandığı için advertisement yapmayacak. Biz de bundan faydalanıp  o cihazmışız gibi advertisement yapıcaz. Kullanıcı hedef cihaza bağlandığını düşünerek bizim kurduğumuz sahte cihaza bağlanıcak.</p>
 <p>Kali’de kurduğumuz sahte BLE, hedef cihazdaki tüm özelliklerin aynısını taşıyacak, hatta cihazla aynı MAC adresini de. Dışardan bakan biri için sahte cihazımız ve gerçek cihaz arasında bir fark olmayacak. Kullanıcının yolladığı tüm datayı kali’den raspberry pi’ye yollayacağız. Raspberry pi da gelen datayı hedef cihazımıza yollayacak. Hedef cihazdan dönen data da aynı şekilde kullanıcıya geri dönecek. Böylece kimse farkına varmadan aradan geçen tüm datayı inceleme fırsatını elde etmiş olacağız.</p>
-<p>Tüm bu işlemleri yapan halihazırda geliştirilmiş 2 toolumuz bulunmakta. <a href="https://github.com/securing/gattacker" target="_blank" rel="noopener">GATTacker</a> ve <a href="https://github.com/DigitalSecurity/btlejuice" target="_blank" rel="noopener">btlejuice</a>. GATTacker komple komut satırında çalışmakta. Btlejuice ise web arayüzünde çalışmakta. GATTacker’ı bir cihaz üstünde başarıyla kullandım. Ancak BLECTF için kullandığım ESP32’de işe yaramadı.<br>Btlejuice ise her iki cihazda da çalıştı. O yüzden bu yazıda btlejuice kullanacağız.</p>
-<h2 id="Raspberry"><a href="#Raspberry" class="headerlink" title="Raspberry"></a>Raspberry</h2><p> microSD kartıma raspian imajı atıp raspberry pi’yi ayağa kaldırdım. SSH ile bağlanabilmek için imajın içine boş bir txt dosyası koyup adını <code>ssh</code> yaptım. Raspberry pi’yi ethernet kablosu ile modeme bağlayıp, ip’sini bulduktan sonra ssh ile bağlandım. Default pi:raspberry credleri ile cihaza girdim. VNC server başlatıp, servera bağlandım. Raspberry pi’yi proxy olarak kullanacağız. Bir klasor oluşturup <code>sudo npm install -g btlejuice</code> ile btlejuice’i yükledim. (eğer npmde sıkıntı yaşarsanız npm 8 kurun şu <a href="https://joshtronic.com/2017/12/11/upgrade-to-nodejs-8-on-debian-and-ubuntu/" target="_blank" rel="noopener">linkten</a>)</p>
-<p> Proxy’i <code>node node_modules/btlejuice/bin/cmd_btlejuice_proxy.js</code> ile başlatıyoruz.<br><img src="pi.png" alt="pi"></p>
+<p>Tüm bu işlemleri yapan halihazırda geliştirilmiş 2 toolumuz bulunmakta. <a target="_blank" rel="noopener" href="https://github.com/securing/gattacker">GATTacker</a> ve <a target="_blank" rel="noopener" href="https://github.com/DigitalSecurity/btlejuice">btlejuice</a>. GATTacker komple komut satırında çalışmakta. Btlejuice ise web arayüzünde çalışmakta. GATTacker’ı bir cihaz üstünde başarıyla kullandım. Ancak BLECTF için kullandığım ESP32’de işe yaramadı.<br>Btlejuice ise her iki cihazda da çalıştı. O yüzden bu yazıda btlejuice kullanacağız.</p>
+<h2 id="Raspberry"><a href="#Raspberry" class="headerlink" title="Raspberry"></a>Raspberry</h2><p> microSD kartıma raspian imajı atıp raspberry pi’yi ayağa kaldırdım. SSH ile bağlanabilmek için imajın içine boş bir txt dosyası koyup adını <code>ssh</code> yaptım. Raspberry pi’yi ethernet kablosu ile modeme bağlayıp, ip’sini bulduktan sonra ssh ile bağlandım. Default pi:raspberry credleri ile cihaza girdim. VNC server başlatıp, servera bağlandım. Raspberry pi’yi proxy olarak kullanacağız. Bir klasor oluşturup <code>sudo npm install -g btlejuice</code> ile btlejuice’i yükledim. (eğer npmde sıkıntı yaşarsanız npm 8 kurun şu <a target="_blank" rel="noopener" href="https://joshtronic.com/2017/12/11/upgrade-to-nodejs-8-on-debian-and-ubuntu/">linkten</a>)</p>
+<p> Proxy’i <code>node node_modules/btlejuice/bin/cmd_btlejuice_proxy.js</code> ile başlatıyoruz.<br><img src="/BLE-nin-ABCsi-2-MITM/pi.png" alt="pi"></p>
 <h2 id="Kali"><a href="#Kali" class="headerlink" title="Kali"></a>Kali</h2><p>Kalide de aynı şekilde btlejuice’i kurup bu sefer <code>sudo node node_modules/btlejuice/bin/cmd_btlejuice.js -u &lt;Raspberry IP address&gt; -w</code> komutunu çalıştırıyoruz.</p>
-<p><img src="kali.png" alt="kali"></p>
+<p><img src="/BLE-nin-ABCsi-2-MITM/kali.png" alt="kali"></p>
 <p>Ardından kali’de browser açıp localhost:8080’e gidiyoruz. Sağ üstten bluetooth işaretine bastığımızda cihazları şekilde listeliyorsa işlem tamam demektir. İşaretlediğim cihaz ayarlayacağımız ESP32mizin ismi olacak.</p>
-<p><img src="kali_browser.png" alt="browser"></p>
-<h2 id="ESP32"><a href="#ESP32" class="headerlink" title="ESP32"></a>ESP32</h2><p>Önceki yazıda kullandığım ESP32’ye yeni kod yükleyip, ufak bir sistem kurdum. Bu sefer kod yüklemek için Arduino IDE kullandım. ESP32’nin c kütüphanesini cpp’ye aktarıp Arduinoya geçirmiş abilerimiz. Arduino’ya esp32 kütüphanelerini eklemek için <a href="https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md" target="_blank" rel="noopener">şu</a> linki takip edebilirsiniz.</p>
-<p>Kod olarak şunu kullandım.<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEUtils.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SERVICE_UUID        <span class="meta-string">"4fafc201-1fb5-459e-8fcc-c5c9c331914b"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHARACTERISTIC_UUID <span class="meta-string">"beb5483e-36e1-4688-b7f5-ea07361b26a8"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCallbacks</span>:</span> <span class="keyword">public</span> BLECharacteristicCallbacks &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onWrite</span><span class="params">(BLECharacteristic *pCharacteristic)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">string</span> value = pCharacteristic-&gt;getValue();</span><br><span class="line">      <span class="keyword">if</span> (value.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> ledPin;</span><br><span class="line">        <span class="keyword">if</span>(value == <span class="string">"Secr3tP4ssw0rd"</span>) ledPin = <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">else</span> ledPin = <span class="number">5</span>;</span><br><span class="line">        digitalWrite (ledPin, HIGH);</span><br><span class="line">        delay(<span class="number">500</span>);</span><br><span class="line">        digitalWrite (ledPin, LOW);</span><br><span class="line">      &#125;</span><br><span class="line">      pCharacteristic-&gt;setValue(<span class="string">"MITM my value"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9400</span>);</span><br><span class="line">  pinMode (<span class="number">5</span>, OUTPUT);</span><br><span class="line">  pinMode (<span class="number">4</span>, OUTPUT);</span><br><span class="line">  BLEDevice::init(<span class="string">"MITMMe"</span>);</span><br><span class="line">  BLEServer *pServer = BLEDevice::createServer();</span><br><span class="line">  BLEService *pService = pServer-&gt;createService(SERVICE_UUID);</span><br><span class="line">  BLECharacteristic *pCharacteristic = pService-&gt;createCharacteristic(</span><br><span class="line">                                         CHARACTERISTIC_UUID,</span><br><span class="line">                                         BLECharacteristic::PROPERTY_READ |</span><br><span class="line">                                         BLECharacteristic::PROPERTY_WRITE</span><br><span class="line">                                       );</span><br><span class="line">  pCharacteristic-&gt;setCallbacks(<span class="keyword">new</span> MyCallbacks());</span><br><span class="line">  pCharacteristic-&gt;setValue(<span class="string">"MITM my value"</span>);</span><br><span class="line">  pService-&gt;start();</span><br><span class="line">  BLEAdvertising *pAdvertising = pServer-&gt;getAdvertising();</span><br><span class="line">  pAdvertising-&gt;start();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  delay(<span class="number">2000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/BLE-nin-ABCsi-2-MITM/kali_browser.png" alt="browser"></p>
+<h2 id="ESP32"><a href="#ESP32" class="headerlink" title="ESP32"></a>ESP32</h2><p>Önceki yazıda kullandığım ESP32’ye yeni kod yükleyip, ufak bir sistem kurdum. Bu sefer kod yüklemek için Arduino IDE kullandım. ESP32’nin c kütüphanesini cpp’ye aktarıp Arduinoya geçirmiş abilerimiz. Arduino’ya esp32 kütüphanelerini eklemek için <a target="_blank" rel="noopener" href="https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md">şu</a> linki takip edebilirsiniz.</p>
+<p>Kod olarak şunu kullandım.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;BLEUtils.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVICE_UUID        <span class="string">&quot;4fafc201-1fb5-459e-8fcc-c5c9c331914b&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CHARACTERISTIC_UUID <span class="string">&quot;beb5483e-36e1-4688-b7f5-ea07361b26a8&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyCallbacks</span>: <span class="keyword">public</span> BLECharacteristicCallbacks &#123;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">onWrite</span><span class="params">(BLECharacteristic *pCharacteristic)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      std::string value = pCharacteristic-&gt;<span class="built_in">getValue</span>();</span><br><span class="line">      <span class="keyword">if</span> (value.<span class="built_in">length</span>() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="type">int</span> ledPin;</span><br><span class="line">        <span class="keyword">if</span>(value == <span class="string">&quot;Secr3tP4ssw0rd&quot;</span>) ledPin = <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">else</span> ledPin = <span class="number">5</span>;</span><br><span class="line">        <span class="built_in">digitalWrite</span> (ledPin, HIGH);</span><br><span class="line">        <span class="built_in">delay</span>(<span class="number">500</span>);</span><br><span class="line">        <span class="built_in">digitalWrite</span> (ledPin, LOW);</span><br><span class="line">      &#125;</span><br><span class="line">      pCharacteristic-&gt;<span class="built_in">setValue</span>(<span class="string">&quot;MITM my value&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">9400</span>);</span><br><span class="line">  <span class="built_in">pinMode</span> (<span class="number">5</span>, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span> (<span class="number">4</span>, OUTPUT);</span><br><span class="line">  BLEDevice::<span class="built_in">init</span>(<span class="string">&quot;MITMMe&quot;</span>);</span><br><span class="line">  BLEServer *pServer = BLEDevice::<span class="built_in">createServer</span>();</span><br><span class="line">  BLEService *pService = pServer-&gt;<span class="built_in">createService</span>(SERVICE_UUID);</span><br><span class="line">  BLECharacteristic *pCharacteristic = pService-&gt;<span class="built_in">createCharacteristic</span>(</span><br><span class="line">                                         CHARACTERISTIC_UUID,</span><br><span class="line">                                         BLECharacteristic::PROPERTY_READ |</span><br><span class="line">                                         BLECharacteristic::PROPERTY_WRITE</span><br><span class="line">                                       );</span><br><span class="line">  pCharacteristic-&gt;<span class="built_in">setCallbacks</span>(<span class="keyword">new</span> <span class="built_in">MyCallbacks</span>());</span><br><span class="line">  pCharacteristic-&gt;<span class="built_in">setValue</span>(<span class="string">&quot;MITM my value&quot;</span>);</span><br><span class="line">  pService-&gt;<span class="built_in">start</span>();</span><br><span class="line">  BLEAdvertising *pAdvertising = pServer-&gt;<span class="built_in">getAdvertising</span>();</span><br><span class="line">  pAdvertising-&gt;<span class="built_in">start</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">delay</span>(<span class="number">2000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>Kodumuz karakteristiğimize şifre olarak <code>Secr3tP4ssw0rd</code> gönderdiğimizde 4 numaralı pini, farklı bir şifre gönderdiğimizde 5 numaralı pini 500 milisaniye boyunca yakmakta. Arduino IDE ile esp32mize kodu yüklüyoruz.</p>
 <p>Devre şemamızda şu şekilde :</p>
-<p><img src="arduino.png" alt="arduino"></p>
+<p><img src="/BLE-nin-ABCsi-2-MITM/arduino.png" alt="arduino"></p>
 <p>Devreyi de kurduktan sonra geriye datayı intercept etmek kalıyor :)</p>
 <h2 id="ATIL-KURT"><a href="#ATIL-KURT" class="headerlink" title="ATIL KURT"></a>ATIL KURT</h2><p>Tüm setup’ı kurduktan sonra btlejuice arayüzünde en sağdaki seçeneğe tıklayıp tikleri kaldırın yoksa handlelarımızı karıştırıyor biraz. Ardından bluetooth işaretine tıklayın. Komut satırımızda şunları gördüyseniz tamamdır.</p>
-<p><img src="ble.png" alt="ble"><br>Eğer tikleri kaldırmazsanız işaretlediğim yer yerine bi üst infodaki <code>Fixing Bleno handles</code> mesajını görürsünüz ve nRF Connect tüm handleları göremez.<br>Ardından telefonunzdan nrf connect uygulamasını açıp <code>MITMME</code> cihazına bağlanının.<br><img src="nrf.png" width="350" height="700"></p>
+<p><img src="/BLE-nin-ABCsi-2-MITM/ble.png" alt="ble"><br>Eğer tikleri kaldırmazsanız işaretlediğim yer yerine bi üst infodaki <code>Fixing Bleno handles</code> mesajını görürsünüz ve nRF Connect tüm handleları göremez.<br>Ardından telefonunzdan nrf connect uygulamasını açıp <code>MITMME</code> cihazına bağlanının.<br><img src="nrf.png" width="350" height="700"></p>
 <p>Şimdi handle’ımıza yanlış şifre girip kırmızı ışığın yandığını görün. Bir de doğru şifreyi yollayıp sarı ışığı yakın.<br>Son olarakta btljuice arayüzüne baktığınızda karşınızda gönderdiğiniz dataları görüceksiniz :)</p>
-<p><img src="mitm.png" alt="mitm"><br>Giden datayı intercept edebiliriz. Doğru şifre girildiği halde bunu yanlışa çevirebiliriz.</p>
-<p><img src="intercept.png" alt="intercept"></p>
-<p>Real life örneklerden biri : <a href="https://blog.attify.com/btlejuice-mitm-attack-smart-bulb/" target="_blank" rel="noopener">https://blog.attify.com/btlejuice-mitm-attack-smart-bulb/</a></p>
+<p><img src="/BLE-nin-ABCsi-2-MITM/mitm.png" alt="mitm"><br>Giden datayı intercept edebiliriz. Doğru şifre girildiği halde bunu yanlışa çevirebiliriz.</p>
+<p><img src="/BLE-nin-ABCsi-2-MITM/intercept.png" alt="intercept"></p>
+<p>Real life örneklerden biri : <a target="_blank" rel="noopener" href="https://blog.attify.com/btlejuice-mitm-attack-smart-bulb/">https://blog.attify.com/btlejuice-mitm-attack-smart-bulb/</a></p>
 <p>Serinin bir sonraki yazısında pairing’i pin ile yapacağız. Link layerimizi encrypt edip bu trafiğe saldırmayı deneyeceğiz. Görüşmek üzere :)</p>
 
   </div>
@@ -211,27 +220,24 @@
 
     <div class="blog-post-comments">
         <div id="disqus_thread">
-            <noscript>Yorumları görebilmek için lütfen JavaScripte izin verin.</noscript>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
         </div>
     </div>
 
 
 
-    </div>
-    
-      <div id="footer-post-container">
+        
+          <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Ana Sayfa</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/archives/">Yazılar</a></li>
+          <li><a href="/about/">About</a></li>
          
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -242,76 +248,115 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/BLE-nin-ABCsi-2-MITM/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&text=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&is_video=false&description=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/BLE-nin-ABCsi-2-MITM/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&text=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&is_video=false&description=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=BLE&#39;nin ABCsi : 2 - MITM&body=Check out this article: http://eybisi.run/BLE-nin-ABCsi-2-MITM/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&name=BLE&#39;nin ABCsi : 2 - MITM&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&title=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&name=BLE&#39;nin ABCsi : 2 - MITM&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://eybisi.run/BLE-nin-ABCsi-2-MITM/&t=BLE&#39;nin ABCsi : 2 - MITM"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> İçindekiler</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Paylaş</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Başa dön</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
     </div>
 
   </div>
 </div>
 
-    
-    <footer id="footer">
+        
+        <footer id="footer">
   <div class="footer-left">
-    in locexum we trust &copy; 2020 eybisi
+    Copyright &copy;
+    
+    
+    2022
+    abc
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Ana Sayfa</a></li>
-         
-          <li><a href="/archives/">Yazılar</a></li>
-         
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
-        
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
       </ul>
     </nav>
   </div>
 </footer>
 
-</body>
-</html>
-<!-- styles -->
-<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+    </div>
+    <!-- styles -->
 
-<!-- jquery -->
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->
 
-    <script type="text/javascript">
-        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-129796595-1', 'auto');
-        ga('send', 'pageview');
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129796595-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-129796595-1');
     </script>
 
 <!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
 
 <!-- Disqus Comments -->
 
@@ -327,4 +372,7 @@
         }());
     </script>
 
+<!-- utterances Comments -->
 
+</body>
+</html>

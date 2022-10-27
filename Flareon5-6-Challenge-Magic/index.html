@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang=tr>
+<html lang=en>
 <head>
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="In this post I’ll try to explain how I bruteforced challenge 6 with frida. First of all lets try to understand what binary does. &amp;lt; 6 &amp;gt; ./magic Welcome to the ever changing magic mushroom!666 tri">
-<meta name="keywords" content="CTF,reverse">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="In this post I’ll try to explain how I bruteforced challenge 6 with frida. First of all lets try to understand what binary does. &lt; 6 &gt; .&#x2F;magic Welcome to the ever changing magic mushroom!666 tri">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flareon5 #6 Challenge : Magic ">
 <meta property="og:url" content="http://eybisi.run/Flareon5-6-Challenge-Magic/index.html">
-<meta property="og:site_name" content="eybisi">
-<meta property="og:description" content="In this post I’ll try to explain how I bruteforced challenge 6 with frida. First of all lets try to understand what binary does. &amp;lt; 6 &amp;gt; ./magic Welcome to the ever changing magic mushroom!666 tri">
-<meta property="og:locale" content="tr">
+<meta property="og:site_name" content="hedgehog&#39;s cave">
+<meta property="og:description" content="In this post I’ll try to explain how I bruteforced challenge 6 with frida. First of all lets try to understand what binary does. &lt; 6 &gt; .&#x2F;magic Welcome to the ever changing magic mushroom!666 tri">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://eybisi.run/Flareon5-6-Challenge-Magic/ida1.png">
 <meta property="og:image" content="http://eybisi.run/Flareon5-6-Challenge-Magic/ida2.png">
 <meta property="og:image" content="http://eybisi.run/Flareon5-6-Challenge-Magic/ida3.png">
@@ -22,94 +21,97 @@
 <meta property="og:image" content="http://eybisi.run/Flareon5-6-Challenge-Magic/gdb3.png">
 <meta property="og:image" content="http://eybisi.run/Flareon5-6-Challenge-Magic/gdb4.png">
 <meta property="og:image" content="http://eybisi.run/Flareon5-6-Challenge-Magic/gdb5.png">
-<meta property="og:updated_time" content="2018-10-06T21:51:34.000Z">
+<meta property="article:published_time" content="2018-10-06T15:13:54.000Z">
+<meta property="article:modified_time" content="2022-10-25T07:16:04.847Z">
+<meta property="article:author" content="abc">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="reverse">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flareon5 #6 Challenge : Magic ">
-<meta name="twitter:description" content="In this post I’ll try to explain how I bruteforced challenge 6 with frida. First of all lets try to understand what binary does. &amp;lt; 6 &amp;gt; ./magic Welcome to the ever changing magic mushroom!666 tri">
 <meta name="twitter:image" content="http://eybisi.run/Flareon5-6-Challenge-Magic/ida1.png">
     
     
+      
         
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
+      
+      
         
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
         
+      
+      
         
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
         
+      
     
     <!-- title -->
     <title>Flareon5 #6 Challenge : Magic </title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
     
     <!-- rss -->
     
     
-      <link rel="alternate" href="/atom.xml" title="eybisi" type="application/atom+xml" />
+      <link rel="alternate" href="/atom.xml" title="hedgehog&#39;s cave" type="application/atom+xml" />
     
-</head>
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Ana Sayfa</a></li>
-         
-          <li><a href="/archives/">Yazılar</a></li>
-         
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
-        
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/STMCTF18-Final-Mobil-Sorulari/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/STMCTF18-Final-Mobil-Sorulari/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/BLE-nin-ABCsi-2-MITM/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/BLE-nin-ABCsi-2-MITM/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Önceki gönderi</span>
-      <span id="i-next" class="info" style="display:none;">Sonraki gönderi</span>
-      <span id="i-top" class="info" style="display:none;">Başa dön</span>
-      <span id="i-share" class="info" style="display:none;">Gönderiyi paylaş</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Flareon5-6-Challenge-Magic/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&text=Flareon5 #6 Challenge : Magic "><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&is_video=false&description=Flareon5 #6 Challenge : Magic "><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Flareon5-6-Challenge-Magic/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&text=Flareon5 #6 Challenge : Magic "><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&is_video=false&description=Flareon5 #6 Challenge : Magic "><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Flareon5 #6 Challenge : Magic &body=Check out this article: http://eybisi.run/Flareon5-6-Challenge-Magic/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&name=Flareon5 #6 Challenge : Magic &description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&name=Flareon5 #6 Challenge : Magic &description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://eybisi.run/Flareon5-6-Challenge-Magic/&t=Flareon5 #6 Challenge : Magic "><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -120,7 +122,7 @@
 </div>
 
     
-    <div class="content index my4">
+    <div class="content index py4">
         
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -133,18 +135,23 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">eybisi</span>
+        <span itemprop="name">abc</span>
       </span>
       
     <div class="postdate">
+      
         <time datetime="2018-10-06T15:13:54.000Z" itemprop="datePublished">2018-10-06</time>
+        
+      
     </div>
 
 
       
+
+      
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/CTF/">CTF</a>, <a class="tag-link" href="/tags/reverse/">reverse</a>
+        <a class="tag-link-link" href="/tags/CTF/" rel="tag">CTF</a>, <a class="tag-link-link" href="/tags/reverse/" rel="tag">reverse</a>
     </div>
 
 
@@ -156,12 +163,13 @@
     <p>In this post I’ll try to explain how I bruteforced challenge 6 with frida.</p>
 <p>First of all lets try to understand what binary does.</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&lt; 6 &gt; ./magic </span><br><span class="line">Welcome to the ever changing magic mushroom!</span><br><span class="line">666 trials lie ahead of you!</span><br><span class="line">Challenge 1/666. Enter key: 123</span><br><span class="line">No soup <span class="keyword">for</span> you!</span><br></pre></td></tr></table></figure>
-<p>Binary will take 666 input. Follow the flow of the program, it goes to sub_402dcf after taking input from user.<br><img src="ida1.png" alt="ida1"></p>
-<p>In sub_402dcf, program iterates 0x21 times.<br><img src="ida2.png" alt="ida2"><br>It checks size of input with 0x40. If its less than 0x40 program goes to sub_402cc7 and exits. I should avoid sub_402cc7. </p>
-<p>Each iteration program goes to 0x605100 + 0x120*i and take somethings. Lets look at structure for first iteration (0x605100)<br><img src="ida3.png" alt="ida3"></p>
+
+<p>Binary will take 666 input. Follow the flow of the program, it goes to sub_402dcf after taking input from user.<br><img src="/Flareon5-6-Challenge-Magic/ida1.png" alt="ida1"></p>
+<p>In sub_402dcf, program iterates 0x21 times.<br><img src="/Flareon5-6-Challenge-Magic/ida2.png" alt="ida2"><br>It checks size of input with 0x40. If its less than 0x40 program goes to sub_402cc7 and exits. I should avoid sub_402cc7. </p>
+<p>Each iteration program goes to 0x605100 + 0x120*i and take somethings. Lets look at structure for first iteration (0x605100)<br><img src="/Flareon5-6-Challenge-Magic/ida3.png" alt="ida3"></p>
 <p>0x400c55,0x147,0x02,0x03,0x25,0x61385a …</p>
 <p>Firstly it takes 0x400c55 (first region) and 0x61385a (second region) and 0x147(size) . It xors first region with second region. After that it calls first region at 0x402f06 (call rcx).</p>
-<p><img src="gdb.png" alt="gdb"></p>
+<p><img src="/Flareon5-6-Challenge-Magic/gdb.png" alt="gdb"></p>
 <p>If you look at size of “A”s in rax ,it says 61 times but I entered 63 times and remember 0x2 from first structure. So 0x2 is index of string. Also see 0x3 at rsi register. After analyzing 0x400c55 it turns out 0x3 is our length.</p>
 <p>What I learned so far.</p>
 <ul>
@@ -176,36 +184,42 @@
 <p>But I will use functions that aren’t exported. So I will give pointer to NativeFunction such as:</p>
 <p><code>var xor = new NativeFunction( ptr(0x402CDF), &#39;void&#39;, [&#39;pointer&#39;, &#39;pointer&#39;, &#39;pointer&#39;]);</code></p>
 <p>First parameter is pointer to beginning of routine. Second parameter is type of what function will return. Third parameter is types of parameter which function will accept.</p>
-<p>Lets try it<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xor = <span class="keyword">new</span> NativeFunction( ptr(<span class="number">0x402CDF</span>), <span class="string">'void'</span>, [<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>]);</span><br><span class="line"><span class="keyword">var</span> fnc1 = <span class="keyword">new</span> NativeFunction( ptr(<span class="number">0x400c55</span>), <span class="string">'int'</span>, [<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>]);</span><br><span class="line"></span><br><span class="line">Interceptor.replace(ptr(<span class="number">0x400c55</span>), <span class="keyword">new</span> NativeCallback(<span class="function"><span class="keyword">function</span> (<span class="params">p,p1,p2,p3,p4,p5,p6</span>) </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(<span class="keyword">this</span>.context))</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">	</span><br><span class="line">&#125;, <span class="string">'int'</span>, [<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>]));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">xor(ptr(<span class="number">0x400c55</span>),ptr(<span class="number">0x147</span>),ptr(<span class="number">0x61385a</span>))</span><br><span class="line"></span><br><span class="line">Memory.writeS32(ptr(<span class="number">0x00605000</span>),<span class="number">0x20676e</span>)</span><br><span class="line">t = Memory.readUtf8String(ptr(<span class="number">0x00605000</span>),<span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Written : "</span> + t)</span><br><span class="line"></span><br><span class="line">q = ptr(<span class="number">0x605001</span>)</span><br><span class="line">q1= ptr(<span class="number">0x605002</span>)</span><br><span class="line">q2= ptr(<span class="number">0x605003</span>)</span><br><span class="line">q3= ptr(<span class="number">0x605004</span>)</span><br><span class="line">q4= ptr(<span class="number">0x605005</span>)</span><br><span class="line">q5= ptr(<span class="number">0x605006</span>)</span><br><span class="line">q6= ptr(<span class="number">0x605007</span>)</span><br><span class="line">s = fnc1(q,q1,q2,q3,q4,q5,q6)</span><br><span class="line"><span class="keyword">if</span> (s)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Yey"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Lets try it </p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xor = <span class="keyword">new</span> <span class="title class_">NativeFunction</span>( <span class="title function_">ptr</span>(<span class="number">0x402CDF</span>), <span class="string">&#x27;void&#x27;</span>, [<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>]);</span><br><span class="line"><span class="keyword">var</span> fnc1 = <span class="keyword">new</span> <span class="title class_">NativeFunction</span>( <span class="title function_">ptr</span>(<span class="number">0x400c55</span>), <span class="string">&#x27;int&#x27;</span>, [<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Interceptor</span>.<span class="title function_">replace</span>(<span class="title function_">ptr</span>(<span class="number">0x400c55</span>), <span class="keyword">new</span> <span class="title class_">NativeCallback</span>(<span class="keyword">function</span> (<span class="params">p,p1,p2,p3,p4,p5,p6</span>) &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(<span class="variable language_">this</span>.<span class="property">context</span>))</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">	</span><br><span class="line">&#125;, <span class="string">&#x27;int&#x27;</span>, [<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>]));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title function_">xor</span>(<span class="title function_">ptr</span>(<span class="number">0x400c55</span>),<span class="title function_">ptr</span>(<span class="number">0x147</span>),<span class="title function_">ptr</span>(<span class="number">0x61385a</span>))</span><br><span class="line"></span><br><span class="line"><span class="title class_">Memory</span>.<span class="title function_">writeS32</span>(<span class="title function_">ptr</span>(<span class="number">0x00605000</span>),<span class="number">0x20676e</span>)</span><br><span class="line">t = <span class="title class_">Memory</span>.<span class="title function_">readUtf8String</span>(<span class="title function_">ptr</span>(<span class="number">0x00605000</span>),<span class="number">3</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Written : &quot;</span> + t)</span><br><span class="line"></span><br><span class="line">q = <span class="title function_">ptr</span>(<span class="number">0x605001</span>)</span><br><span class="line">q1= <span class="title function_">ptr</span>(<span class="number">0x605002</span>)</span><br><span class="line">q2= <span class="title function_">ptr</span>(<span class="number">0x605003</span>)</span><br><span class="line">q3= <span class="title function_">ptr</span>(<span class="number">0x605004</span>)</span><br><span class="line">q4= <span class="title function_">ptr</span>(<span class="number">0x605005</span>)</span><br><span class="line">q5= <span class="title function_">ptr</span>(<span class="number">0x605006</span>)</span><br><span class="line">q6= <span class="title function_">ptr</span>(<span class="number">0x605007</span>)</span><br><span class="line">s = <span class="title function_">fnc1</span>(q,q1,q2,q3,q4,q5,q6)</span><br><span class="line"><span class="keyword">if</span> (s)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Yey&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>I defined 2 functions, first one xor routine other one is where our input checked. Second routine returns int,  After that I set a Interceptor to see registers before getting into function.<br>You can write into memory with Memory.writeS* . First parameter is pointer , second is what you want to write. You read locations as a string with readUtf8String function.<br>I give 7 parameter to fnc1 to see state of registers. Attach to binary with <code>frida magic -l brute.js</code></p>
-<p><img src="gdb2.png" alt="gdb2"></p>
+<p><img src="/Flareon5-6-Challenge-Magic/gdb2.png" alt="gdb2"></p>
 <p>So order of parameters is : rdi,rsi,rdx,rcx,r8,r9..<br>I used this to understand which register my parameter goes.</p>
 <p>Now I can define functions with pointers, write strings to memory and read memory. So I have everything I need.</p>
 <p>Before bruteforcing lets parse structure, open all functions with xor.</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">s=[]</span><br><span class="line"><span class="keyword">for</span>(l =<span class="number">0</span>;l&lt;<span class="number">33</span>;l++)&#123;</span><br><span class="line">	base = <span class="number">0x605100</span>+(<span class="number">0x120</span>*l)</span><br><span class="line">	s[l*<span class="number">5</span>] =  Memory.readS32(ptr(base+<span class="number">0x8</span>))</span><br><span class="line">	s[l*<span class="number">5</span>+<span class="number">1</span>] = Memory.readS32(ptr(base+<span class="number">0xc</span>))</span><br><span class="line">	s[l*<span class="number">5</span>+<span class="number">2</span>] = Memory.readS32(ptr(base+<span class="number">0x10</span>))</span><br><span class="line">	s[l*<span class="number">5</span>+<span class="number">3</span>] = Memory.readS32(ptr(base))</span><br><span class="line"> 	s[l*<span class="number">5</span>+<span class="number">4</span>] = Memory.readS32(ptr(base+<span class="number">0x18</span>))</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i =<span class="number">0</span>;i&lt;s.length/<span class="number">5</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">	xor(ptr(s[i*<span class="number">5</span>+<span class="number">3</span>]),ptr(s[i*<span class="number">5</span>]),ptr(s[i*<span class="number">5</span>+<span class="number">4</span>]))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">s=[]</span><br><span class="line"><span class="keyword">for</span>(l =<span class="number">0</span>;l&lt;<span class="number">33</span>;l++)&#123;</span><br><span class="line">	base = <span class="number">0x605100</span>+(<span class="number">0x120</span>*l)</span><br><span class="line">	s[l*<span class="number">5</span>] =  <span class="title class_">Memory</span>.<span class="title function_">readS32</span>(<span class="title function_">ptr</span>(base+<span class="number">0x8</span>))</span><br><span class="line">	s[l*<span class="number">5</span>+<span class="number">1</span>] = <span class="title class_">Memory</span>.<span class="title function_">readS32</span>(<span class="title function_">ptr</span>(base+<span class="number">0xc</span>))</span><br><span class="line">	s[l*<span class="number">5</span>+<span class="number">2</span>] = <span class="title class_">Memory</span>.<span class="title function_">readS32</span>(<span class="title function_">ptr</span>(base+<span class="number">0x10</span>))</span><br><span class="line">	s[l*<span class="number">5</span>+<span class="number">3</span>] = <span class="title class_">Memory</span>.<span class="title function_">readS32</span>(<span class="title function_">ptr</span>(base))</span><br><span class="line"> 	s[l*<span class="number">5</span>+<span class="number">4</span>] = <span class="title class_">Memory</span>.<span class="title function_">readS32</span>(<span class="title function_">ptr</span>(base+<span class="number">0x18</span>))</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i =<span class="number">0</span>;i&lt;s.<span class="property">length</span>/<span class="number">5</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="title function_">xor</span>(<span class="title function_">ptr</span>(s[i*<span class="number">5</span>+<span class="number">3</span>]),<span class="title function_">ptr</span>(s[i*<span class="number">5</span>]),<span class="title function_">ptr</span>(s[i*<span class="number">5</span>+<span class="number">4</span>]))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>Define our pools with len 1, 2 and 3 for bruteforcing</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">pool = <span class="string">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&amp;\'()*+,-./:;&lt;=&gt;?@[\\]^_`&#123;|&#125;~ "</span></span><br><span class="line">pool_1 = []</span><br><span class="line">pool_2 = []</span><br><span class="line">pool_3 = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i =<span class="number">0</span>;i&lt;pool.length;i++)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	pool_1[i] = pool[i]</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> j =<span class="number">0</span>;j&lt;pool.length;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		pool_2[i*pool.length+j] = pool[i]+pool[j]</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> k =<span class="number">0</span>;k&lt;pool.length;k++)</span><br><span class="line">			&#123;</span><br><span class="line">				pool_3[i*pool.length*pool.length+j*pool.length+k] = pool[i]+pool[j]+pool[k]</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">pool = <span class="string">&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\&quot;#$%&amp;\&#x27;()*+,-./:;&lt;=&gt;?@[\\]^_`&#123;|&#125;~ &quot;</span></span><br><span class="line">pool_1 = []</span><br><span class="line">pool_2 = []</span><br><span class="line">pool_3 = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i =<span class="number">0</span>;i&lt;pool.<span class="property">length</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	pool_1[i] = pool[i]</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> j =<span class="number">0</span>;j&lt;pool.<span class="property">length</span>;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		pool_2[i*pool.<span class="property">length</span>+j] = pool[i]+pool[j]</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> k =<span class="number">0</span>;k&lt;pool.<span class="property">length</span>;k++)</span><br><span class="line">			&#123;</span><br><span class="line">				pool_3[i*pool.<span class="property">length</span>*pool.<span class="property">length</span>+j*pool.<span class="property">length</span>+k] = pool[i]+pool[j]+pool[k]</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>Get parameters from s and bruteforce functions.</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toHex</span>(<span class="params">str,hex</span>)</span>&#123;</span><br><span class="line">  </span><br><span class="line">  str = str.split(<span class="string">""</span>).reverse().join(<span class="string">""</span>);</span><br><span class="line">  hex = <span class="built_in">unescape</span>(<span class="built_in">encodeURIComponent</span>(str))</span><br><span class="line">    .split(<span class="string">''</span>).map(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> v.charCodeAt(<span class="number">0</span>).toString(<span class="number">16</span>)</span><br><span class="line">    &#125;).join(<span class="string">''</span>)</span><br><span class="line">  stri = <span class="string">'0x'</span>+hex</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">parseInt</span>(stri)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sol = <span class="string">"                                                                     "</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;s.length/<span class="number">5</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">	pool_l = []</span><br><span class="line">	len = s[i*<span class="number">5</span>+<span class="number">2</span>]</span><br><span class="line">	<span class="keyword">if</span>(len == <span class="number">1</span>) pool_l = pool_1</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(len == <span class="number">2</span>) pool_l = pool_2</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(len == <span class="number">3</span>) pool_l = pool_3</span><br><span class="line">	<span class="keyword">else</span> pool_l = pool</span><br><span class="line">	found = <span class="literal">false</span></span><br><span class="line">	<span class="keyword">var</span> fnc1 = <span class="keyword">new</span> NativeFunction(ptr(s[i*<span class="number">5</span>+<span class="number">3</span>]), <span class="string">'int'</span>, [<span class="string">'pointer'</span>,<span class="string">'pointer'</span>,<span class="string">'pointer'</span>]);	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>;j&lt;pool_l.length;j++)</span><br><span class="line">		&#123;</span><br><span class="line">	</span><br><span class="line">		Memory.writeS32(ptr(<span class="number">0x400000</span>),toHex(pool_l[j]))</span><br><span class="line">		t = Memory.readS32(ptr(<span class="number">0x400000</span>),len)</span><br><span class="line">		b = <span class="number">0x605120</span>+(<span class="number">0x120</span>*i)</span><br><span class="line">		fnc_r = fnc1(ptr(<span class="number">0x400000</span>),ptr(len),ptr(b))</span><br><span class="line">			<span class="keyword">if</span> (fnc_r == <span class="number">1</span>)&#123;</span><br><span class="line">				sol = [sol.slice(<span class="number">0</span>,s[i*<span class="number">5</span>+<span class="number">1</span>]),pool_l[j],sol.slice(s[i*<span class="number">5</span>+<span class="number">1</span>]+len)].join(<span class="string">''</span>);</span><br><span class="line">				sol[i*<span class="number">5</span>+<span class="number">1</span>] = pool_l[j]</span><br><span class="line">				<span class="built_in">console</span>.log(sol)</span><br><span class="line">				found = <span class="literal">true</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;	</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sol)</span><br></pre></td></tr></table></figure>
-<p>I defined fnc1 NativeFunction which checks user input.<br>Lastly wrap all script into<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">setTimeout(function () &#123;</span><br><span class="line">  /* your code here */</span><br><span class="line">&#125;, 0);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">toHex</span>(<span class="params">str,hex</span>)&#123;</span><br><span class="line">  </span><br><span class="line">  str = str.<span class="title function_">split</span>(<span class="string">&quot;&quot;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">  hex = <span class="built_in">unescape</span>(<span class="built_in">encodeURIComponent</span>(str))</span><br><span class="line">    .<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>).<span class="title function_">map</span>(<span class="keyword">function</span>(<span class="params">v</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> v.<span class="title function_">charCodeAt</span>(<span class="number">0</span>).<span class="title function_">toString</span>(<span class="number">16</span>)</span><br><span class="line">    &#125;).<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  stri = <span class="string">&#x27;0x&#x27;</span>+hex</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">parseInt</span>(stri)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sol = <span class="string">&quot;                                                                     &quot;</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;s.<span class="property">length</span>/<span class="number">5</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">	pool_l = []</span><br><span class="line">	len = s[i*<span class="number">5</span>+<span class="number">2</span>]</span><br><span class="line">	<span class="keyword">if</span>(len == <span class="number">1</span>) pool_l = pool_1</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(len == <span class="number">2</span>) pool_l = pool_2</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(len == <span class="number">3</span>) pool_l = pool_3</span><br><span class="line">	<span class="keyword">else</span> pool_l = pool</span><br><span class="line">	found = <span class="literal">false</span></span><br><span class="line">	<span class="keyword">var</span> fnc1 = <span class="keyword">new</span> <span class="title class_">NativeFunction</span>(<span class="title function_">ptr</span>(s[i*<span class="number">5</span>+<span class="number">3</span>]), <span class="string">&#x27;int&#x27;</span>, [<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>,<span class="string">&#x27;pointer&#x27;</span>]);	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>;j&lt;pool_l.<span class="property">length</span>;j++)</span><br><span class="line">		&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="title class_">Memory</span>.<span class="title function_">writeS32</span>(<span class="title function_">ptr</span>(<span class="number">0x400000</span>),<span class="title function_">toHex</span>(pool_l[j]))</span><br><span class="line">		t = <span class="title class_">Memory</span>.<span class="title function_">readS32</span>(<span class="title function_">ptr</span>(<span class="number">0x400000</span>),len)</span><br><span class="line">		b = <span class="number">0x605120</span>+(<span class="number">0x120</span>*i)</span><br><span class="line">		fnc_r = <span class="title function_">fnc1</span>(<span class="title function_">ptr</span>(<span class="number">0x400000</span>),<span class="title function_">ptr</span>(len),<span class="title function_">ptr</span>(b))</span><br><span class="line">			<span class="keyword">if</span> (fnc_r == <span class="number">1</span>)&#123;</span><br><span class="line">				sol = [sol.<span class="title function_">slice</span>(<span class="number">0</span>,s[i*<span class="number">5</span>+<span class="number">1</span>]),pool_l[j],sol.<span class="title function_">slice</span>(s[i*<span class="number">5</span>+<span class="number">1</span>]+len)].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">				sol[i*<span class="number">5</span>+<span class="number">1</span>] = pool_l[j]</span><br><span class="line">				<span class="variable language_">console</span>.<span class="title function_">log</span>(sol)</span><br><span class="line">				found = <span class="literal">true</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;	</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sol)</span><br></pre></td></tr></table></figure>
+<p>I defined fnc1 NativeFunction which checks user input.<br>Lastly wrap all script into </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setTimeout(function () &#123;</span><br><span class="line">  /* your code here */</span><br><span class="line">&#125;, 0);</span><br></pre></td></tr></table></figure>
 <p>because if I dont it will timeout.</p>
 <p>So running this script will give this.</p>
-<p><img src="gdb3.png" alt="gdb3"></p>
+<p><img src="/Flareon5-6-Challenge-Magic/gdb3.png" alt="gdb3"></p>
 <p>Looks promising. BUT script couldn’t find 2 string. Even now I dont know why it doesnt find it. Maybe some register values doesnt fit idk. Since I was so close to finding first key, I tried to bypass checks and looked program at gdb.</p>
 <p>Lets put breakpoint at after call rcx (0x402F0a) and  0x403B6C which is after all input is checked. Give string to program and if doesnt correct bypass next check by setting eax 1.</p>
-<p><img src="gdb4.png" alt="gdb4"></p>
+<p><img src="/Flareon5-6-Challenge-Magic/gdb4.png" alt="gdb4"></p>
 <p>Annd whoa. After hitting 0x403b6c, you can see “Ah, there is nothi   like the hot winds of He   blowing in your face.” . Turns out program shuffled our input to create meaningfull string.</p>
 <p>Googleing sentence and blanks filled with “ng “ and “ll”. This is good. If my script cant find string with len 2, I can say its “ll” , if len is 3 its “ng “. </p>
 <p>After giving correct input to binary, without knowing what program does I attached my frida script again. And whoila again I found string. And pool of letters is same.</p>
 <p>So I know now, each key is shuffled, and shuffled parts are same. And I can lower my pool to this :</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pool1 = &apos;abcdefghilnorstuwy.,AH &apos;</span><br><span class="line">pool2 = [&apos;e &apos;,&apos; H&apos;,&apos;is&apos;,&apos;no&apos;,&apos;of&apos;,&apos; g&apos;,&apos;bl&apos;,&apos;ow&apos;,&apos;ur&apos;,&apos; w&apos;,&apos;in&apos;,&apos;yo&apos;] </span><br><span class="line">pool3 = [&quot;ds &quot;,&quot;hot&quot;,&quot;the&quot;,&apos; yo&apos;,&quot;ace&quot;,&quot;thi&quot;,&apos;Ah,&apos;,&apos; in&apos;,&apos; bl&apos;,&apos;lik&apos;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pool1 = &#x27;abcdefghilnorstuwy.,AH &#x27;</span><br><span class="line">pool2 = [&#x27;e &#x27;,&#x27; H&#x27;,&#x27;is&#x27;,&#x27;no&#x27;,&#x27;of&#x27;,&#x27; g&#x27;,&#x27;bl&#x27;,&#x27;ow&#x27;,&#x27;ur&#x27;,&#x27; w&#x27;,&#x27;in&#x27;,&#x27;yo&#x27;] </span><br><span class="line">pool3 = [&quot;ds &quot;,&quot;hot&quot;,&quot;the&quot;,&#x27; yo&#x27;,&quot;ace&quot;,&quot;thi&quot;,&#x27;Ah,&#x27;,&#x27; in&#x27;,&#x27; bl&#x27;,&#x27;lik&#x27;]</span><br></pre></td></tr></table></figure>
+
 <p>My plan is set my frida script such that it will find correct key, send to binary, and again again.. for each key. I will use python helper for that.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">s = [<span class="string">'inds isng  llg w. e  HthitheoftheAh,urnolik inefe  yo blrhot in owace'</span>]</span><br><span class="line">r = process(<span class="string">"./magic"</span>)</span><br><span class="line"></span><br><span class="line">r.sendline(s[<span class="number">0</span>])</span><br><span class="line">fr = process([<span class="string">'python'</span>,<span class="string">"./fri.py"</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">665</span>):</span><br><span class="line">	key =fr.recvline()</span><br><span class="line">	<span class="keyword">print</span> i <span class="comment">#</span></span><br><span class="line">	r.sendline(key[:<span class="number">-1</span>])</span><br><span class="line">	print(i,key)</span><br><span class="line">r.recvuntil(<span class="string">"Congrats!"</span>)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">s = [<span class="string">&#x27;inds isng  llg w. e  HthitheoftheAh,urnolik inefe  yo blrhot in owace&#x27;</span>]</span><br><span class="line">r = process(<span class="string">&quot;./magic&quot;</span>)</span><br><span class="line"></span><br><span class="line">r.sendline(s[<span class="number">0</span>])</span><br><span class="line">fr = process([<span class="string">&#x27;python&#x27;</span>,<span class="string">&quot;./fri.py&quot;</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">665</span>):</span><br><span class="line">	key =fr.recvline()</span><br><span class="line">	<span class="built_in">print</span> i <span class="comment">#</span></span><br><span class="line">	r.sendline(key[:-<span class="number">1</span>])</span><br><span class="line">	<span class="built_in">print</span>(i,key)</span><br><span class="line">r.recvuntil(<span class="string">&quot;Congrats!&quot;</span>)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+
 <p>I will start magic and my frida script same time. Get key from frida and send to binary.</p>
 <p>I will wrap my frida script to timeout so it will execute after given time (70ms).</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="comment">#inds isng  llg w. e  HthitheoftheAh,urnolik inefe  yo blrhot in owace</span></span><br><span class="line"><span class="comment">#abcdefghijklmnopqrstuvwxyz., ABCDEFGHIJKLMNOPQRSTUVWXYZ</span></span><br><span class="line"><span class="comment">#abcdefghilnorstuwy.,AH   </span></span><br><span class="line">session = frida.attach(<span class="string">"magic"</span>)</span><br><span class="line">script = session.create_script(<span class="string">"""</span></span><br><span class="line"><span class="string">pool2 = ['e ',' H','is','no','of',' g','bl','ow','ur',' w','in','yo'] </span></span><br><span class="line"><span class="string">pool3 = ["ds ","hot","the",' yo',"ace","thi",'Ah,',' in',' bl','lik']</span></span><br><span class="line"><span class="string">pool = 'abcdefghilnorstuwy.,AH '</span></span><br><span class="line"><span class="string">s=[]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">var xor = new NativeFunction(ptr(0x402CDF), 'void', ['pointer','pointer','pointer']);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">function toHex(str,hex)&#123;</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  str = str.split("").reverse().join("");</span></span><br><span class="line"><span class="string">  hex = unescape(encodeURIComponent(str))</span></span><br><span class="line"><span class="string">    .split('').map(function(v)&#123;</span></span><br><span class="line"><span class="string">      return v.charCodeAt(0).toString(16)</span></span><br><span class="line"><span class="string">    &#125;).join('')</span></span><br><span class="line"><span class="string">  stri = '0x'+hex</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  return parseInt(stri)</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">var remaining = 667;</span></span><br><span class="line"><span class="string">function crackNext() &#123;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	c = 0</span></span><br><span class="line"><span class="string">	sol = "                                                                     "</span></span><br><span class="line"><span class="string">	for(l =0;l&lt;33;l++)&#123;</span></span><br><span class="line"><span class="string">		base = 0x605100+(0x120*l)</span></span><br><span class="line"><span class="string">		s[l*5] =  Memory.readS32(ptr(base+0x8))</span></span><br><span class="line"><span class="string">		s[l*5+1] = Memory.readS32(ptr(base+0xc))</span></span><br><span class="line"><span class="string">		s[l*5+2] = Memory.readS32(ptr(base+0x10))</span></span><br><span class="line"><span class="string">		s[l*5+3] = Memory.readS32(ptr(base))</span></span><br><span class="line"><span class="string">	 	s[l*5+4] = Memory.readS32(ptr(base+0x18))</span></span><br><span class="line"><span class="string">	 &#125;</span></span><br><span class="line"><span class="string">	 	for(var i =0;i&lt;s.length/5;i++)</span></span><br><span class="line"><span class="string">		&#123;</span></span><br><span class="line"><span class="string">			xor(ptr(s[i*5+3]),ptr(s[i*5]),ptr(s[i*5+4]))</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">	possible = []</span></span><br><span class="line"><span class="string">	for(var i=0;i&lt;s.length/5;i++)</span></span><br><span class="line"><span class="string">	&#123;</span></span><br><span class="line"><span class="string">		pool_l = []</span></span><br><span class="line"><span class="string">		len = s[i*5+2]</span></span><br><span class="line"><span class="string">		if(len == 1) pool_l = pool</span></span><br><span class="line"><span class="string">		else if(len == 2) pool_l = pool2</span></span><br><span class="line"><span class="string">		else if(len == 3) pool_l = pool3</span></span><br><span class="line"><span class="string">		else pool_l = pool</span></span><br><span class="line"><span class="string">		found = false</span></span><br><span class="line"><span class="string">		var fnc1 = new NativeFunction(ptr(s[i*5+3]), 'int', ['pointer','pointer','pointer']);	</span></span><br><span class="line"><span class="string">		for(var j = 0;j&lt;pool_l.length;j++)</span></span><br><span class="line"><span class="string">			&#123;			</span></span><br><span class="line"><span class="string">			Memory.writeS32(ptr(0x400000),toHex(pool_l[j]))</span></span><br><span class="line"><span class="string">			t = Memory.readS32(ptr(0x400000),len)</span></span><br><span class="line"><span class="string">			b = 0x605120+(0x120*i)</span></span><br><span class="line"><span class="string">			fnc_r = fnc1(ptr(0x400000),ptr(len),ptr(b))</span></span><br><span class="line"><span class="string">				if (fnc_r == 1)&#123;</span></span><br><span class="line"><span class="string">					sol = [sol.slice(0,s[i*5+1]),pool_l[j],sol.slice(s[i*5+1]+len)].join('');</span></span><br><span class="line"><span class="string">					sol[i*5+1] = pool_l[j]</span></span><br><span class="line"><span class="string">					found = true</span></span><br><span class="line"><span class="string">					break</span></span><br><span class="line"><span class="string">				&#125;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		if(!found)&#123;</span></span><br><span class="line"><span class="string">			if(len==3)&#123;</span></span><br><span class="line"><span class="string">				sol = [sol.slice(0,s[i*5+1]),"ng ",sol.slice(s[i*5+1]+len)].join('');					</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			else&#123;</span></span><br><span class="line"><span class="string">				sol = [sol.slice(0,s[i*5+1]),"ll",sol.slice(s[i*5+1]+len)].join('');				</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		&#125;		</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	console.log(sol)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	for(var i =0;i&lt;s.length/5;i++)</span></span><br><span class="line"><span class="string">		&#123;</span></span><br><span class="line"><span class="string">		//console.log(i*5+3)</span></span><br><span class="line"><span class="string">		xor(ptr(s[i*5+3]),ptr(s[i*5]),ptr(s[i*5+4]))</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">	  if (--remaining &gt; 0) &#123;</span></span><br><span class="line"><span class="string">	    setTimeout(crackNext,70);</span></span><br><span class="line"><span class="string">	  &#125;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">setTimeout(crackNext, 0);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_message</span><span class="params">(message, data)</span>:</span></span><br><span class="line">    print(message)</span><br><span class="line">script.on(<span class="string">'message'</span>, on_message)</span><br><span class="line">script.load()</span><br><span class="line">sys.stdin.read()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="comment">#inds isng  llg w. e  HthitheoftheAh,urnolik inefe  yo blrhot in owace</span></span><br><span class="line"><span class="comment">#abcdefghijklmnopqrstuvwxyz., ABCDEFGHIJKLMNOPQRSTUVWXYZ</span></span><br><span class="line"><span class="comment">#abcdefghilnorstuwy.,AH   </span></span><br><span class="line">session = frida.attach(<span class="string">&quot;magic&quot;</span>)</span><br><span class="line">script = session.create_script(<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">pool2 = [&#x27;e &#x27;,&#x27; H&#x27;,&#x27;is&#x27;,&#x27;no&#x27;,&#x27;of&#x27;,&#x27; g&#x27;,&#x27;bl&#x27;,&#x27;ow&#x27;,&#x27;ur&#x27;,&#x27; w&#x27;,&#x27;in&#x27;,&#x27;yo&#x27;] </span></span><br><span class="line"><span class="string">pool3 = [&quot;ds &quot;,&quot;hot&quot;,&quot;the&quot;,&#x27; yo&#x27;,&quot;ace&quot;,&quot;thi&quot;,&#x27;Ah,&#x27;,&#x27; in&#x27;,&#x27; bl&#x27;,&#x27;lik&#x27;]</span></span><br><span class="line"><span class="string">pool = &#x27;abcdefghilnorstuwy.,AH &#x27;</span></span><br><span class="line"><span class="string">s=[]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">var xor = new NativeFunction(ptr(0x402CDF), &#x27;void&#x27;, [&#x27;pointer&#x27;,&#x27;pointer&#x27;,&#x27;pointer&#x27;]);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">function toHex(str,hex)&#123;</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  str = str.split(&quot;&quot;).reverse().join(&quot;&quot;);</span></span><br><span class="line"><span class="string">  hex = unescape(encodeURIComponent(str))</span></span><br><span class="line"><span class="string">    .split(&#x27;&#x27;).map(function(v)&#123;</span></span><br><span class="line"><span class="string">      return v.charCodeAt(0).toString(16)</span></span><br><span class="line"><span class="string">    &#125;).join(&#x27;&#x27;)</span></span><br><span class="line"><span class="string">  stri = &#x27;0x&#x27;+hex</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  return parseInt(stri)</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">var remaining = 667;</span></span><br><span class="line"><span class="string">function crackNext() &#123;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	c = 0</span></span><br><span class="line"><span class="string">	sol = &quot;                                                                     &quot;</span></span><br><span class="line"><span class="string">	for(l =0;l&lt;33;l++)&#123;</span></span><br><span class="line"><span class="string">		base = 0x605100+(0x120*l)</span></span><br><span class="line"><span class="string">		s[l*5] =  Memory.readS32(ptr(base+0x8))</span></span><br><span class="line"><span class="string">		s[l*5+1] = Memory.readS32(ptr(base+0xc))</span></span><br><span class="line"><span class="string">		s[l*5+2] = Memory.readS32(ptr(base+0x10))</span></span><br><span class="line"><span class="string">		s[l*5+3] = Memory.readS32(ptr(base))</span></span><br><span class="line"><span class="string">	 	s[l*5+4] = Memory.readS32(ptr(base+0x18))</span></span><br><span class="line"><span class="string">	 &#125;</span></span><br><span class="line"><span class="string">	 	for(var i =0;i&lt;s.length/5;i++)</span></span><br><span class="line"><span class="string">		&#123;</span></span><br><span class="line"><span class="string">			xor(ptr(s[i*5+3]),ptr(s[i*5]),ptr(s[i*5+4]))</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">	possible = []</span></span><br><span class="line"><span class="string">	for(var i=0;i&lt;s.length/5;i++)</span></span><br><span class="line"><span class="string">	&#123;</span></span><br><span class="line"><span class="string">		pool_l = []</span></span><br><span class="line"><span class="string">		len = s[i*5+2]</span></span><br><span class="line"><span class="string">		if(len == 1) pool_l = pool</span></span><br><span class="line"><span class="string">		else if(len == 2) pool_l = pool2</span></span><br><span class="line"><span class="string">		else if(len == 3) pool_l = pool3</span></span><br><span class="line"><span class="string">		else pool_l = pool</span></span><br><span class="line"><span class="string">		found = false</span></span><br><span class="line"><span class="string">		var fnc1 = new NativeFunction(ptr(s[i*5+3]), &#x27;int&#x27;, [&#x27;pointer&#x27;,&#x27;pointer&#x27;,&#x27;pointer&#x27;]);	</span></span><br><span class="line"><span class="string">		for(var j = 0;j&lt;pool_l.length;j++)</span></span><br><span class="line"><span class="string">			&#123;			</span></span><br><span class="line"><span class="string">			Memory.writeS32(ptr(0x400000),toHex(pool_l[j]))</span></span><br><span class="line"><span class="string">			t = Memory.readS32(ptr(0x400000),len)</span></span><br><span class="line"><span class="string">			b = 0x605120+(0x120*i)</span></span><br><span class="line"><span class="string">			fnc_r = fnc1(ptr(0x400000),ptr(len),ptr(b))</span></span><br><span class="line"><span class="string">				if (fnc_r == 1)&#123;</span></span><br><span class="line"><span class="string">					sol = [sol.slice(0,s[i*5+1]),pool_l[j],sol.slice(s[i*5+1]+len)].join(&#x27;&#x27;);</span></span><br><span class="line"><span class="string">					sol[i*5+1] = pool_l[j]</span></span><br><span class="line"><span class="string">					found = true</span></span><br><span class="line"><span class="string">					break</span></span><br><span class="line"><span class="string">				&#125;</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		if(!found)&#123;</span></span><br><span class="line"><span class="string">			if(len==3)&#123;</span></span><br><span class="line"><span class="string">				sol = [sol.slice(0,s[i*5+1]),&quot;ng &quot;,sol.slice(s[i*5+1]+len)].join(&#x27;&#x27;);					</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">			else&#123;</span></span><br><span class="line"><span class="string">				sol = [sol.slice(0,s[i*5+1]),&quot;ll&quot;,sol.slice(s[i*5+1]+len)].join(&#x27;&#x27;);				</span></span><br><span class="line"><span class="string">			&#125;</span></span><br><span class="line"><span class="string">		&#125;		</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	console.log(sol)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	for(var i =0;i&lt;s.length/5;i++)</span></span><br><span class="line"><span class="string">		&#123;</span></span><br><span class="line"><span class="string">		//console.log(i*5+3)</span></span><br><span class="line"><span class="string">		xor(ptr(s[i*5+3]),ptr(s[i*5]),ptr(s[i*5+4]))</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">	  if (--remaining &gt; 0) &#123;</span></span><br><span class="line"><span class="string">	    setTimeout(crackNext,70);</span></span><br><span class="line"><span class="string">	  &#125;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">setTimeout(crackNext, 0);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">on_message</span>(<span class="params">message, data</span>):</span><br><span class="line">    <span class="built_in">print</span>(message)</span><br><span class="line">script.on(<span class="string">&#x27;message&#x27;</span>, on_message)</span><br><span class="line">script.load()</span><br><span class="line">sys.stdin.read()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>Running sol.py</p>
-<p><img src="gdb5.png" alt="gdb5"></p>
+<p><img src="/Flareon5-6-Challenge-Magic/gdb5.png" alt="gdb5"></p>
 <p>It was fun to use frida. I learned a lot from this challenge. :)</p>
 
   </div>
@@ -213,27 +227,24 @@
 
     <div class="blog-post-comments">
         <div id="disqus_thread">
-            <noscript>Yorumları görebilmek için lütfen JavaScripte izin verin.</noscript>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
         </div>
     </div>
 
 
 
-    </div>
-    
-      <div id="footer-post-container">
+        
+          <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Ana Sayfa</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/archives/">Yazılar</a></li>
+          <li><a href="/about/">About</a></li>
          
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -244,76 +255,115 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Flareon5-6-Challenge-Magic/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&text=Flareon5 #6 Challenge : Magic "><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&is_video=false&description=Flareon5 #6 Challenge : Magic "><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Flareon5-6-Challenge-Magic/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&text=Flareon5 #6 Challenge : Magic "><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&is_video=false&description=Flareon5 #6 Challenge : Magic "><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="mailto:?subject=Flareon5 #6 Challenge : Magic &body=Check out this article: http://eybisi.run/Flareon5-6-Challenge-Magic/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&name=Flareon5 #6 Challenge : Magic &description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&title=Flareon5 #6 Challenge : Magic "><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Flareon5-6-Challenge-Magic/&name=Flareon5 #6 Challenge : Magic &description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://eybisi.run/Flareon5-6-Challenge-Magic/&t=Flareon5 #6 Challenge : Magic "><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> İçindekiler</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Paylaş</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Başa dön</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
     </div>
 
   </div>
 </div>
 
-    
-    <footer id="footer">
+        
+        <footer id="footer">
   <div class="footer-left">
-    in locexum we trust &copy; 2020 eybisi
+    Copyright &copy;
+    
+    
+    2022
+    abc
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Ana Sayfa</a></li>
-         
-          <li><a href="/archives/">Yazılar</a></li>
-         
-          <li><a href="/Search/">Ara</a></li>
-         
-          <li><a href="/links/">Yararlı Linkler</a></li>
-        
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
       </ul>
     </nav>
   </div>
 </footer>
 
-</body>
-</html>
-<!-- styles -->
-<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+    </div>
+    <!-- styles -->
 
-<!-- jquery -->
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
 <script src="/js/main.js"></script>
+
 <!-- search -->
 
 <!-- Google Analytics -->
 
-    <script type="text/javascript">
-        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-129796595-1', 'auto');
-        ga('send', 'pageview');
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129796595-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-129796595-1');
     </script>
 
 <!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
 
 <!-- Disqus Comments -->
 
@@ -329,4 +379,7 @@
         }());
     </script>
 
+<!-- utterances Comments -->
 
+</body>
+</html>
