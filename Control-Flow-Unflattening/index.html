@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="TargetRecently I have analyzed a RASP solution called Approov. Altough there are some novel detection techniques, overall it’s not that interesting. Instead I will focus on obfuscation part of native">
+    <meta name="description" content="TargetRecently I have analyzed a RASP solution called Approov. Although there are some novel detection techniques, overall it’s not that interesting. Instead, I will focus on the obfuscation part of">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Control Flow Unflattening">
 <meta property="og:url" content="http://eybisi.run/Control-Flow-Unflattening/index.html">
 <meta property="og:site_name" content="hedgehog&#39;s cave">
-<meta property="og:description" content="TargetRecently I have analyzed a RASP solution called Approov. Altough there are some novel detection techniques, overall it’s not that interesting. Instead I will focus on obfuscation part of native">
+<meta property="og:description" content="TargetRecently I have analyzed a RASP solution called Approov. Although there are some novel detection techniques, overall it’s not that interesting. Instead, I will focus on the obfuscation part of">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://eybisi.run/Control-Flow-Unflattening/compare.png">
 <meta property="og:image" content="http://eybisi.run/Control-Flow-Unflattening/cff_example.jpg">
@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://eybisi.run/Control-Flow-Unflattening/microcode_2.png">
 <meta property="og:image" content="http://eybisi.run/Control-Flow-Unflattening/goodwhile.png">
 <meta property="article:published_time" content="2022-10-26T13:05:47.000Z">
-<meta property="article:modified_time" content="2022-10-27T15:41:29.834Z">
+<meta property="article:modified_time" content="2022-10-27T16:11:38.314Z">
 <meta property="article:author" content="abc">
 <meta property="article:tag" content="Obfuscation">
 <meta name="twitter:card" content="summary">
@@ -158,31 +158,31 @@
 
   <div class="content" itemprop="articleBody">
     <p><img src="/Control-Flow-Unflattening/compare.png"></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Recently I have analyzed a RASP solution called <code>Approov</code>. Altough there are some novel detection techniques, overall it’s not that interesting. Instead I will focus on obfuscation part of native library, control flow flattening. You can find a host app with little googling :) </p>
-<h2 id="CFF"><a href="#CFF" class="headerlink" title="CFF"></a>CFF</h2><p>Control flow flattening (CFF) in a nutshell is a technique to obfuscate code flow by rearranging code blocks (+create new basic blocks) into switch cases. Visualizing it is easier:</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Recently I have analyzed a RASP solution called <code>Approov</code>. Although there are some novel detection techniques, overall it’s not that interesting. Instead, I will focus on the obfuscation part of the native library, control flow flattening. You can find a host app with a little googling :)</p>
+<h2 id="CFF"><a href="#CFF" class="headerlink" title="CFF"></a>CFF</h2><p>Control flow flattening (CFF) in a nutshell is a technique to obfuscate code flow by rearranging code blocks (+create new basic blocks) into switch cases. Visualizing it is more straightforward:</p>
 <p><img src="/Control-Flow-Unflattening/cff_example.jpg"></p>
-<p>If you think about dynamic analysis perspective, execution flow is same as first case. Dispatcher (gray block) should execute blocks in the order of normal execution. Since you need to follow state variable after each “case” execution, static analysis is harder for a reverse engineer and sometimes state variable is also obfuscated.</p>
-<p>After seeing cff’ed binary I looked up earlier research about cff. I tried to work with <a target="_blank" rel="noopener" href="https://github.com/eset/stadeo">stadeo</a>, then found  <a target="_blank" rel="noopener" href="https://eshard.com/posts/D810-a-journey-into-control-flow-unflattening">eShard d810</a>. Stadeo is using miasm to lift binary then analyze the cff whereas d810 uses HexRays microcode (intermediate represantation of IDA). D810 can backward track variables, emulate microcode and have very easy to extend config&#x2F;rule sets for opaque predicates etc. So I sticked to d810. Make sure to read their blogs about d810 <a target="_blank" rel="noopener" href="https://eshard.com/posts/D810-a-journey-into-control-flow-unflattening">[1]</a><a target="_blank" rel="noopener" href="https://eshard.com/posts/d810-deobfuscation-ida-pro">[2]</a></p>
-<h2 id="Microcode"><a href="#Microcode" class="headerlink" title="Microcode"></a>Microcode</h2><p>D-810 hooks decompilation process of IDA and make changes. Micro instructions(minsnt_t), micro operations (mop_t), blocks (mblocks_t) in microcode. Before giving execution back to IDA final mba needs to be verified. </p>
-<p>Oh boi.. Before realizing all internal errors of (INTERR) microcode was documented in <code>hexrays_sdk/verifier/verify.cpp</code> I tried to find meaning of all INTERR’s by dumping microcode. I used d810’s dump_microcode_for_debug function to dump microcode which helped a lot for debugging. To debug D810 (or any IDA Pro plugin) I followed this <a target="_blank" rel="noopener" href="https://0xd0cf11e.github.io/post/debug_idapython_plugin_vscode/">blogpost</a></p>
-<h2 id="Unflatten"><a href="#Unflatten" class="headerlink" title="Unflatten"></a>Unflatten</h2><p>In order to unflatten, we need to find state variables in dispatcher fathers. Dispatcher father is a block that goes into dispatcher directly. If we know the state variable in dispatcher father, we can calculate next dispatched block from dispatcher and replace dispatcher father’s next location to found block.</p>
-<p>Let’s give a example from sample. Each switch case body and initial state variable assignments are a dispatcher father. </p>
+<p>If you think about the dynamic analysis perspective, the execution flow is the same as in the first case. The dispatcher (gray block) should execute blocks in the order of normal execution. Since you need to follow the state variable after each “case” execution, static analysis is harder for a reverse engineer and sometimes state variable is also obfuscated.</p>
+<p>After seeing the cff’ed binary I looked up earlier research about cff. I tried to work with <a target="_blank" rel="noopener" href="https://github.com/eset/stadeo">stadeo</a>, then found  <a target="_blank" rel="noopener" href="https://eshard.com/posts/D810-a-journey-into-control-flow-unflattening">eShard d810</a>. Stadeo uses miasm to lift binary and then analyze the cff whereas d810 uses HexRays microcode (intermediate representation of IDA). D810 can backward track variables, emulate microcode, and have very easy-to-extend config&#x2F;rule sets for opaque predicates, etc. So I sticked to d810. Make sure to read their blogs about d810<a target="_blank" rel="noopener" href="https://eshard.com/posts/D810-a-journey-into-control-flow-unflattening">[1]</a><a target="_blank" rel="noopener" href="https://eshard.com/posts/d810-deobfuscation-ida-pro">[2]</a></p>
+<h2 id="Microcode"><a href="#Microcode" class="headerlink" title="Microcode"></a>Microcode</h2><p>D-810 hooks the decompilation process of IDA and makes changes. Micro instructions(minsnt_t), micro-operations (mop_t), blocks (mblocks_t) in microcode. Before giving execution back to IDA final mba needs to be verified.</p>
+<p>Oh, boi.. Before realizing all internal errors of (INTERR) microcode was documented in <code>hexrays_sdk/verifier/verify.cpp</code> I tried to find the meaning of all INTERR’s by dumping microcode. I used d810’s dump_microcode_for_debug function to dump microcode which helped a lot for debugging. To debug D810 (or any IDA Pro plugin) I followed this <a target="_blank" rel="noopener" href="https://0xd0cf11e.github.io/post/debug_idapython_plugin_vscode/">blog post</a></p>
+<h2 id="Unflatten"><a href="#Unflatten" class="headerlink" title="Unflatten"></a>Unflatten</h2><p>To unflatten, we need to find state variables in dispatcher fathers. The Dispatcher father is a block that goes into the dispatcher directly. If we know the state variable in dispatcher father, we can calculate the next dispatched block from dispatcher and replace the dispatcher father’s next location with found block.</p>
+<p>Let’s give a example from the sample. Each switch case body and initial state variable assignments are a dispatcher father.</p>
 <p><img src="/Control-Flow-Unflattening/example_jmptable.png"></p>
 <p>Switch case starts with initial state variable 1010106. Knowing if state is 1010106 (X), dispatcher(Y) will go into code block(Z): <code>v1 = (qword_470e8 == 0) + 1010107</code>, We can directly go into block(Z) from assignment of 1010106(X). Meaning instead of <code>X-&gt;Y-&gt;Z</code> we will have <code>X-&gt;Z</code></p>
-<p>In d810 there is a rule for cff with switch table called <code>default_unflattening_switch_case.json</code>. Unfortunately it does not work for this case. But why? Because of the <code>v1 = (qword_470e8 == 0) + 1010107</code>. It can generate two different variable from single block. </p>
-<p>Actually they tried to solve this problem. If block can have more than one state variable value (think about two if cases with different state assignment), they “duplicate any block which appears in (at least) 2 paths with (at least) 2 different predecessors.” But there is no predecessor in this case. So how I solved it ? By creating jz condition with <a target="_blank" rel="noopener" href="https://github.com/eybisi/d810/blob/master/d810/optimizers/flow/flattening/generic.py#L491">two new blocks</a>. </p>
-<p>Let’s look at microcode represantation of these blocks to understand easier. To show microcode I used a plugin called <a target="_blank" rel="noopener" href="https://github.com/gaasedelen/lucid">lucid</a> </p>
+<p>In d810 there is a rule for cff with a switch table called <code>default_unflattening_switch_case.json</code>. Unfortunately, it does not work for this case. But why? Because of the <code>v1 = (qword_470e8 == 0) + 1010107</code>. It can generate two different variables from single block. </p>
+<p>Actually, they tried to solve this problem. If a block can have more than one state variable value (think about two if cases with different state assignments), they “duplicate any block which appears in (at least) 2 paths with (at least) 2 different predecessors.” But there is no predecessor in this case. So how I solved it ? By creating jz condition with <a target="_blank" rel="noopener" href="https://github.com/eybisi/d810/blob/master/d810/optimizers/flow/flattening/generic.py#L491">two new blocks</a>.</p>
+<p>Let’s look at the microcode representation of these blocks to understand easier. To show microcode I used a plugin called <a target="_blank" rel="noopener" href="https://github.com/gaasedelen/lucid">lucid</a> </p>
 <p><img src="/Control-Flow-Unflattening/microcode.png"></p>
 <ul>
 <li>Take comparison part of block 5 </li>
 <li>make it jz condition with comparison</li>
-<li>Create two new block with calculated state variable</li>
+<li>Create two new blocks with calculated state variable</li>
 <li>fix in&#x2F;out bounds of blocks</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">block 5:</span><br><span class="line">    jz qword_470e8 == 0 @7</span><br><span class="line"></span><br><span class="line">block 6:</span><br><span class="line">    mov 1010107,eax</span><br><span class="line">    goto @4</span><br><span class="line"></span><br><span class="line">block 7:</span><br><span class="line">    mov 1010108,eax</span><br><span class="line">    goto @4</span><br><span class="line"></span><br><span class="line">block 4:</span><br><span class="line">    jtbl eax ..</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>After finding dispatcher fathers, I used mop tracker history feature of d810 to find all father histories and fixed instructions that can create two state variable before executing generic unflattening of d810.</p>
-<p>After the changes, all dispatcher fathers have constant state variable. Then we can use d810’s cff solver part and continue.</p>
+<p>After finding dispatcher fathers, I used the mop tracker history feature of d810 to find all father histories and fixed instructions that can create two state variables before executing generic unflattening of d810.</p>
+<p>After the changes, all dispatcher fathers have constant state variables. Then we can use d810’s cff solver part and continue.</p>
 <p><img src="/Control-Flow-Unflattening/decompile_0.png"></p>
 <h2 id="Bad-While-Loops"><a href="#Bad-While-Loops" class="headerlink" title="Bad While Loops"></a>Bad While Loops</h2><p>After solving jump tables I saw bad while loops. Not that important but we can simplify these too.</p>
 <p><img src="/Control-Flow-Unflattening/badwhile.png"></p>
