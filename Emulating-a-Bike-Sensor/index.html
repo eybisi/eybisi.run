@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <link rel="me" href="https://infosec.exchange/@eybisi">
+    <meta name="description" content="As a reverse engineer and someone who enjoys dissecting how systems communicate, my interest was recently piqued by the Bluetooth Low Energy (BLE) cycling sensors that integrate with fitness tracking">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Emulating a Bike Sensor">
+<meta property="og:url" content="http://eybisi.run/Emulating-a-Bike-Sensor/index.html">
+<meta property="og:site_name" content="hedgehog&#39;s cave">
+<meta property="og:description" content="As a reverse engineer and someone who enjoys dissecting how systems communicate, my interest was recently piqued by the Bluetooth Low Energy (BLE) cycling sensors that integrate with fitness tracking">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://eybisi.run/Emulating-a-Bike-Sensor/esp32.jpg">
+<meta property="og:image" content="http://eybisi.run/Emulating-a-Bike-Sensor/1.jpg">
+<meta property="og:image" content="http://eybisi.run/Emulating-a-Bike-Sensor/fcc.png">
+<meta property="og:image" content="http://eybisi.run/Emulating-a-Bike-Sensor/2.jpg">
+<meta property="og:image" content="http://eybisi.run/Emulating-a-Bike-Sensor/sensor.gif">
+<meta property="og:image" content="http://eybisi.run/Emulating-a-Bike-Sensor/antioxidant.png">
+<meta property="article:published_time" content="2025-05-23T20:56:24.000Z">
+<meta property="article:modified_time" content="2025-05-23T21:27:48.668Z">
+<meta property="article:author" content="abc">
+<meta property="article:tag" content="Bluetooth">
+<meta property="article:tag" content="Hardware">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://eybisi.run/Emulating-a-Bike-Sensor/esp32.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Emulating a Bike Sensor</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="hedgehog's cave" type="application/atom+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/eybisi">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Control-Flow-Unflattening/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Emulating-a-Bike-Sensor/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://eybisi.run/Emulating-a-Bike-Sensor/&text=Emulating a Bike Sensor"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Emulating-a-Bike-Sensor/&title=Emulating a Bike Sensor"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Emulating-a-Bike-Sensor/&is_video=false&description=Emulating a Bike Sensor"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Emulating a Bike Sensor&body=Check out this article: http://eybisi.run/Emulating-a-Bike-Sensor/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://eybisi.run/Emulating-a-Bike-Sensor/&title=Emulating a Bike Sensor"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://eybisi.run/Emulating-a-Bike-Sensor/&title=Emulating a Bike Sensor"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Emulating-a-Bike-Sensor/&title=Emulating a Bike Sensor"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://eybisi.run/Emulating-a-Bike-Sensor/&title=Emulating a Bike Sensor"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Emulating-a-Bike-Sensor/&name=Emulating a Bike Sensor&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://eybisi.run/Emulating-a-Bike-Sensor/&t=Emulating a Bike Sensor"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Proprietary-Sensors-Only"><span class="toc-number">1.</span> <span class="toc-text">Proprietary Sensors Only?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Bike-Sensors-Really-Work"><span class="toc-number">2.</span> <span class="toc-text">How Bike Sensors Really Work</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-DIY-Solution-ESP32-Reed-Sensor-Emulation"><span class="toc-number">3.</span> <span class="toc-text">The DIY Solution: ESP32 + Reed Sensor Emulation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Connecting-to-Samsung-Health"><span class="toc-number">4.</span> <span class="toc-text">Connecting to Samsung Health</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Funny-Finding"><span class="toc-number">5.</span> <span class="toc-text">Funny Finding</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Emulating a Bike Sensor
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">abc</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-05-23T20:56:24.000Z" class="dt-published" itemprop="datePublished">2025-05-23</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Android/" rel="tag">Android</a>, <a class="p-category" href="/tags/Bluetooth/" rel="tag">Bluetooth</a>, <a class="p-category" href="/tags/Hardware/" rel="tag">Hardware</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>As a reverse engineer and someone who enjoys dissecting how systems communicate, my interest was recently piqued by the Bluetooth Low Energy (BLE) cycling sensors that integrate with fitness tracking apps like Samsung Health. What began as an investigative dive into what I initially presumed were proprietary connections quickly evolved into a hands-on DIY project with an ESP32, demonstrating the power of open standards.</p>
+<p><img src="/Emulating-a-Bike-Sensor/esp32.jpg"></p>
+<h2 id="Proprietary-Sensors-Only"><a href="#Proprietary-Sensors-Only" class="headerlink" title="Proprietary Sensors Only?"></a>Proprietary Sensors Only?</h2><p>My adventure began when I noticed the “Accessories” option in Samsung Health while preparing for an exercise session. Upon clicking, I was presented with a list of sensor devices for biking. My immediate thought was that Samsung Health might only support a specific, limited set of official or licensed sensors. This led me to purchase a second-hand Polar cadence sensor, believing it was the only way to get my cycling data into the app. Here’s a glimpse of what the accessory scanning looked like:</p>
+<p><img src="/Emulating-a-Bike-Sensor/1.jpg"></p>
+<h2 id="How-Bike-Sensors-Really-Work"><a href="#How-Bike-Sensors-Really-Work" class="headerlink" title="How Bike Sensors Really Work"></a>How Bike Sensors Really Work</h2><p>While my Polar sensor was still in transit, I decided to dive deeper into how these cycling sensors actually function. I quickly learned that most bike sensors, whether for speed or cadence, fall into two main categories:</p>
+<ul>
+<li>Magnet-based sensors: These are simple and reliable. A small magnet is attached to a rotating part (like a wheel spoke for speed, or a crank arm for cadence), and a stationary sensor (often a reed switch) is mounted nearby. Every time the magnet passes the sensor, it registers a “rotation.” My Polar sensor, it turned out, used this exact mechanism for cadence: a magnet on the crank, and the sensor on the bike’s chainstay, counting each crank rotation. In fact, when I looked up the FCC ID (INWY6) for Polar bike sensors, the internal photos readily available online confirmed it was indeed using a magnetic reed sensor for its operation.</li>
+</ul>
+<p><img src="/Emulating-a-Bike-Sensor/fcc.png"></p>
+<ul>
+<li>Accelerometer-based sensors: These are more advanced and magnet-less. They use an accelerometer to detect the orientation and rotation of the component they’re attached to (e.g., a wheel hub or crank arm) to infer revolutions.</li>
+</ul>
+<p>What truly surprised me was discovering that Bluetooth has an official Cycling Speed and Cadence (CSC) Service. This isn’t a proprietary Samsung thing; it’s a standardized BLE profile that any compatible sensor or app can use. This meant my initial assumption was wrong. Samsung Health, and many other fitness apps, are designed to connect to any sensor that adheres to this standard.</p>
+<p>The CSC service is quite clever. It doesn’t send “speed” or “RPM” directly. Instead, it transmits:</p>
+<ul>
+<li>Cumulative Rotation Count: A running total of how many times the wheel or crank has rotated.</li>
+<li>Last Event Time: A timestamp indicating when the last rotation was detected.</li>
+</ul>
+<p>The connected app (like Samsung Health) then takes these raw numbers and performs the calculations to give you real-time speed and RPM. For speed, the app typically asks for your wheel circumference, which it then multiplies by the wheel revolutions to get distance, and divides by the time elapsed to get speed.</p>
+<h2 id="The-DIY-Solution-ESP32-Reed-Sensor-Emulation"><a href="#The-DIY-Solution-ESP32-Reed-Sensor-Emulation" class="headerlink" title="The DIY Solution: ESP32 + Reed Sensor Emulation"></a>The DIY Solution: ESP32 + Reed Sensor Emulation</h2><p>Since I already had an ESP32, a microcontroller with built-in BLE capabilities, I realized I didn’t need to wait for my Polar sensor to arrive to start experimenting. I could build my own “fake” sensor! I grabbed a simple magnetic reed sensor (the same type used in many commercial sensors) and connected it to my ESP32.</p>
+<p>My goal was to create an ESP32 BLE server that would emulate a full Cycling Speed and Cadence sensor using just this one reed switch. This meant every time the single reed sensor triggered, I would update both the emulated wheel revolutions and crank revolutions. While not physically accurate (a real bike’s wheel turns many more times than its cranks), it would demonstrate the BLE service functionality perfectly.</p>
+<p>Here’s a simplified look at the core ESP32 Arduino code:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;BLEDevice.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;BLEServer.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;BLEUtils.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;BLE2902.h&gt;</span> <span class="comment">// For Client Characteristic Configuration Descriptor (CCCD)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// --- BLE Service and Characteristic UUIDs ---</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CSC_SERVICE_UUID <span class="string">&quot;00001816-0000-1000-8000-00805f9b34fb&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CSC_MEASUREMENT_CHAR_UUID <span class="string">&quot;00002a5b-0000-1000-8000-00805f9b34fb&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CSC_FEATURE_CHAR_UUID <span class="string">&quot;00002a5c-0000-1000-8000-00805f9b34fb&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// --- Hardware Configuration ---</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> SINGLE_REED_SENSOR_PIN = <span class="number">13</span>; <span class="comment">// Connect reed sensor here</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// --- Sensor Data Variables (volatile for ISR) ---</span></span><br><span class="line"><span class="keyword">volatile</span> <span class="type">uint32_t</span> cumulativeWheelRevolutions = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">volatile</span> <span class="type">uint16_t</span> lastWheelEventTime = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">volatile</span> <span class="type">uint16_t</span> cumulativeCrankRevolutions = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">volatile</span> <span class="type">uint16_t</span> lastCrankEventTime = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">long</span> lastSingleSensorTriggerMillis = <span class="number">0</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">unsigned</span> <span class="type">long</span> DEBOUNCE_DELAY_MS = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// --- Interrupt Service Routine (ISR) ---</span></span><br><span class="line"><span class="comment">// This function runs every time the reed sensor detects a magnet.</span></span><br><span class="line"><span class="type">void</span> IRAM_ATTR <span class="title function_">singleReedISR</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (millis() - lastSingleSensorTriggerMillis &gt; DEBOUNCE_DELAY_MS) &#123;</span><br><span class="line">        cumulativeWheelRevolutions++; <span class="comment">// Emulate wheel revolution</span></span><br><span class="line">        cumulativeCrankRevolutions++; <span class="comment">// Emulate crank revolution</span></span><br><span class="line"></span><br><span class="line">        <span class="type">uint16_t</span> currentTime1024s = (<span class="type">uint16_t</span>)(esp_timer_get_time() / <span class="number">1000</span> * <span class="number">1024</span> / <span class="number">1000</span>);</span><br><span class="line">        lastWheelEventTime = currentTime1024s;</span><br><span class="line">        lastCrankEventTime = currentTime1024s;</span><br><span class="line"></span><br><span class="line">        lastSingleSensorTriggerMillis = millis();</span><br><span class="line">        Serial.println(<span class="string">&quot;Sensor Triggered! Updating both counts.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">setup</span><span class="params">()</span> &#123;</span><br><span class="line">    Serial.begin(<span class="number">115200</span>);</span><br><span class="line">    BLEDevice::init(<span class="string">&quot;ESP32_Emulated_CSC&quot;</span>); <span class="comment">// Device name for BLE advertising</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create BLE Server, Service, and Characteristics</span></span><br><span class="line">    BLEServer* pServer = BLEDevice::createServer();</span><br><span class="line">    pServer-&gt;setCallbacks(new MyServerCallbacks()); <span class="comment">// Handle connect/disconnect</span></span><br><span class="line"></span><br><span class="line">    BLEService* pCscService = pServer-&gt;createService(CSC_SERVICE_UUID);</span><br><span class="line">    BLECharacteristic* pCscMeasurementCharacteristic = pCscService-&gt;createCharacteristic(</span><br><span class="line">                                        CSC_MEASUREMENT_CHAR_UUID, BLECharacteristic::PROPERTY_NOTIFY);</span><br><span class="line">    pCscMeasurementCharacteristic-&gt;addDescriptor(new BLE2902()); <span class="comment">// For notifications</span></span><br><span class="line"></span><br><span class="line">    BLECharacteristic* pCscFeatureCharacteristic = pCscService-&gt;createCharacteristic(</span><br><span class="line">                                        CSC_FEATURE_CHAR_UUID, BLECharacteristic::PROPERTY_READ);</span><br><span class="line">    <span class="type">uint16_t</span> cscFeatures = <span class="number">0x0003</span>; <span class="comment">// Indicate support for both Wheel and Crank data</span></span><br><span class="line">    pCscFeatureCharacteristic-&gt;setValue((<span class="type">uint8_t</span>*)&amp;cscFeatures, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    pCscService-&gt;start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start BLE Advertising</span></span><br><span class="line">    BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();</span><br><span class="line">    pAdvertising-&gt;addServiceUUID(CSC_SERVICE_UUID);</span><br><span class="line">    pAdvertising-&gt;setScanResponse(<span class="literal">true</span>);</span><br><span class="line">    BLEDevice::startAdvertising();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Configure reed sensor pin and attach interrupt</span></span><br><span class="line">    pinMode(SINGLE_REED_SENSOR_PIN, INPUT_PULLUP);</span><br><span class="line">    attachInterrupt(digitalPinToInterrupt(SINGLE_REED_SENSOR_PIN), singleReedISR, FALLING);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">loop</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (deviceConnected) &#123;</span><br><span class="line">        <span class="type">uint8_t</span> flags = <span class="number">0x03</span>; <span class="comment">// Both wheel and crank data present</span></span><br><span class="line">        <span class="type">uint8_t</span> cscData[<span class="number">11</span>];</span><br><span class="line">        <span class="type">int</span> offset = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        cscData[offset++] = flags;</span><br><span class="line">        <span class="built_in">memcpy</span>(&amp;cscData[offset], (<span class="type">const</span> <span class="type">void</span>*)&amp;cumulativeWheelRevolutions, <span class="number">4</span>); offset += <span class="number">4</span>;</span><br><span class="line">        <span class="built_in">memcpy</span>(&amp;cscData[offset], (<span class="type">const</span> <span class="type">void</span>*)&amp;lastWheelEventTime, <span class="number">2</span>); offset += <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">memcpy</span>(&amp;cscData[offset], (<span class="type">const</span> <span class="type">void</span>*)&amp;cumulativeCrankRevolutions, <span class="number">2</span>); offset += <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">memcpy</span>(&amp;cscData[offset], (<span class="type">const</span> <span class="type">void</span>*)&amp;lastCrankEventTime, <span class="number">2</span>); offset += <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">        pCscMeasurementCharacteristic-&gt;setValue(cscData, <span class="number">11</span>); <span class="comment">// Set the full data packet</span></span><br><span class="line">        pCscMeasurementCharacteristic-&gt;notify(<span class="literal">true</span>); <span class="comment">// Send notification</span></span><br><span class="line"></span><br><span class="line">        delay(<span class="number">100</span>); <span class="comment">// Send updates every 100ms</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        delay(<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Key parts of the code:</p>
+<ul>
+<li><code>SINGLE_REED_SENSOR_PIN = 13</code>: This is where your single reed sensor is connected.</li>
+<li><code>singleReedISR()</code>: This Interrupt Service Routine is the heart of the emulation. Every time the magnet passes the sensor, this function runs. It increments both <code>cumulativeWheelRevolutions</code> and <code>cumulativeCrankRevolutions</code> and updates their <code>lastEventTime</code> with the current timestamp. This makes the single sensor appear as both a speed and cadence sensor.</li>
+<li><code>cscFeatures = 0x0003</code>: In the <code>setup()</code> function, this line tells any connecting app that our ESP32 supports both wheel (speed) and crank (cadence) data.</li>
+<li><code>pCscMeasurementCharacteristic-&gt;setValue(cscData, 11); pCscMeasurementCharacteristic-&gt;notify(true);</code>: In the loop() function, after preparing the cscData packet with the latest revolution counts and times, these lines update the BLE characteristic’s value and send a notification to the connected fitness app.</li>
+</ul>
+<h2 id="Connecting-to-Samsung-Health"><a href="#Connecting-to-Samsung-Health" class="headerlink" title="Connecting to Samsung Health"></a>Connecting to Samsung Health</h2><p>Once the ESP32 code is uploaded and running, it starts advertising itself as “ESP32_Emulated_CSC”. You can then go into Samsung Health and scan for new devices. After selecting “ESP32_Emulated_CSC” and connecting, Samsung Health will typically ask for some configuration details, especially the wheel size. This is crucial for the app to accurately calculate your speed from the wheel revolution data it receives.<br><img src="/Emulating-a-Bike-Sensor/2.jpg"></p>
+<p>Once configured, you can start your exercise! Every time you trigger the reed sensor (e.g., by waving a magnet past it, or by mounting it on a wheel and spinning it), you’ll see the values update in Samsung Health. The app takes the raw revolution counts and timestamps from the ESP32 and displays your speed and RPM.</p>
+<p><img src="/Emulating-a-Bike-Sensor/sensor.gif"></p>
+<p>This project demonstrates the power of open standards like BLE and how a simple microcontroller like the ESP32 can be used to create custom sensors that integrate seamlessly with existing fitness ecosystems. It’s a fantastic way to learn about BLE, microcontrollers, and even a bit about how your fitness data is collected!</p>
+<p>Happy cycling (and emulating)!</p>
+<h2 id="Funny-Finding"><a href="#Funny-Finding" class="headerlink" title="Funny Finding"></a>Funny Finding</h2><p>While looking at the Samsung Health APK for the blogpost, I stumbled upon some curious strings related to <code>antioxidant</code>. My first thought was that it might be some obscure codename for another type of sensor.</p>
+<p><img src="/Emulating-a-Bike-Sensor/antioxidant.png"></p>
+<p>However, upon further investigation (and a quick search that led me to <a target="_blank" rel="noopener" href="https://www.androidauthority.com/samsung-health-antioxidant-index-measurement-apk-teardown-3560656/">this Android Authority blog post</a> published just 12 hours before my discovery!), it turned out to be a real feature. Samsung watches can actually measure an “Antioxidant Index,” and this functionality was introduced in the very patch of Samsung Health that I was reversing. It was a fun, unexpected detour in my exploration!</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/eybisi">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Proprietary-Sensors-Only"><span class="toc-number">1.</span> <span class="toc-text">Proprietary Sensors Only?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Bike-Sensors-Really-Work"><span class="toc-number">2.</span> <span class="toc-text">How Bike Sensors Really Work</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-DIY-Solution-ESP32-Reed-Sensor-Emulation"><span class="toc-number">3.</span> <span class="toc-text">The DIY Solution: ESP32 + Reed Sensor Emulation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Connecting-to-Samsung-Health"><span class="toc-number">4.</span> <span class="toc-text">Connecting to Samsung Health</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Funny-Finding"><span class="toc-number">5.</span> <span class="toc-text">Funny Finding</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://eybisi.run/Emulating-a-Bike-Sensor/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://eybisi.run/Emulating-a-Bike-Sensor/&text=Emulating a Bike Sensor"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://eybisi.run/Emulating-a-Bike-Sensor/&title=Emulating a Bike Sensor"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://eybisi.run/Emulating-a-Bike-Sensor/&is_video=false&description=Emulating a Bike Sensor"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Emulating a Bike Sensor&body=Check out this article: http://eybisi.run/Emulating-a-Bike-Sensor/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://eybisi.run/Emulating-a-Bike-Sensor/&title=Emulating a Bike Sensor"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://eybisi.run/Emulating-a-Bike-Sensor/&title=Emulating a Bike Sensor"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://eybisi.run/Emulating-a-Bike-Sensor/&title=Emulating a Bike Sensor"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://eybisi.run/Emulating-a-Bike-Sensor/&title=Emulating a Bike Sensor"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://eybisi.run/Emulating-a-Bike-Sensor/&name=Emulating a Bike Sensor&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://eybisi.run/Emulating-a-Bike-Sensor/&t=Emulating a Bike Sensor"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    abc
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/eybisi">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

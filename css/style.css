@@ -480,13 +480,11 @@ body {
   height: 100%;
   background-color: #0c0d0d;
   color: #c9cacc;
-  font-display: swap;
   font-weight: 400;
   font-size: 14px;
   font-family: "Menlo", "Meslo LG", monospace;
   line-height: 1.725;
   text-rendering: geometricPrecision;
-  flex: 1;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
@@ -691,9 +689,15 @@ body {
     top: 77px;
     right: 1rem;
     display: inline-block;
+    text-align: center;
   }
   #header #nav ul.responsive li {
     display: block;
+  }
+  #header #nav ul a[aria-label="Menu"] {
+    display: inline-block;
+    min-width: 48px;
+    min-height: 48px;
   }
   #header #nav li:not(:first-child) {
     padding-top: 1rem;
@@ -1583,7 +1587,7 @@ pre {
   border-radius: 4px;
   font-size: 13px;
   font-family: "Menlo", "Meslo LG", monospace;
-  line-height: 13px;
+  line-height: 22px;
   -webkit-border-radius: 4px;
 }
 pre code {
@@ -1603,7 +1607,7 @@ code {
   padding: 10px 15px;
   border-radius: 4px;
   background: #111212;
-  font-family: Consolas;
+  font-family: "Menlo", "Meslo LG", monospace;
   -webkit-border-radius: 4px;
 }
 .highlight figcaption {
@@ -1659,5 +1663,8 @@ code {
   opacity: 0.2;
 }
 .highlight .line {
-  height: 13px;
+  height: 22px;
+}
+#header-post #actions {
+  direction: ltr !important;
 }

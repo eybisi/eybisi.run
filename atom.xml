@@ -3,10 +3,10 @@
   <title>hedgehog&#39;s cave</title>
   
   
-  <link href="/atom.xml" rel="self"/>
+  <link href="http://eybisi.run/atom.xml" rel="self"/>
   
   <link href="http://eybisi.run/"/>
-  <updated>2022-11-02T10:59:42.244Z</updated>
+  <updated>2025-05-23T21:27:48.668Z</updated>
   <id>http://eybisi.run/</id>
   
   <author>
@@ -14,51 +14,76 @@
     
   </author>
   
-  <generator uri="http://hexo.io/">Hexo</generator>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Emulating a Bike Sensor</title>
+    <link href="http://eybisi.run/Emulating-a-Bike-Sensor/"/>
+    <id>http://eybisi.run/Emulating-a-Bike-Sensor/</id>
+    <published>2025-05-23T20:56:24.000Z</published>
+    <updated>2025-05-23T21:27:48.668Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;As a reverse engineer and someone who enjoys dissecting how systems communicate, my interest was recently piqued by the Bluetooth Low</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Bluetooth" scheme="http://eybisi.run/tags/Bluetooth/"/>
+    
+    <category term="Hardware" scheme="http://eybisi.run/tags/Hardware/"/>
+    
+    <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Control Flow Unflattening</title>
     <link href="http://eybisi.run/Control-Flow-Unflattening/"/>
     <id>http://eybisi.run/Control-Flow-Unflattening/</id>
     <published>2022-10-26T13:05:47.000Z</published>
-    <updated>2022-11-02T10:59:42.244Z</updated>
+    <updated>2024-11-13T18:30:28.024Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;p&gt;&lt;img src=&quot;/Control-Flow-Unflattening/compare.png&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Target&quot;&gt;&lt;a href=&quot;#Target&quot; class=&quot;headerlink&quot;
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/Control-Flow-Unflattening/compare.png&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Target&quot;&gt;&lt;a href=&quot;#Target&quot; class=&quot;headerlink&quot;</summary>
         
       
     
-    </summary>
     
     
-      <category term="Obfuscation" scheme="http://eybisi.run/tags/Obfuscation/"/>
+    
+    <category term="Obfuscation" scheme="http://eybisi.run/tags/Obfuscation/"/>
     
   </entry>
   
   <entry>
-    <title>Mobile Malware Analysis : Overlay and How to Counter It (Partly)</title>
+    <title>Mobile Malware Analysis : Overlay and How to Counter it (partly)</title>
     <link href="http://eybisi.run/Mobile-Malware-Analysis-Overlay-and-How-to-Counter-it/"/>
     <id>http://eybisi.run/Mobile-Malware-Analysis-Overlay-and-How-to-Counter-it/</id>
     <published>2019-06-10T13:17:36.000Z</published>
-    <updated>2022-10-25T07:16:04.853Z</updated>
+    <updated>2024-11-13T18:30:28.034Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;h2 id=&quot;Defeating-Overlay&quot;&gt;&lt;a href=&quot;#Defeating-Overlay&quot; class=&quot;headerlink&quot; title=&quot;Defeating Overlay&quot;&gt;&lt;/a&gt;Defeating Overlay&lt;/h2&gt;&lt;p&gt;In my
+    <summary type="html">&lt;h2 id=&quot;Defeating-Overlay&quot;&gt;&lt;a href=&quot;#Defeating-Overlay&quot; class=&quot;headerlink&quot; title=&quot;Defeating Overlay&quot;&gt;&lt;/a&gt;Defeating Overlay&lt;/h2&gt;&lt;p&gt;In my</summary>
         
       
     
-    </summary>
+    
     
     
   </entry>
@@ -68,26 +93,25 @@
     <link href="http://eybisi.run/DEF-CON-Quals-2019-Vitor/"/>
     <id>http://eybisi.run/DEF-CON-Quals-2019-Vitor/</id>
     <published>2019-05-25T23:22:29.000Z</published>
-    <updated>2022-10-25T07:16:04.847Z</updated>
+    <updated>2024-11-13T18:30:28.027Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;h2 id=&quot;Vitor&quot;&gt;&lt;a href=&quot;#Vitor&quot; class=&quot;headerlink&quot; title=&quot;Vitor&quot;&gt;&lt;/a&gt;Vitor&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/DEF-CON-Quals-2019-Vitor/mm.jpg&quot;
+    <summary type="html">&lt;h2 id=&quot;Vitor&quot;&gt;&lt;a href=&quot;#Vitor&quot; class=&quot;headerlink&quot; title=&quot;Vitor&quot;&gt;&lt;/a&gt;Vitor&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/DEF-CON-Quals-2019-Vitor/mm.jpg&quot;</summary>
         
       
     
-    </summary>
     
     
-      <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
+    <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    
+    <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
     
   </entry>
   
@@ -96,57 +120,55 @@
     <link href="http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/"/>
     <id>http://eybisi.run/DEF-CON-Quals-2019-Veryandroidoso/</id>
     <published>2019-05-13T00:00:00.000Z</published>
-    <updated>2022-10-25T07:16:04.840Z</updated>
+    <updated>2024-11-13T18:30:28.024Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;p&gt;Here is my writeup for &lt;code&gt;VERYANDROIDOSO&lt;/code&gt; &lt;a href=&quot;ooo.defcon2019.quals.veryandroidoso.apk&quot;&gt;task&lt;/a&gt;. Ofcourse with frida
+    <summary type="html">&lt;p&gt;Here is my writeup for &lt;code&gt;VERYANDROIDOSO&lt;/code&gt; &lt;a href=&quot;ooo.defcon2019.quals.veryandroidoso.apk&quot;&gt;task&lt;/a&gt;. Ofcourse with frida</summary>
         
       
     
-    </summary>
     
     
-      <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
+    <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
     
-      <category term="Frida" scheme="http://eybisi.run/tags/Frida/"/>
+    <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
+    
+    <category term="Frida" scheme="http://eybisi.run/tags/Frida/"/>
     
   </entry>
   
   <entry>
-    <title>Mobile Malware Analysis : Tricks Used in Anubis</title>
+    <title>Mobile Malware Analysis : Tricks used in Anubis</title>
     <link href="http://eybisi.run/Mobile-Malware-Analysis-Tricks-used-in-Anubis/"/>
     <id>http://eybisi.run/Mobile-Malware-Analysis-Tricks-used-in-Anubis/</id>
     <published>2019-04-07T13:41:35.000Z</published>
-    <updated>2022-10-25T07:16:04.857Z</updated>
+    <updated>2024-11-13T18:30:28.037Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;h2 id=&quot;Anubis&quot;&gt;&lt;a href=&quot;#Anubis&quot; class=&quot;headerlink&quot; title=&quot;Anubis&quot;&gt;&lt;/a&gt;Anubis&lt;/h2&gt;&lt;img src=&quot;anubis.jpg&quot; width=&quot;250&quot;&gt;
+    <summary type="html">&lt;h2 id=&quot;Anubis&quot;&gt;&lt;a href=&quot;#Anubis&quot; class=&quot;headerlink&quot; title=&quot;Anubis&quot;&gt;&lt;/a&gt;Anubis&lt;/h2&gt;&lt;img src=&quot;anubis.jpg&quot; width=&quot;250&quot;&gt;
 
 
-&lt;p&gt;Anubis is my
+&lt;p&gt;Anubis is my</summary>
         
       
     
-    </summary>
     
     
-      <category term="Malware" scheme="http://eybisi.run/tags/Malware/"/>
     
-      <category term="Mobile" scheme="http://eybisi.run/tags/Mobile/"/>
+    <category term="Malware" scheme="http://eybisi.run/tags/Malware/"/>
+    
+    <category term="Mobile" scheme="http://eybisi.run/tags/Mobile/"/>
     
   </entry>
   
@@ -155,26 +177,25 @@
     <link href="http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/"/>
     <id>http://eybisi.run/STMCTF18-Final-Mobil-Sorulari/</id>
     <published>2018-11-03T12:23:21.000Z</published>
-    <updated>2022-10-25T07:16:04.873Z</updated>
+    <updated>2024-11-13T18:30:28.050Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;h2 id=&quot;basitmobil&quot;&gt;&lt;a href=&quot;#basitmobil&quot; class=&quot;headerlink&quot; title=&quot;basitmobil&quot;&gt;&lt;/a&gt;basitmobil&lt;/h2&gt;&lt;p&gt;jadxte açtığımda flag zaten karşımda.
+    <summary type="html">&lt;h2 id=&quot;basitmobil&quot;&gt;&lt;a href=&quot;#basitmobil&quot; class=&quot;headerlink&quot; title=&quot;basitmobil&quot;&gt;&lt;/a&gt;basitmobil&lt;/h2&gt;&lt;p&gt;jadxte açtığımda flag zaten karşımda.</summary>
         
       
     
-    </summary>
     
     
-      <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
+    <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    
+    <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
     
   </entry>
   
@@ -183,25 +204,24 @@
     <link href="http://eybisi.run/Flareon5-6-Challenge-Magic/"/>
     <id>http://eybisi.run/Flareon5-6-Challenge-Magic/</id>
     <published>2018-10-06T15:13:54.000Z</published>
-    <updated>2022-10-25T07:16:04.847Z</updated>
+    <updated>2024-11-13T18:30:28.030Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;p&gt;In this post I’ll try to explain how I bruteforced challenge 6 with frida.&lt;/p&gt;
-&lt;p&gt;First of all lets try to understand what binary
+    <summary type="html">&lt;p&gt;In this post I’ll try to explain how I bruteforced challenge 6 with frida.&lt;/p&gt;
+&lt;p&gt;First of all lets try to understand what binary</summary>
         
       
     
-    </summary>
     
     
-      <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="reverse" scheme="http://eybisi.run/tags/reverse/"/>
+    <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
+    
+    <category term="reverse" scheme="http://eybisi.run/tags/reverse/"/>
     
   </entry>
   
@@ -210,24 +230,23 @@
     <link href="http://eybisi.run/BLE-nin-ABCsi-2-MITM/"/>
     <id>http://eybisi.run/BLE-nin-ABCsi-2-MITM/</id>
     <published>2018-08-09T17:41:35.000Z</published>
-    <updated>2022-10-26T12:23:25.330Z</updated>
+    <updated>2024-11-13T18:30:28.004Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;p&gt;Serimizin ilk yazısında BLE’nin temellerini öğrendiğimize göre artık BLE kullanan cihazlara yapılabilecek saldırı tekniklerinden
+    <summary type="html">&lt;p&gt;Serimizin ilk yazısında BLE’nin temellerini öğrendiğimize göre artık BLE kullanan cihazlara yapılabilecek saldırı tekniklerinden</summary>
         
       
     
-    </summary>
     
     
-      <category term="Bluetooth" scheme="http://eybisi.run/tags/Bluetooth/"/>
     
-      <category term="Hardware" scheme="http://eybisi.run/tags/Hardware/"/>
+    <category term="Bluetooth" scheme="http://eybisi.run/tags/Bluetooth/"/>
+    
+    <category term="Hardware" scheme="http://eybisi.run/tags/Hardware/"/>
     
   </entry>
   
@@ -236,24 +255,23 @@
     <link href="http://eybisi.run/BLE-nin-ABCsi-1-Basics/"/>
     <id>http://eybisi.run/BLE-nin-ABCsi-1-Basics/</id>
     <published>2018-08-03T23:41:15.000Z</published>
-    <updated>2022-10-25T07:16:04.810Z</updated>
+    <updated>2024-11-13T18:30:28.000Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;p&gt;Bu seride Bluetooth Low Energy hakkında öğrendiğim ne varsa anlatmaya çalışacağım. İlk olarak protokoldeki temel kavramları anlatıp
+    <summary type="html">&lt;p&gt;Bu seride Bluetooth Low Energy hakkında öğrendiğim ne varsa anlatmaya çalışacağım. İlk olarak protokoldeki temel kavramları anlatıp</summary>
         
       
     
-    </summary>
     
     
-      <category term="Bluetooth" scheme="http://eybisi.run/tags/Bluetooth/"/>
     
-      <category term="Hardware" scheme="http://eybisi.run/tags/Hardware/"/>
+    <category term="Bluetooth" scheme="http://eybisi.run/tags/Bluetooth/"/>
+    
+    <category term="Hardware" scheme="http://eybisi.run/tags/Hardware/"/>
     
   </entry>
   
@@ -262,84 +280,81 @@
     <link href="http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/"/>
     <id>http://eybisi.run/Mobil-Zararli-Analizi-Bolum-1-Ortami-Kuralim/</id>
     <published>2018-07-31T15:05:11.000Z</published>
-    <updated>2022-10-25T07:16:04.850Z</updated>
+    <updated>2024-11-13T18:30:28.030Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;p&gt;Bu seride mobil zararlı analizine yeni başlayanlar için bir rehber oluşturmaya çalışacağım. Serinin diğer yazılarında örnek zararlı
+    <summary type="html">&lt;p&gt;Bu seride mobil zararlı analizine yeni başlayanlar için bir rehber oluşturmaya çalışacağım. Serinin diğer yazılarında örnek zararlı</summary>
         
       
     
-    </summary>
     
     
-      <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
     
-      <category term="Malware" scheme="http://eybisi.run/tags/Malware/"/>
+    <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
     
-      <category term="Analiz" scheme="http://eybisi.run/tags/Analiz/"/>
+    <category term="Malware" scheme="http://eybisi.run/tags/Malware/"/>
+    
+    <category term="Analiz" scheme="http://eybisi.run/tags/Analiz/"/>
     
   </entry>
   
   <entry>
-    <title>CTFZone 2018 Android_ololo_country_checker</title>
+    <title>CTFZone 2018 android_ololo_country_checker</title>
     <link href="http://eybisi.run/CTFZone-2018-android-ololo-country-checker/"/>
     <id>http://eybisi.run/CTFZone-2018-android-ololo-country-checker/</id>
     <published>2018-07-24T20:24:15.000Z</published>
-    <updated>2022-10-25T07:16:04.833Z</updated>
+    <updated>2024-11-13T18:30:28.017Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;p&gt;Points : 314 , 8 takım çözdü&lt;/p&gt;
+    <summary type="html">&lt;p&gt;Points : 314 , 8 takım çözdü&lt;/p&gt;
 &lt;p&gt;Sorunun açıklaması :&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
         
       
     
-    </summary>
     
     
-      <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
+    <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    
+    <category term="Reverse" scheme="http://eybisi.run/tags/Reverse/"/>
     
   </entry>
   
   <entry>
-    <title>CTFZone 2018 Never Ever Be Fooled to Pay the Ransomware!</title>
+    <title>CTFZone 2018 Never ever be fooled to pay the ransomware!</title>
     <link href="http://eybisi.run/CTFZone-2018-Never-ever-be-fooled-to-pay-the-ransomware/"/>
     <id>http://eybisi.run/CTFZone-2018-Never-ever-be-fooled-to-pay-the-ransomware/</id>
     <published>2018-07-23T17:09:35.000Z</published>
-    <updated>2022-10-25T07:16:04.827Z</updated>
+    <updated>2024-11-13T18:30:28.010Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;p&gt;Points: 269 , Yaklaşık 9 takım çözmüştü sanırım.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;Points: 269 , Yaklaşık 9 takım çözmüştü sanırım.&lt;/p&gt;
 &lt;p&gt;Sorunun açıklaması :&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
         
       
     
-    </summary>
     
     
-      <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
     
-      <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
+    <category term="CTF" scheme="http://eybisi.run/tags/CTF/"/>
+    
+    <category term="Android" scheme="http://eybisi.run/tags/Android/"/>
     
   </entry>
   
